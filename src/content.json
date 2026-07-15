@@ -1,0 +1,268 @@
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "about": "About Us",
+      "twbi": "Our Legacy",
+      "scholarships": "Scholarships",
+      "gallery": "Photo Gallery",
+      "newsletters": "Newsletters",
+      "donate": "Donate",
+      "contact": "Contact",
+      "admin": "Volunteer Editor"
+    },
+    "hero": {
+      "badge": "Supporting French Education & Heritage Since 1947",
+      "title": "Preserving Our Heritage, Investing in Our Youth",
+      "subtitle": "The Saint-Jean-Baptiste Educational Foundation (SJBEF) is a historic 501(c)(3) nonprofit dedicated to promoting the French language, preserving Franco-American culture in New England, and awarding higher education scholarships.",
+      "ctaPrimary": "Support Our Mission",
+      "ctaSecondary": "Discover Our Legacy"
+    },
+    "stats": {
+      "years": { "num": "75+ Years", "label": "Historic Foundation" },
+      "schools": { "num": "500+", "label": "Scholarships Awarded" },
+      "scholarships": { "num": "$1.5M+", "label": "Educational Grants" },
+      "students": { "num": "100%", "label": "Volunteer Administered" }
+    },
+    "about": {
+      "section_title": "Our History & Mission",
+      "title": "Bridging Our Franco-American Past & Educational Future",
+      "p1": "Established in 1966 under the auspices of Union Saint-Jean-Baptiste, the mission of the SJBEF continues today as an affiliate of Catholic Financial Life. Our foundation is a registered 501(c)(3) nonprofit dedicated to promoting French language, preserving culture, and providing higher education assistance.",
+      "p2": "The Foundation was founded for the advancement of education and provides financial assistance through college scholarships. It is committed to helping society members become better prepared for tomorrow in order to meet the challenges and demands of our aggressively dynamic society.",
+      "history_title": "About Us & Our Rich History",
+      "history_p1": "The founding fathers of Union Saint-Jean-Baptiste, a fraternal benefit society established in 1900 for persons of French descent, were determined to provide the protection needed for families and to also offer various benefits that would be attractive to members of all ages. Granting scholarships was one of these benefits. Leaders of the early twentieth century knew from the outset that a better-educated Franco-American meant that their ethnic group would play a larger role and have more influential powers in their local communities and government.",
+      "history_p2": "In the early years, much time and effort was spent in building a sound financial base for the society by insuring and enrolling a large number of Franco-Americans. Beginning in 1917, USJB’s solid financial condition opened the door to the awarding of its first scholarships to members who were seeking professional careers or studying for the priesthood.",
+      "history_p3": "An effort was led in the early sixties by J. Henri Goguen, who served as USJB President General from 1946-1974 to establish an endowment that would ensure funds would be available on an annual basis for the purpose of awarding scholarships. The Saint-Jean-Baptiste Educational Foundation was thus established in 1966. It was determined that the main purpose of the Foundation was to provide scholarships to members pursuing undergraduate and graduate studies on a full time basis in a two or four year accredited institution. It was also to provide financial aid to those majoring in French and studying for the priesthood.",
+      "history_p4": "In 1991, Union-Saint-Jean-Baptiste merged with Catholic Family Life insurance and operated as its New England division. Presently the Foundation continues its mission under the umbrella of Catholic Financial Life, a faith-based membership organization, which puts Catholic values in action by: serving God through serving others; providing financial security; and enhancing quality of life. For more than 140 years, Catholic Financial Life has helped members take control of their future by providing real solutions to everyday challenges. Formed by the merger of Catholic Knights and Catholic Family Life Insurance in 2010, Catholic Financial Life is the second largest Catholic fraternal in the United States.",
+      "history_p5": "For additional information, please visit: wwww.catholicfinanciallife.org",
+      "mission_title": "Our Mission",
+      "mission_text": "To secure and distribute educational funds that support students of Franco-American heritage or those pursuing French language studies, ensuring the preservation of our cultural, linguistic, and spiritual values.",
+      "vision_title": "Our Vision",
+      "vision_text": "A community where Franco-American history, French heritage, and bilingualism are celebrated as powerful educational assets and preserved for future generations.",
+      "board_title": "Board of Trustees",
+      "board_chair": "Bruce Laverriere, Chairman",
+      "board_vice": "Paul R. Plante, Vice Chairman",
+      "board_treasurer": "Ken Boivin, Treasurer",
+      "board_secretary": "Paul Pinsonnault, Administrative Secretary",
+      "board_member1": "Celeste Feren",
+      "board_member2": "Susan Griffiths",
+      "board_member3": "Lynette Ouellette"
+    },
+    "twbi": {
+      "section_title": "The Franco-American Legacy",
+      "title": "Union Saint-Jean-Baptiste d'Amérique & Our Heritage",
+      "description": "The Union Saint-Jean-Baptiste d'Amérique (USJB), established in 1900 in Woonsocket, Rhode Island, grew to become the premier French-Canadian fraternal benefit society in the United States. In 1947, the USJB created the Saint-Jean-Baptiste Educational Foundation to consolidate and expand its charitable support for Catholic schools and French education. Today, we proudly carry forward this noble legacy of cultural preservation and academic support.",
+      "benefits": {
+        "title": "Why Preserving the French Language Matters",
+        "b1_title": "Ancestral Roots",
+        "b1_desc": "French is a foundational thread in New England's history, connecting millions of residents to their French-Canadian ancestors.",
+        "b2_title": "Global Integration",
+        "b2_desc": "As an official language of over 29 countries and 300 million speakers, French is a valuable passport for international careers.",
+        "b3_title": "Cultural Enrichment",
+        "b3_desc": "Linguistic diversity opens doors to world-class literature, philosophical traditions, and a deeper understanding of global history.",
+        "b4_title": "Academic Support",
+        "b4_desc": "Our foundation rewards diligent students, helping alleviate the burden of tuition for families committed to education."
+      },
+      "sjusd_connection": "SJBEF actively collaborates with New England parishes, historical societies, and French-language institutions to keep our traditions thriving."
+    },
+    "scholarships": {
+      "section_title": "Scholarships & Grants",
+      "title": "Investing in Our Future Leaders",
+      "description": "Each year, SJBEF awards scholarships to deserving high school seniors and undergraduate college students. These awards are geared toward individuals of French-Canadian/Franco-American ancestry, students studying French, or those enrolled in Catholic educational programs in New England.",
+      "apply_title": "Apply for the SJBEF Educational Scholarship",
+      "deadline": "Deadline: April 30th annually",
+      "requirements_title": "Eligibility & Requirements",
+      "req1": "Must be of French-Canadian or Franco-American descent, OR actively pursuing French or Francophone studies.",
+      "req2": "Must reside in New England (Rhode Island, Massachusetts, Connecticut, New Hampshire, Vermont, or Maine).",
+      "req3": "Enrolled or accepted in an accredited Catholic high school, or any accredited 2-year or 4-year college/university/trade school.",
+      "req4": "Submission of transcripts, a recommendation, and a personal essay (in English or French) on your heritage or studies.",
+      "button": "Open Scholarship Form",
+      "member_title": "Member Scholarships",
+      "member_desc": "The Foundation awards general scholarships to students pursuing a wide range of undergraduate or graduate degrees in a two or four year accredited college or university. Some of these scholarships are awarded “in memory of” or “in honor of” an individual as established since its founding through donor gifts.",
+      "seminarian_title": "Seminarian Scholarships",
+      "seminarian_desc": "Seminarians from all New England dioceses except Bridgeport, CT may be eligible for seminarian scholarships. Dioceses with established & restricted scholarships “in honor of” or “in memory of” an individual receive annual scholarships. These include: Maine, Springfield, MA, Rhode Island, and Vermont. Candidates are selected by the bishops and/or directors of vocation from each individual diocese. Seminarian scholarships are awarded to those individuals who are in their last four years of theological studies.",
+      "special_title": "Special Undergraduate Awards",
+      "special_desc": "In addition to general scholarships, undergraduate students may also be eligible for the following awards. These scholarship awards are considered by the Trustees every year and are dependent on the available income generated by the SJBEF Trust Fund:",
+      "award1": "State Academic Achievement Awards",
+      "award2": "French Scholarship",
+      "award3": "Outstanding Volunteer Scholarship",
+      "award4": "Scholarship based on best essay",
+      "trust_desc": "The number of member or seminarian scholarships awarded varies from year to year depending on the number of applicants and the amount of income available and generated by the SJBEF Trust Fund."
+    },
+    "donate": {
+      "section_title": "Support Us",
+      "title": "Your Generosity Powers Scholarships",
+      "description": "As a 100% volunteer-administered organization, every dollar you donate is directly invested into student scholarships and heritage preservation projects. Help us secure the future of French-American educational support!",
+      "tier_title": "Choose Your Giving Level",
+      "tiers": {
+        "t1_title": "Heritage Circle",
+        "t1_desc": "Provides French-language books and cultural resources for local school libraries.",
+        "t2_title": "Legacy Supporter",
+        "t2_desc": "Sponsors community workshops and historical presentations on Franco-American roots.",
+        "t3_title": "Scholarship Partner",
+        "t3_desc": "Directly funds a portion of an annual academic scholarship for a deserving student.",
+        "t4_title": "Foundation Trustee",
+        "t4_desc": "Secures long-term endowment sustainability and larger-scale educational grants."
+      },
+      "donate_btn": "Donate Securely via PayPal",
+      "tax_deductible": "The Saint-Jean-Baptiste Educational Foundation is a registered 501(c)(3) nonprofit. All contributions are 100% tax-deductible."
+    },
+    "contact": {
+      "section_title": "Get in Touch",
+      "title": "Contact SJBEF",
+      "subtitle": "Do you have questions about our scholarship criteria, want to join our volunteer trustees, or partner with us? Write to us today!",
+      "form": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "subject": "Subject",
+        "message": "Message",
+        "submit": "Send Message",
+        "success": "Thank you! Your message has been sent successfully. We will get back to you soon."
+      },
+      "info": {
+        "title": "Contact Information",
+        "email_label": "Email",
+        "email_val": "info@sjbef.org",
+        "phone_label": "Phone",
+        "phone_val": "508-699-2764",
+        "address_label": "Mailing Address",
+        "address_val": "P.O. Box 275, Woonsocket, RI 02895",
+        "status_label": "Organization Status",
+        "status_val": "Registered 501(c)(3) Nonprofit Charitable Foundation"
+      }
+    }
+  },
+  "es": {
+    "nav": {
+      "home": "Accueil",
+      "about": "À Propos",
+      "twbi": "Notre Héritage",
+      "scholarships": "Bourses d'Études",
+      "gallery": "Galerie Photos",
+      "newsletters": "Bulletins",
+      "donate": "Soutenir",
+      "contact": "Contact",
+      "admin": "Éditeur Volontaire"
+    },
+    "hero": {
+      "badge": "Soutien à la langue et à l'éducation française depuis 1947",
+      "title": "Préserver l'Héritage, Investir dans la Jeunesse",
+      "subtitle": "La Fondation Éducative Saint-Jean-Baptiste (SJBEF) est un organisme à but non lucratif 501(c)(3) dédié à la promotion de la langue française, à la préservation de la culture franco-américaine en Nouvelle-Angleterre, et au financement de bourses d'études supérieures.",
+      "ctaPrimary": "Soutenir Notre Mission",
+      "ctaSecondary": "Découvrir Notre Héritage"
+    },
+    "stats": {
+      "years": { "num": "75 ans+", "label": "De dévouement" },
+      "schools": { "num": "500+", "label": "Bourses octroyées" },
+      "scholarships": { "num": "1.5M$+", "label": "Fonds distribués" },
+      "students": { "num": "100%", "label": "Géré par des bénévoles" }
+    },
+    "about": {
+      "section_title": "Notre Histoire et Notre Mission",
+      "title": "Un Pont Entre le Passé Franco-Américain et l'Avenir Éducatif",
+      "p1": "Établie en 1966 sous les auspices de l'Union Saint-Jean-Baptiste, la mission de la SJBEF se poursuit aujourd'hui en tant qu'affiliée de Catholic Financial Life. Notre fondation est un organisme enregistré 501(c)(3) dédié à la promotion de la langue française, à la préservation de notre culture, et au soutien de l'enseignement supérieur.",
+      "p2": "La Fondation a été créée pour l'avancement de l'éducation et fournit une aide financière par le biais de bourses d'études collégiales et universitaires. Elle s'engage à aider les membres de la société à mieux se préparer pour l'avenir afin de faire face aux exigences d'une société en pleine mutation.",
+      "history_title": "À Propos de Nous et Notre Riche Histoire",
+      "history_p1": "Les pères fondateurs de l'Union Saint-Jean-Baptiste, une société de secours mutuels établie en 1900 pour les personnes d'origine française, étaient déterminés à fournir la protection nécessaire aux familles et à offrir divers avantages attrayants pour les membres de tous âges. L'octroi de bourses d'études était l'un de ces avantages. Les dirigeants du début du XXe siècle savaient dès le départ qu'un Franco-Américain mieux instruit permettrait à leur groupe ethnique de jouer un rôle plus important et d'avoir des pouvoirs plus influents au sein de leurs communautés locales et du gouvernement.",
+      "history_p2": "Dans les premières années, beaucoup de temps et d'efforts ont été consacrés à l'établissement d'une base financière solide pour la société en assurant et en recrutant un grand nombre de Franco-Américains. À partir de 1917, la situation financière solide de l'USJB a ouvert la voie à l'attribution de ses premières bourses aux membres qui poursuivaient des carrières professionnelles ou étudiaient pour la prêtrise.",
+      "history_p3": "Un effort a été mené au début des années soixante par J. Henri Goguen, qui a été président général de l'USJB de 1946 à 1974, afin d'établir une dotation qui garantirait la disponibilité annuelle de fonds pour l'octroi de bourses. La Fondation Éducative Saint-Jean-Baptiste a ainsi été créée en 1966. Il a été déterminé que le but principal de la Fondation était de fournir des bourses d'études aux membres poursuivant des études de premier cycle et de cycles supérieurs à temps plein dans un établissement accrédité de deux ou quatre ans. Elle devait également fournir une aide financière à ceux qui se spécialisaient en français ou qui étudiaient pour le sacerdoce.",
+      "history_p4": "En 1991, l'Union Saint-Jean-Baptiste a fusionné avec la Catholic Family Life Insurance et a fonctionné comme sa division de Nouvelle-Angleterre. Actuellement, la Fondation poursuit sa mission sous l'égide de Catholic Financial Life, une organisation de membres confessionnelle qui met en action les valeurs catholiques en : servant Dieu par le service aux autres, offrant une sécurité financière et améliorant la qualité de vie. Depuis plus de 140 ans, Catholic Financial Life aide ses membres à prendre en main leur avenir en apportant de réelles solutions aux défis quotidiens. Née de la fusion de Catholic Knights et de Catholic Family Life Insurance en 2010, Catholic Financial Life est la deuxième plus grande société de secours mutuels catholique aux États-Unis.",
+      "history_p5": "Pour plus d'informations, veuillez visiter : wwww.catholicfinanciallife.org",
+      "mission_title": "Notre Mission",
+      "mission_text": "Recueillir et distribuer des fonds éducatifs pour soutenir les étudiants d'origine franco-américaine ou ceux qui étudient la langue française, assurant la préservation de notre patrimoine culturel, linguistique et de nos valeurs communautaires.",
+      "vision_title": "Notre Vision",
+      "vision_text": "Une communauté dynamique où l'histoire, la culture et la langue franco-américaines sont célébrées comme un atout intellectuel majeur et préservées pour les générations futures.",
+      "board_title": "Conseil d'Administration",
+      "board_chair": "Bruce Laverriere, Président",
+      "board_vice": "Paul R. Plante, Vice-Président",
+      "board_treasurer": "Ken Boivin, Trésorier",
+      "board_secretary": "Paul Pinsonnault, Secrétaire Administratif",
+      "board_member1": "Celeste Feren",
+      "board_member2": "Susan Griffiths",
+      "board_member3": "Lynette Ouellette"
+    },
+    "twbi": {
+      "section_title": "L'Héritage Franco-Américain",
+      "title": "L'Union Saint-Jean-Baptiste d'Amérique et Notre Patrimoine",
+      "description": "L'Union Saint-Jean-Baptiste d'Amérique (USJB), fondée en 1900 à Woonsocket, Rhode Island, fut la plus importante société de secours mutuels canado-française aux États-Unis. En 1947, l'USJB créa la Fondation Éducative Saint-Jean-Baptiste afin d'institutionnaliser son action charitable en faveur des écoles catholiques et de l'enseignement du français. Aujourd'hui, nous poursuivons fidèlement cet héritage d'excellence éducative et de fierté culturelle.",
+      "benefits": {
+        "title": "Pourquoi l'Apprentissage du Français est Essentiel",
+        "b1_title": "Origines Ancestrales",
+        "b1_desc": "La langue française fait partie des racines historiques de la Nouvelle-Angleterre, liant les familles à leurs ancêtres canadiens-français.",
+        "b2_title": "Avenir Global",
+        "b2_desc": "Avec plus de 300 millions de locuteurs et 29 pays francophones, maîtriser le français ouvre d'immenses opportunités professionnelles.",
+        "b3_title": "Richesse Culturelle",
+        "b3_desc": "L'accès direct à la littérature, à la philosophie et à l'histoire francophones enrichit l'esprit et élargit les horizons intellectuels.",
+        "b4_title": "Aide aux Familles",
+        "b4_desc": "Nos bourses récompensent le travail soutenu et aident concrètement à financer le parcours scolaire des élèves méritants."
+      },
+      "sjusd_connection": "La SJBEF collabore activement avec les paroisses, les sociétés d'histoire et les alliances françaises locales pour faire rayonner la culture francophone."
+    },
+    "scholarships": {
+      "section_title": "Bourses d'Études",
+      "title": "Investir dans l'Avenir de Nos Étudiants",
+      "description": "Chaque année, la SJBEF décerne des bourses d'études à des élèves finissants du secondaire et à des étudiants de niveau collégial ou universitaire. Ces bourses sont destinées aux personnes d'origine canado-française ou franco-américaine, aux étudiants de français, ou aux élèves inscrits dans des programmes d'éducation catholique en Nouvelle-Angleterre.",
+      "apply_title": "Faire une Demande de Bourse Éducative SJBEF",
+      "deadline": "Date limite : 30 avril de chaque année",
+      "requirements_title": "Éligibilité & Critères",
+      "req1": "Être d'origine franco-américaine ou canado-française, OU poursuivre des études de langue française/francophones.",
+      "req2": "Résider dans l'un des États de Nouvelle-Angleterre (Rhode Island, Massachusetts, Connecticut, New Hampshire, Vermont, Maine).",
+      "req3": "Être inscrit ou accepté dans une école secondaire catholique accréditée, ou tout établissement universitaire/technique accrédité.",
+      "req4": "Soumettre des relevés de notes officiels, une lettre de recommandation et un essai personnel (en français ou en anglais) sur votre héritage ou vos études.",
+      "button": "Ouvrir le Formulaire de Bourse",
+      "member_title": "Bourses pour les Membres",
+      "member_desc": "La Fondation décerne des bourses d'études générales aux étudiants qui poursuivent un large éventail de diplômes de premier cycle ou de cycles supérieurs dans un collège ou une université accréditée de deux ou quatre ans. Certaines de ces bourses sont décernées « à la mémoire de » ou « en l'honneur de » personnes, comme établi depuis sa fondation grâce aux dons de bienfaiteurs.",
+      "seminarian_title": "Bourses pour Séminaristes",
+      "seminarian_desc": "Les séminaristes de tous les diocèses de Nouvelle-Angleterre, à l'exception de Bridgeport, CT, peuvent être éligibles aux bourses pour séminaristes. Les diocèses dotés de bourses spécifiques et restreintes « en l'honneur de » ou « à la mémoire de » personnes reçoivent des bourses annuelles. Ceux-ci comprennent : le Maine, Springfield, MA, Rhode Island, et le Vermont. Les candidats sont sélectionnés par les évêques et/ou les directeurs de vocation de chaque diocèse. Les bourses pour séminaristes sont attribuées aux personnes qui en sont à leurs quatre dernières années d'études théologiques.",
+      "special_title": "Prix Spéciaux pour Étudiants de Premier Cycle",
+      "special_desc": "En plus des bourses d'études générales, les étudiants de premier cycle peuvent également être éligibles aux prix suivants. Ces prix sont examinés par les fiduciaires chaque année et dépendent des revenus disponibles générés par le fonds fiduciaire de la SJBEF :",
+      "award1": "Prix de réussite académique de l'État",
+      "award2": "Bourse d'études de français",
+      "award3": "Bourse d'études pour bénévole exceptionnel",
+      "award4": "Bourse d'études basée sur le meilleur essai",
+      "trust_desc": "Le nombre de bourses d'études pour membres ou séminaristes attribuées varie d'une année à l'autre en fonction du nombre de candidats et du montant des revenus disponibles et générés par le fonds fiduciaire de la SJBEF."
+    },
+    "donate": {
+      "section_title": "Faire un Don",
+      "title": "Votre Générosité Soutient Notre Jeunesse",
+      "description": "Notre fondation étant gérée à 100% par des bénévoles, chaque donateur a l'assurance que sa contribution va directement au financement des bourses d'études et de nos projets patrimoniaux. Aidez-nous à préserver l'avenir de l'éducation franco-américaine !",
+      "tier_title": "Choisissez Votre Niveau de Don",
+      "tiers": {
+        "t1_title": "Cercle Héritage",
+        "t1_desc": "Permet de fournir des livres et des ressources pédagogiques en français aux bibliothèques d'écoles locales.",
+        "t2_title": "Donateur Patrimoine",
+        "t2_desc": "Soutient les ateliers communautaires et les présentations historiques sur l'histoire des Franco-Américains.",
+        "t3_title": "Partenaire de Bourse",
+        "t3_desc": "Contribue directement au financement d'une partie d'une bourse d'études universitaire annuelle pour un étudiant.",
+        "t4_title": "Mécène de la Fondation",
+        "t4_desc": "Assure la pérennité du fonds de dotation général et le déploiement de subventions scolaires à plus grande échelle."
+      },
+      "donate_btn": "Faire un Don Sécurisé",
+      "tax_deductible": "La Fondation Éducative Saint-Jean-Baptiste est un organisme à but non lucratif certifié 501(c)(3). Vos contributions sont déductibles d'impôt."
+    },
+    "contact": {
+      "section_title": "Nous Écrire",
+      "title": "Contactez la SJBEF",
+      "subtitle": "Vous avez des questions sur l'octroi de nos bourses, vous aimeriez vous joindre à nos bénévoles ou établir un partenariat ? Contactez-nous dès aujourd'hui !",
+      "form": {
+        "name": "Nom complet",
+        "email": "Adresse de messagerie",
+        "subject": "Objet",
+        "message": "Message",
+        "submit": "Envoyer le Message",
+        "success": "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais."
+      },
+      "info": {
+        "title": "Informations de Contact",
+        "email_label": "Courriel",
+        "email_val": "info@sjbef.org",
+        "phone_label": "Téléphone",
+        "phone_val": "508-699-2764",
+        "address_label": "Adresse Postale",
+        "address_val": "P.O. Box 275, Woonsocket, RI 02895",
+        "status_label": "Statut de l'Organisation",
+        "status_val": "Organisme de Bienfaisance Éducatif Enregistré 501(c)(3)"
+      }
+    }
+  }
+}

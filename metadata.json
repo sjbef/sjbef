@@ -1,0 +1,6 @@
+{
+  "name": "Saint-Jean-Baptiste Educational Foundation",
+  "description": "A modernized, bilingual English-French, easy-to-maintain website for the Saint-Jean-Baptiste Educational Foundation (SJBEF) supporting French heritage, culture, and educational scholarships.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
