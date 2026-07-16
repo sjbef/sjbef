@@ -709,6 +709,7 @@ export default function App() {
   const [contactSending, setContactSending] = useState(false);
 
   // Scholarship Application Form States
+  const [scholarshipFormMode, setScholarshipFormMode] = useState<'google' | 'local'>('google');
   const [scholarshipModalOpen, setScholarshipModalOpen] = useState(false);
   const [scholarshipForm, setScholarshipForm] = useState({
     fullName: '',
@@ -1502,24 +1503,30 @@ export default function App() {
                           <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-5">
                             <div className="flex items-center gap-2 text-xs font-bold text-brand-blue uppercase tracking-wider">
                               <Languages className="w-4 h-4 text-brand-teal" />
-                              <span>Bilingual Bridge</span>
+                              <span>{lang === 'en' ? 'Bilingual Heritage' : 'Héritage Bilingue'}</span>
                             </div>
-                            <span className="text-[10px] bg-brand-teal/10 text-brand-teal px-2 py-0.5 rounded-full font-bold">TWBI Support</span>
+                            <span className="text-[10px] bg-brand-teal/10 text-brand-teal px-2 py-0.5 rounded-full font-bold">
+                              {lang === 'en' ? 'French Immersion' : 'Immersion Française'}
+                            </span>
                           </div>
 
                           {/* Visual Interactive Text Sandbox */}
                           <div className="space-y-4">
                             <div className="bg-brand-blue/5 rounded-xl p-4 border border-brand-blue/10 hover:bg-brand-blue/10 transition duration-300 group">
-                              <p className="text-[11px] font-bold text-brand-blue uppercase tracking-wider mb-1">English Concept</p>
+                              <p className="text-[11px] font-bold text-brand-blue uppercase tracking-wider mb-1">
+                                {lang === 'en' ? 'English Concept' : 'Concept Anglais'}
+                              </p>
                               <blockquote className="font-serif italic text-sm text-brand-blue leading-relaxed font-semibold">
-                                &ldquo;Two languages, one heart. Helping students speak, read, and think bilingually.&rdquo;
+                                &ldquo;Two languages, one heart. Preserving heritage and academic excellence through bilingual literacy.&rdquo;
                               </blockquote>
                             </div>
 
                             <div className="bg-brand-teal/5 rounded-xl p-4 border border-brand-teal/10 hover:bg-brand-teal/10 transition duration-300">
-                              <p className="text-[11px] font-bold text-brand-teal uppercase tracking-wider mb-1">Concepto en Español</p>
+                              <p className="text-[11px] font-bold text-brand-teal uppercase tracking-wider mb-1">
+                                {lang === 'en' ? 'French Concept' : 'Concept Français'}
+                              </p>
                               <blockquote className="font-serif italic text-sm text-brand-teal leading-relaxed font-semibold">
-                                &ldquo;Dos idiomas, un corazón. Ayudando a los estudiantes a hablar, leer y pensar de forma bilingüe.&rdquo;
+                                &ldquo;Deux langues, un cœur. Préserver le patrimoine et l'excellence académique à travers l'alphabétisation bilingue.&rdquo;
                               </blockquote>
                             </div>
                           </div>
@@ -1528,11 +1535,11 @@ export default function App() {
                           <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
                             <div className="flex items-center gap-1.5 font-medium">
                               <Building className="w-4 h-4 text-brand-teal" />
-                              <span>Saint-Jean-Baptiste Academy</span>
+                              <span>{lang === 'en' ? 'Catholic & Regional Schools' : 'Écoles Catholiques & Régionales'}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-                              <span className="font-bold">Active Program</span>
+                              <span className="font-bold">{lang === 'en' ? 'Active Support' : 'Soutien Actif'}</span>
                             </div>
                           </div>
 
@@ -1625,7 +1632,7 @@ export default function App() {
                           </div>
                           <div>
                             <span className="text-[10px] bg-brand-blue/5 text-brand-blue px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Our Legacy' : 'Nuestro Legado'}
+                              {lang === 'en' ? 'Our Legacy' : 'Notre Patrimoine'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
                               {getText('nav.about', lang)}
@@ -1635,10 +1642,10 @@ export default function App() {
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
                             ? 'Discover our rich history, deep-rooted French-Canadian heritage, and our dedicated mission to support local communities.'
-                            : 'Descubra nuestra rica historia, herencia francocanadiense arraigada y nuestra dedicada misión de apoyar a las comunidades locales.'}
+                            : 'Découvrez notre riche histoire, notre patrimoine canado-français profondément enraciné et notre mission de soutien aux communautés locales.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-brand-blue group-hover:text-brand-blue/80">
-                          <span>{lang === 'en' ? 'Learn More' : 'Saber más'}</span>
+                          <span>{lang === 'en' ? 'Learn More' : 'En savoir plus'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -1654,7 +1661,7 @@ export default function App() {
                           </div>
                           <div>
                             <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Dual Language' : 'Doble Vía'}
+                              {lang === 'en' ? 'Bilingual Support' : 'Soutien Bilingue'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
                               {getText('nav.twbi', lang)}
@@ -1664,10 +1671,10 @@ export default function App() {
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
                             ? 'Support for bilingualism & literacy in public schools, providing books, classroom grants, and educational guides.'
-                            : 'Apoyo al bilingüismo y la alfabetización en escuelas públicas, proporcionando libros, subvenciones para aulas y guías.'}
+                            : 'Soutien au bilinguisme et à l\'alphabétisation dans les écoles, fournissant des livres, des subventions et des guides.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-emerald-600 group-hover:text-emerald-700">
-                          <span>{lang === 'en' ? 'Explore Program' : 'Explorar programa'}</span>
+                          <span>{lang === 'en' ? 'Explore Program' : 'Explorer le Programme'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -1683,7 +1690,7 @@ export default function App() {
                           </div>
                           <div>
                             <span className="text-[10px] bg-brand-coral/5 text-brand-coral px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Higher Education' : 'Educación Superior'}
+                              {lang === 'en' ? 'Higher Education' : 'Enseignement Supérieur'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
                               {getText('nav.scholarships', lang)}
@@ -1693,10 +1700,10 @@ export default function App() {
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
                             ? 'Empowering graduating seniors and seminarians through dedicated higher education scholarships and financial assistance.'
-                            : 'Empoderando a estudiantes graduados y seminaristas a través de becas dedicadas de educación superior.'}
+                            : 'Soutenir les diplômés du secondaire et les séminaristes par des bourses d\'études supérieures dédiées.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-brand-coral group-hover:text-brand-coral/80">
-                          <span>{lang === 'en' ? 'Apply / View Winners' : 'Solicitar / Ver Ganadores'}</span>
+                          <span>{lang === 'en' ? 'Apply / View Recipients' : 'Postuler / Voir les Lauréats'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -1712,7 +1719,7 @@ export default function App() {
                           </div>
                           <div>
                             <span className="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Media & Events' : 'Medios y Eventos'}
+                              {lang === 'en' ? 'Media & Events' : 'Médias & Événements'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
                               {getText('nav.gallery', lang)}
@@ -1722,10 +1729,10 @@ export default function App() {
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
                             ? 'See our impact in action through photos of book distribution ceremonies, student grants, and community events.'
-                            : 'Vea nuestro impacto en acción a través de fotos de ceremonias de distribución de libros, becas y eventos.'}
+                            : 'Découvrez notre impact en images : remises de bourses, subventions scolaires et événements de notre communauté.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-indigo-600 group-hover:text-indigo-700">
-                          <span>{lang === 'en' ? 'Open Gallery' : 'Abrir Galería'}</span>
+                          <span>{lang === 'en' ? 'Open Gallery' : 'Ouvrir la Galerie'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -1741,7 +1748,7 @@ export default function App() {
                           </div>
                           <div>
                             <span className="text-[10px] bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Seasonal News' : 'Noticias Estacionales'}
+                              {lang === 'en' ? 'Seasonal News' : 'Actualités Saisonnières'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
                               {getText('nav.newsletters', lang)}
@@ -1751,10 +1758,10 @@ export default function App() {
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
                             ? 'Stay up-to-date with our bulletins, archived bilingual newsletters, and featured historical articles.'
-                            : 'Manténgase al día con nuestros boletines, archivos de cartas informativas bilingües y artículos.'}
+                            : 'Restez informé grâce à nos bulletins annuels, nos archives d\'actualités bilingues et nos articles historiques.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-cyan-600 group-hover:text-cyan-700">
-                          <span>{lang === 'en' ? 'Read Bulletins' : 'Leer Boletines'}</span>
+                          <span>{lang === 'en' ? 'Read Bulletins' : 'Lire les Bulletins'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -1770,7 +1777,7 @@ export default function App() {
                           </div>
                           <div>
                             <span className="text-[10px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Support Us' : 'Apóyenos'}
+                              {lang === 'en' ? 'Support Us' : 'Soutenez-nous'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
                               {getText('nav.donate', lang)}
@@ -1780,10 +1787,10 @@ export default function App() {
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
                             ? 'Make a secure, tax-deductible contribution to our general fund or specify a custom scholarship endowment.'
-                            : 'Realice una contribución segura y deducible de impuestos a nuestro fondo general o asigne becas.'}
+                            : 'Faites un don sécurisé et déductible d\'impôt pour notre fonds général ou financez une dotation personnalisée.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-rose-600 group-hover:text-rose-700">
-                          <span>{lang === 'en' ? 'Donate Today' : 'Donar Hoy'}</span>
+                          <span>{lang === 'en' ? 'Donate Today' : 'Faire un Don'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -2260,121 +2267,193 @@ export default function App() {
                         <GraduationCap className="w-8 h-8 text-brand-blue" />
                       </div>
 
-                      {/* Interactive Scholarship Form */}
-                      <form onSubmit={handleScholarshipSubmit} className="space-y-4">
-                        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Form Mode Selector */}
+                      <div className="flex border border-gray-150 p-1 bg-gray-50 rounded-xl mb-6">
+                        <button
+                          type="button"
+                          onClick={() => setScholarshipFormMode('google')}
+                          className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                            scholarshipFormMode === 'google'
+                              ? 'bg-white text-brand-blue shadow-sm border border-gray-150'
+                              : 'text-gray-500 hover:text-gray-800'
+                          }`}
+                        >
+                          <FileText className="w-3.5 h-3.5 text-brand-coral" />
+                          <span>{lang === 'en' ? 'Official Google Form' : 'Formulaire Google'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setScholarshipFormMode('local')}
+                          className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                            scholarshipFormMode === 'local'
+                              ? 'bg-white text-brand-blue shadow-sm border border-gray-150'
+                              : 'text-gray-500 hover:text-gray-800'
+                          }`}
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-brand-teal" />
+                          <span>{lang === 'en' ? 'Simulated Quick Apply' : 'Démo Rapide'}</span>
+                        </button>
+                      </div>
+
+                      {scholarshipFormMode === 'google' ? (
+                        <div className="space-y-5 animate-fade-in">
+                          <div className="bg-brand-blue/5 border border-brand-blue/10 p-4 rounded-xl space-y-3">
+                            <p className="text-xs text-gray-700 leading-relaxed">
+                              {lang === 'en' 
+                                ? 'The official SJBEF scholarship application has been successfully converted into an interactive Google Form. You can fill out your details directly below, or launch the form in a new tab.' 
+                                : 'Le formulaire officiel de candidature de la SJBEF a été converti en un formulaire Google interactif. Remplissez-le ci-dessous ou ouvrez-le dans un nouvel onglet.'}
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                              <a 
+                                href="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
+                              </a>
+                              <a 
+                                href="https://docs.google.com/forms/d/1fVZixvBCG1TED6j3927VJSOL-V7oa9fmegYLeuJrcag/edit" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
+                                title="Edit Form Design"
+                              >
+                                <Settings className="w-3.5 h-3.5" />
+                                <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* Embed Iframe */}
+                          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[580px] relative shadow-inner">
+                            <iframe 
+                              src="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform?embedded=true" 
+                              className="absolute inset-0 w-full h-full border-0"
+                              title="SJBEF Scholarship Google Form"
+                            >
+                              Loading…
+                            </iframe>
+                          </div>
+                        </div>
+                      ) : (
+                        /* Interactive Scholarship Form */
+                        <form onSubmit={handleScholarshipSubmit} className="space-y-4 animate-fade-in">
+                          
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-xs font-semibold text-gray-500 mb-1">Applicant Full Name *</label>
+                              <input 
+                                type="text" 
+                                required
+                                value={scholarshipForm.fullName}
+                                onChange={(e) => setScholarshipForm({...scholarshipForm, fullName: e.target.value})}
+                                placeholder="e.g. Sofia Roy"
+                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-semibold text-gray-500 mb-1">Email Address *</label>
+                              <input 
+                                type="email" 
+                                required
+                                value={scholarshipForm.email}
+                                onChange={(e) => setScholarshipForm({...scholarshipForm, email: e.target.value})}
+                                placeholder="sofia.roy@gmail.com"
+                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-xs font-semibold text-gray-500 mb-1">Active High School</label>
+                              <select 
+                                value={scholarshipForm.highSchool}
+                                onChange={(e) => setScholarshipForm({...scholarshipForm, highSchool: e.target.value})}
+                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                              >
+                                <option value="Mount Saint Charles Academy">Mount Saint Charles Academy (Woonsocket)</option>
+                                <option value="Woonsocket High School">Woonsocket High School</option>
+                                <option value="Saint Raphael Academy">Saint Raphael Academy (Pawtucket)</option>
+                                <option value="La Salle Academy">La Salle Academy (Providence)</option>
+                                <option value="Lewiston High School">Lewiston High School (Maine)</option>
+                                <option value="Other New England High School">Other High School</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-xs font-semibold text-gray-500 mb-1">Heritage / Language Eligibility</label>
+                              <select 
+                                value={scholarshipForm.twbiSchool}
+                                onChange={(e) => setScholarshipForm({...scholarshipForm, twbiSchool: e.target.value})}
+                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                              >
+                                <option value="French-Canadian / Franco-American Ancestry">French-Canadian / Franco-American Ancestry</option>
+                                <option value="French Language & Literature Student">French Language & Literature Student</option>
+                                <option value="Catholic High School Student with French studies">Catholic High School with French studies</option>
+                                <option value="USJB Family Lineage (Grandchild/Descendant)">USJB Family Lineage (Descendant)</option>
+                                <option value="Other French Cultural Affiliation">Other French Cultural Affiliation</option>
+                              </select>
+                            </div>
+                          </div>
+
                           <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Applicant Full Name *</label>
+                            <label className="block text-xs font-semibold text-gray-500 mb-1">Years of French Language Study</label>
+                            <select 
+                                value={scholarshipForm.yearsInTwbi}
+                                onChange={(e) => setScholarshipForm({...scholarshipForm, yearsInTwbi: e.target.value})}
+                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                            >
+                              <option value="4">4 Years (High School level)</option>
+                              <option value="8">8 Years+ (Elementary & High School)</option>
+                              <option value="2">2 Years (Introductory level)</option>
+                              <option value="None">None (Heritage speaker / Family lineage only)</option>
+                            </select>
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold text-gray-500 mb-1">Plans for Higher Education (Institution & Major)</label>
                             <input 
                               type="text" 
-                              required
-                              value={scholarshipForm.fullName}
-                              onChange={(e) => setScholarshipForm({...scholarshipForm, fullName: e.target.value})}
-                              placeholder="e.g. Sofia Roy"
+                              value={scholarshipForm.collegePlans}
+                              onChange={(e) => setScholarshipForm({...scholarshipForm, collegePlans: e.target.value})}
+                              placeholder="e.g. Boston College, History & French Literature"
                               className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
                             />
                           </div>
+
                           <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Email Address *</label>
-                            <input 
-                              type="email" 
+                            <label className="block text-xs font-semibold text-gray-500 mb-1">Brief Statement: How has your French heritage or studies shaped your worldview? (In EN or FR) *</label>
+                            <textarea 
                               required
-                              value={scholarshipForm.email}
-                              onChange={(e) => setScholarshipForm({...scholarshipForm, email: e.target.value})}
-                              placeholder="sofia.roy@gmail.com"
-                              className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                            />
+                              rows={3}
+                              value={scholarshipForm.essayText}
+                              onChange={(e) => setScholarshipForm({...scholarshipForm, essayText: e.target.value})}
+                              placeholder="Write a brief paragraph..."
+                              className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition resize-none"
+                            ></textarea>
                           </div>
-                        </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Active High School</label>
-                            <select 
-                              value={scholarshipForm.highSchool}
-                              onChange={(e) => setScholarshipForm({...scholarshipForm, highSchool: e.target.value})}
-                              className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                            >
-                              <option value="Mount Saint Charles Academy">Mount Saint Charles Academy (Woonsocket)</option>
-                              <option value="Woonsocket High School">Woonsocket High School</option>
-                              <option value="Saint Raphael Academy">Saint Raphael Academy (Pawtucket)</option>
-                              <option value="La Salle Academy">La Salle Academy (Providence)</option>
-                              <option value="Lewiston High School">Lewiston High School (Maine)</option>
-                              <option value="Other New England High School">Other High School</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Heritage / Language Eligibility</label>
-                            <select 
-                              value={scholarshipForm.twbiSchool}
-                              onChange={(e) => setScholarshipForm({...scholarshipForm, twbiSchool: e.target.value})}
-                              className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                            >
-                              <option value="French-Canadian / Franco-American Ancestry">French-Canadian / Franco-American Ancestry</option>
-                              <option value="French Language & Literature Student">French Language & Literature Student</option>
-                              <option value="Catholic High School Student with French studies">Catholic High School with French studies</option>
-                              <option value="USJB Family Lineage (Grandchild/Descendant)">USJB Family Lineage (Descendant)</option>
-                              <option value="Other French Cultural Affiliation">Other French Cultural Affiliation</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">Years of French Language Study</label>
-                          <select 
-                            value={scholarshipForm.yearsInTwbi}
-                            onChange={(e) => setScholarshipForm({...scholarshipForm, yearsInTwbi: e.target.value})}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                          <button 
+                            type="submit" 
+                            disabled={scholarshipSending}
+                            className="w-full py-3 rounded-xl bg-brand-blue hover:bg-brand-blue/95 text-white font-bold text-xs tracking-wide shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                           >
-                            <option value="4">4 Years (High School level)</option>
-                            <option value="8">8 Years+ (Elementary & High School)</option>
-                            <option value="2">2 Years (Introductory level)</option>
-                            <option value="None">None (Heritage speaker / Family lineage only)</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">Plans for Higher Education (Institution & Major)</label>
-                          <input 
-                            type="text" 
-                            value={scholarshipForm.collegePlans}
-                            onChange={(e) => setScholarshipForm({...scholarshipForm, collegePlans: e.target.value})}
-                            placeholder="e.g. Boston College, History & French Literature"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">Brief Statement: How has your French heritage or studies shaped your worldview? (In EN or FR) *</label>
-                          <textarea 
-                            required
-                            rows={3}
-                            value={scholarshipForm.essayText}
-                            onChange={(e) => setScholarshipForm({...scholarshipForm, essayText: e.target.value})}
-                            placeholder="Write a brief paragraph..."
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition resize-none"
-                          ></textarea>
-                        </div>
-
-                        <button 
-                          type="submit" 
-                          disabled={scholarshipSending}
-                          className="w-full py-3 rounded-xl bg-brand-blue hover:bg-brand-blue/95 text-white font-bold text-xs tracking-wide shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
-                        >
-                          {scholarshipSending ? (
-                            <>
-                              <RefreshCw className="w-4 h-4 animate-spin" />
-                              <span>Submitting Application...</span>
-                            </>
-                          ) : (
-                            <>
-                              <Send className="w-3.5 h-3.5" />
-                              <span>Submit Scholarship Profile</span>
-                            </>
-                          )}
-                        </button>
-                      </form>
+                            {scholarshipSending ? (
+                              <>
+                                <RefreshCw className="w-4 h-4 animate-spin" />
+                                <span>Submitting Application...</span>
+                              </>
+                            ) : (
+                              <>
+                                <Send className="w-3.5 h-3.5" />
+                                <span>Submit Scholarship Profile</span>
+                              </>
+                            )}
+                          </button>
+                        </form>
+                      )}
 
                     </div>
                   </div>
@@ -4351,9 +4430,9 @@ export default function App() {
                             />
                           </div>
 
-                          {/* Spanish Input */}
+                          {/* French Input */}
                           <div>
-                            <label className="block text-[10px] text-gray-400 uppercase font-bold mb-1">Español (ES)</label>
+                            <label className="block text-[10px] text-gray-400 uppercase font-bold mb-1">French (FR)</label>
                             <textarea
                               rows={2}
                               value={editValueEs}
