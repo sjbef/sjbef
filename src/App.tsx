@@ -374,6 +374,71 @@ export default function App() {
     localStorage.setItem('sjb_gallery_items', JSON.stringify(galleryItems));
   }, [galleryItems]);
 
+  // Attempt to load locally scraped page assets manifest at runtime
+  useEffect(() => {
+    async function loadLocalManifest() {
+      try {
+        const response = await fetch('/page-assets/page_assets_manifest.json');
+        if (!response.ok) return;
+        const manifestData = await response.json();
+        
+        if (Array.isArray(manifestData) && manifestData.length > 0) {
+          const cleanNameFromFilename = (filename: string): string => {
+            let name = filename.replace(/^page-\d+-\d+-/, ''); // remove prefix
+            name = name.replace(/-\d+x\d+.*$/, ''); // remove size suffix e.g. -150x150
+            name = name.replace(/\.[a-zA-Z0-9]+$/, ''); // remove extension
+            name = name.replace(/[-_]+/g, ' '); // replace dashes/underscores with space
+            return name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+          };
+
+          const extractYear = (filename: string, caption?: string): string => {
+            const yearRegex = /\b(20\d{2})\b/;
+            let match = yearRegex.exec(caption || '');
+            if (match) return match[1];
+            match = yearRegex.exec(filename);
+            if (match) return match[1];
+            return '2023'; // Default fallback year
+          };
+
+          const extractChapter = (caption?: string, filename?: string): string => {
+            const chapterRegex = /\b(chapter\s+[n-]?\d+)\b/i;
+            let match = chapterRegex.exec(caption || '');
+            if (match) return match[1].toUpperCase();
+            match = chapterRegex.exec(filename || '');
+            if (match) return match[1].replace(/-/g, ' ').toUpperCase();
+            return 'New England Regional';
+          };
+
+          const importedItems: GalleryItem[] = manifestData.map((item: any, index: number) => {
+            const displayName = cleanNameFromFilename(item.filename);
+            const isGrant = item.pageId === '966';
+            
+            return {
+              id: `manifest-${item.pageId}-${index}`,
+              category: isGrant ? 'grants' : 'scholarships',
+              title: item.caption || item.altText || `${displayName} ${isGrant ? 'Grant' : 'Scholarship'}`,
+              year: extractYear(item.filename, item.caption),
+              who: item.altText || displayName,
+              chapter: extractChapter(item.caption, item.filename),
+              description: item.caption || item.altText || `${displayName} was awarded support from the foundation.`,
+              imageUrl: item.localUrl,
+              date: item.uploadDate ? item.uploadDate.split('T')[0] : undefined
+            };
+          });
+
+          setGalleryItems(prev => {
+            // Filter out default/placeholder items, keep user custom-added ones
+            const customItems = prev.filter(i => i.isCustom);
+            return [...customItems, ...importedItems];
+          });
+        }
+      } catch (err) {
+        console.log('Local page_assets_manifest.json not found. Using defaults.');
+      }
+    }
+    loadLocalManifest();
+  }, []);
+
   // Derived filtered gallery items
   const filteredGalleryItems = galleryItems.filter(item => {
     if (item.category !== galleryCategory) return false;
