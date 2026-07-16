@@ -41,6 +41,15 @@ function stripHtml(html) {
   return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 }
 
+// Reconstruct the full-resolution original image URL from WordPress thumbnail format
+function deThumbnailUrl(url) {
+  if (!url) return '';
+  // WordPress appends suffix like -300x225 or -150x150 before file extension
+  return url.replace(/-(\d+)x(\d+)(\.[a-zA-Z0-9]+)(\?.*)?$/i, (match, w, h, ext, query) => {
+    return ext + (query || '');
+  });
+}
+
 async function scrapePageImages(pageId, pageUrl) {
   console.log(`\n----------------------------------------`);
   console.log(`🌐 Fetching page ID ${pageId}: ${pageUrl}`);
@@ -53,87 +62,130 @@ async function scrapePageImages(pageId, pageUrl) {
     }
     const html = await response.text();
     const assetsFound = [];
+    const processedUrls = new Set(); // Keep track of unique high-res URLs
 
-    // 1. First, search for figures (WordPress block editor images/galleries with captions)
+    // Helper to register an asset safely
+    const registerAsset = (fullUrl, thumbUrl, alt, caption, context) => {
+      if (!fullUrl || !thumbUrl) return;
+      
+      // Clean URLs
+      const cleanFull = fullUrl.trim();
+      const cleanThumb = thumbUrl.trim();
+
+      // Avoid avatars, icons, trackers, or duplicates
+      if (cleanFull.includes('avatar') || cleanFull.includes('gravatar') || cleanFull.startsWith('data:image')) return;
+      if (processedUrls.has(cleanFull)) return;
+
+      processedUrls.add(cleanFull);
+      assetsFound.push({
+        fullUrl: cleanFull,
+        thumbUrl: cleanThumb,
+        alt: alt || '',
+        caption: caption || '',
+        context
+      });
+    };
+
+    // 1. Process all WordPress figure blocks (<figure>...</figure>)
     const figureRegex = /<figure[^>]*>([\s\S]*?)<\/figure>/gi;
     let match;
-    const processedUrls = new Set();
-
     while ((match = figureRegex.exec(html)) !== null) {
-      const figureContent = match[1];
+      const content = match[1];
       
-      // Find img src
-      const imgMatch = /<img[^>]+src=["']([^"']+)["']/i.exec(figureContent);
-      if (imgMatch) {
-        const src = imgMatch[1];
-        
-        // Find alt text
-        const altMatch = /alt=["']([^"']*)["']/i.exec(figureContent);
+      // Try to find a link wrapped img first (high-resolution image)
+      const aImgMatch = /<a[^>]+href=["']([^"']+\.(?:jpe?g|png|gif|webp|bmp))["'][^>]*>[\s\S]*?<img[^>]+src=["']([^"']+)["']/i.exec(content);
+      
+      let fullUrl = '';
+      let thumbUrl = '';
+      
+      if (aImgMatch) {
+        fullUrl = aImgMatch[1];
+        thumbUrl = aImgMatch[2];
+      } else {
+        const imgMatch = /<img[^>]+src=["']([^"']+)["']/i.exec(content);
+        if (imgMatch) {
+          thumbUrl = imgMatch[1];
+          fullUrl = deThumbnailUrl(thumbUrl);
+        }
+      }
+
+      if (fullUrl && thumbUrl) {
+        const altMatch = /alt=["']([^"']*)["']/i.exec(content);
         const alt = altMatch ? altMatch[1] : '';
 
-        // Find caption inside figcaption
-        const figcaptionMatch = /<figcaption[^>]*>([\s\S]*?)<\/figcaption>/i.exec(figureContent);
+        const figcaptionMatch = /<figcaption[^>]*>([\s\S]*?)<\/figcaption>/i.exec(content);
         const caption = figcaptionMatch ? stripHtml(figcaptionMatch[1]) : '';
 
-        processedUrls.add(src);
-        assetsFound.push({
-          src,
-          alt,
-          caption,
-          context: 'figure_block'
-        });
+        registerAsset(fullUrl, thumbUrl, alt, caption, 'figure_block');
       }
     }
 
-    // 2. Search for older WP caption structures: <div class="wp-caption ...">
+    // 2. Process all older WordPress caption structures: <div class="wp-caption">...</div>
     const wpCaptionRegex = /<div[^>]+class=["'][^"']*wp-caption[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi;
     while ((match = wpCaptionRegex.exec(html)) !== null) {
-      const divContent = match[1];
-      const imgMatch = /<img[^>]+src=["']([^"']+)["']/i.exec(divContent);
-      if (imgMatch) {
-        const src = imgMatch[1];
-        if (processedUrls.has(src)) continue;
+      const content = match[1];
 
-        const altMatch = /alt=["']([^"']*)["']/i.exec(divContent);
+      const aImgMatch = /<a[^>]+href=["']([^"']+\.(?:jpe?g|png|gif|webp|bmp))["'][^>]*>[\s\S]*?<img[^>]+src=["']([^"']+)["']/i.exec(content);
+      
+      let fullUrl = '';
+      let thumbUrl = '';
+
+      if (aImgMatch) {
+        fullUrl = aImgMatch[1];
+        thumbUrl = aImgMatch[2];
+      } else {
+        const imgMatch = /<img[^>]+src=["']([^"']+)["']/i.exec(content);
+        if (imgMatch) {
+          thumbUrl = imgMatch[1];
+          fullUrl = deThumbnailUrl(thumbUrl);
+        }
+      }
+
+      if (fullUrl && thumbUrl) {
+        const altMatch = /alt=["']([^"']*)["']/i.exec(content);
         const alt = altMatch ? altMatch[1] : '';
 
-        const pMatch = /<p[^>]+class=["'][^"']*wp-caption-text[^"']*["'][^>]*>([\s\S]*?)<\/p>/i.exec(divContent);
+        const pMatch = /<p[^>]+class=["'][^"']*wp-caption-text[^"']*["'][^>]*>([\s\S]*?)<\/p>/i.exec(content);
         const caption = pMatch ? stripHtml(pMatch[1]) : '';
 
-        processedUrls.add(src);
-        assetsFound.push({
-          src,
-          alt,
-          caption,
-          context: 'wp_caption_div'
-        });
+        registerAsset(fullUrl, thumbUrl, alt, caption, 'wp_caption_div');
       }
     }
 
-    // 3. Find any remaining standalone image tags that we missed
+    // 3. Process standalone linked images: <a> wrapping an <img>
+    const aImgGlobalRegex = /<a[^>]+href=["']([^"']+\.(?:jpe?g|png|gif|webp|bmp))["'][^>]*>[\s\S]*?<img[^>]+src=["']([^"']+)["']/gi;
+    while ((match = aImgGlobalRegex.exec(html)) !== null) {
+      const fullUrl = match[1];
+      const thumbUrl = match[2];
+
+      const startIndex = match.index;
+      const subHtml = html.substring(startIndex, startIndex + 1000);
+      const aTagEndMatch = /<\/a>/i.exec(subHtml);
+      const fullATagText = aTagEndMatch ? subHtml.substring(0, aTagEndMatch.index + 4) : subHtml;
+
+      const altMatch = /alt=["']([^"']*)["']/i.exec(fullATagText);
+      const alt = altMatch ? altMatch[1] : '';
+
+      const titleMatch = /title=["']([^"']*)["']/i.exec(fullATagText);
+      const caption = titleMatch ? titleMatch[1] : '';
+
+      registerAsset(fullUrl, thumbUrl, alt, caption, 'linked_img_standalone');
+    }
+
+    // 4. Process any remaining standalone <img> tags
     const imgRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/gi;
     while ((match = imgRegex.exec(html)) !== null) {
       const fullImgTag = match[0];
-      const src = match[1];
-      
-      // Skip if already processed, or if it's a tiny tracking pixel / generic icon
-      if (processedUrls.has(src)) continue;
-      if (src.includes('avatar') || src.includes('gravatar') || src.startsWith('data:image')) continue;
+      const thumbUrl = match[1];
+      const fullUrl = deThumbnailUrl(thumbUrl);
 
       const altMatch = /alt=["']([^"']*)["']/i.exec(fullImgTag);
       const alt = altMatch ? altMatch[1] : '';
 
-      // Standalone images don't have explicit captions, look for a title attribute
       const titleMatch = /title=["']([^"']*)["']/i.exec(fullImgTag);
       const caption = titleMatch ? titleMatch[1] : '';
 
-      processedUrls.add(src);
-      assetsFound.push({
-        src,
-        alt,
-        caption,
-        context: 'standalone_img'
-      });
+      registerAsset(fullUrl, thumbUrl, alt, caption, 'standalone_img');
     }
 
     console.log(`Found ${assetsFound.length} unique images on page ID ${pageId}`);
@@ -153,19 +205,19 @@ async function main() {
     
     for (let i = 0; i < images.length; i++) {
       const img = images[i];
-      const originalUrl = img.src;
+      const originalUrl = img.fullUrl; // Download the FULL resolution image!
 
-      // Clean up URL parameters (e.g., resize args) to get clean filenames
+      // Clean up URL parameters to get a clean file name
       const cleanUrl = originalUrl.split('?')[0];
       const originalFilename = path.basename(cleanUrl);
       
-      // Generate a descriptive, sanitized local filename prepended by page ID
+      // Generate a descriptive, sanitized local filename
       const fileExt = path.extname(cleanFilename(originalFilename)) || '.png';
       const baseName = path.basename(originalFilename, fileExt);
       const sanitizedFilename = `page-${page.id}-${i + 1}-${cleanFilename(baseName)}${fileExt}`;
       const destPath = path.join(OUTPUT_DIR, sanitizedFilename);
 
-      console.log(`📥 [${i + 1}/${images.length}] Downloading: ${originalFilename}`);
+      console.log(`📥 [${i + 1}/${images.length}] Downloading high-res: ${originalFilename}`);
       const success = await downloadFile(originalUrl, destPath);
 
       if (success) {
@@ -174,8 +226,9 @@ async function main() {
           pageUrl: page.url,
           filename: sanitizedFilename,
           originalUrl,
+          thumbUrl: img.thumbUrl,
           localUrl: `/page-assets/${sanitizedFilename}`,
-          altText: img.alt,
+          altText: img.altText || img.alt,
           caption: img.caption,
           context: img.context
         });
@@ -186,7 +239,7 @@ async function main() {
   // Write the rich manifest file containing paths, captions, and pages
   fs.writeFileSync(MANIFEST_PATH, JSON.stringify(allDownloadedAssets, null, 2));
   console.log(`\n========================================`);
-  console.log(`✨ Success! Downloaded ${allDownloadedAssets.length} total images.`);
+  console.log(`✨ Success! Downloaded ${allDownloadedAssets.length} total high-resolution images.`);
   console.log(`📝 Asset manifest saved to: ${MANIFEST_PATH}`);
   console.log(`========================================`);
 }
