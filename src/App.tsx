@@ -417,7 +417,7 @@ export default function App() {
               id: `manifest-${item.pageId}-${index}`,
               category: isGrant ? 'grants' : 'scholarships',
               title: item.caption || item.altText || `${displayName} ${isGrant ? 'Grant' : 'Scholarship'}`,
-              year: extractYear(item.filename, item.caption),
+              year: item.year || extractYear(item.filename, item.caption),
               who: item.altText || displayName,
               chapter: extractChapter(item.caption, item.filename),
               description: item.caption || item.altText || `${displayName} was awarded support from the foundation.`,
