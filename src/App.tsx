@@ -363,7 +363,7 @@ export default function App() {
 
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(() => {
     try {
-      const saved = localStorage.getItem('sjb_gallery_items');
+      const saved = localStorage.getItem('sjb_gallery_items_v2');
       return saved ? JSON.parse(saved) : defaultGalleryItems;
     } catch (e) {
       return defaultGalleryItems;
@@ -371,7 +371,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem('sjb_gallery_items', JSON.stringify(galleryItems));
+    localStorage.setItem('sjb_gallery_items_v2', JSON.stringify(galleryItems));
   }, [galleryItems]);
 
   // Attempt to load locally scraped page assets manifest at runtime
@@ -476,18 +476,18 @@ export default function App() {
   const defaultNewsletters: NewsletterItem[] = [
     {
       id: 'news-1',
-      title: 'SJBEF Annual Bulletin - Winter 2024',
+      title: 'SJBEF Annual Bulletin - 2025',
       season: 'Winter',
-      year: '2024',
-      date: '2024-12-15',
-      pdfUrl: 'https://yef115.org/wp-content/uploads/2020/11/YEF-Newsletter-Fall-2020.pdf',
-      description: 'Highlighting our 2024 scholarship recipients, donor appreciation logs, regional chapter achievements, and plans for the upcoming year.',
+      year: '2025',
+      date: '2025-12-15',
+      pdfUrl: '/newsletters/2025 SJBEF Newsletter.pdf',
+      description: 'Highlighting our 2025 scholarship recipients, donor appreciation logs, regional chapter achievements, and plans for the upcoming year.',
       articles: [
         {
           title: 'SJBEF Awards Over $35,000 in Scholarships to New England Youth',
           author: 'Paul Plante, Chairman of SJBEF',
           content: [
-            'We are extremely pleased to announce that in the fiscal year of 2024, the Saint-Jean-Baptiste Educational Foundation has distributed over $35,000 in higher education scholarships and bilingual school grants. This has been made possible by the persistent support of our community members, chapter organizers, and generous trusts.',
+            'We are extremely pleased to announce that in the fiscal year of 2025, the Saint-Jean-Baptiste Educational Foundation has distributed over $35,000 in higher education scholarships and bilingual school grants. This has been made possible by the persistent support of our community members, chapter organizers, and generous trusts.',
             'As we advance our educational programs, we remain deeply committed to encouraging young Franco-Americans to explore their linguistic heritage, and supporting local schools with necessary textbooks and French immersion curricula.'
           ]
         },
@@ -503,18 +503,18 @@ export default function App() {
     },
     {
       id: 'news-2',
-      title: 'Scholarship Night Special Edition - Fall 2023',
-      season: 'Fall',
-      year: '2023',
-      date: '2023-09-10',
-      pdfUrl: 'https://awsef.org/wp-content/uploads/2021/04/AWS-Newsletter-Spring-2021.pdf',
+      title: 'SJBEF Annual Bulletin - 2024',
+      season: 'Winter',
+      year: '2024',
+      date: '2024-12-15',
+      pdfUrl: '/newsletters/2024 SJBEF Newsletter.pdf',
       description: 'An in-depth look at our annual Scholarship Presentation hosted by Chapter N442 in Somerset, MA. Meet the committee and our brilliant awardees.',
       articles: [
         {
           title: 'A Night to Remember: Recipient Highlights from All Chapters',
           author: 'Paul Pinsonnault, Administrative Secretary',
           content: [
-            'Our 2023 Scholarship Night brought together members from Somerset Chapter N442, Westport Chapter N441, and North Attleboro Chapter N042. Seeing these brilliant young minds express their appreciation for bilingual literacy and academic excellence is a reminder of why this Foundation was established.',
+            'Our 2024 Scholarship Night brought together members from Somerset Chapter N442, Westport Chapter N441, and North Attleboro Chapter N042. Seeing these brilliant young minds express their appreciation for bilingual literacy and academic excellence is a reminder of why this Foundation was established.',
             'Special recognition goes out to Sophia Puccini, Caroline Puccini, Ella Gesner, Nicole Ledwidge, Jack Hebert, and Noelle Champigny for their outstanding academic records and community service.'
           ]
         },
@@ -529,18 +529,18 @@ export default function App() {
     },
     {
       id: 'news-3',
-      title: 'Bilingual Education Support - Spring 2023',
-      season: 'Spring',
+      title: 'SJBEF Annual Bulletin - 2023',
+      season: 'Winter',
       year: '2023',
-      date: '2023-04-18',
-      pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      date: '2023-12-15',
+      pdfUrl: '/newsletters/2023 SJBEF Newsletter.pdf',
       description: 'Announcing our latest educational material grants supporting New England regional Catholic schools, focusing on French literacy and heritage.',
       articles: [
         {
           title: 'Catholic School Grants Advance French Literacy in RI & MA',
           author: 'Grants Review Board',
           content: [
-            'We have finalized three major grants this spring: Sacred Heart Academy, Holy Ghost Academy, and St. Joseph School in Woonsocket, Rhode Island. These grants supply French language storybooks, grammar workbooks, and custom history booklets to younger grades.',
+            'We have finalized three major grants this spring: Sacred Heart Academy, Holy Ghost Academy, and St. Joseph School in Woonsocket, Rhode Island. These grants supply French language storybooks, grammar workbooks, and custom history booklets to school classes.',
             'By supporting bilingual education early, we help children form deep connections with their heritage and develop cognitive flexibility through multilingualism.'
           ]
         }
@@ -550,7 +550,7 @@ export default function App() {
 
   const [newsletters, setNewsletters] = useState<NewsletterItem[]>(() => {
     try {
-      const saved = localStorage.getItem('sjb_newsletters');
+      const saved = localStorage.getItem('sjb_newsletters_v2');
       return saved ? JSON.parse(saved) : defaultNewsletters;
     } catch (e) {
       return defaultNewsletters;
@@ -558,7 +558,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem('sjb_newsletters', JSON.stringify(newsletters));
+    localStorage.setItem('sjb_newsletters_v2', JSON.stringify(newsletters));
   }, [newsletters]);
 
   const [selectedNewsletterId, setSelectedNewsletterId] = useState<string>('news-1');
@@ -708,21 +708,7 @@ export default function App() {
   const [contactSuccess, setContactSuccess] = useState(false);
   const [contactSending, setContactSending] = useState(false);
 
-  // Scholarship Application Form States
-  const [scholarshipFormMode, setScholarshipFormMode] = useState<'google' | 'local'>('google');
-  const [scholarshipModalOpen, setScholarshipModalOpen] = useState(false);
-  const [scholarshipForm, setScholarshipForm] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    highSchool: 'Mount Saint Charles Academy',
-    twbiSchool: 'Saint-Jean-Baptiste Academy',
-    yearsInTwbi: '4',
-    collegePlans: '',
-    essayText: ''
-  });
-  const [scholarshipSuccess, setScholarshipSuccess] = useState(false);
-  const [scholarshipSending, setScholarshipSending] = useState(false);
+  // Scholarship Application Form States (unused now that we use official Google Form directly)
 
   // Volunteer Sign-up Form States
   const [volunteerForm, setVolunteerForm] = useState({
@@ -886,42 +872,6 @@ export default function App() {
     }, 1200);
   };
 
-  // Submit Scholarship Form
-  const handleScholarshipSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!scholarshipForm.fullName || !scholarshipForm.email || !scholarshipForm.essayText) {
-      alert("Please complete the required application fields.");
-      return;
-    }
-    setScholarshipSending(true);
-
-    setTimeout(() => {
-      const newSub: FormSubmission = {
-        id: `SUB-${Math.floor(1000 + Math.random() * 9000)}`,
-        type: 'Scholarship',
-        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
-        senderName: scholarshipForm.fullName,
-        senderEmail: scholarshipForm.email,
-        schoolAffiliation: `High School: ${scholarshipForm.highSchool} | TWBI School: ${scholarshipForm.twbiSchool} (${scholarshipForm.yearsInTwbi} years)`,
-        subject: `College Plans: ${scholarshipForm.collegePlans}`,
-        message: `Essay Response:\n${scholarshipForm.essayText}`
-      };
-
-      setSubmissions([newSub, ...submissions]);
-      setScholarshipSending(false);
-      setScholarshipSuccess(true);
-      setScholarshipForm({
-        fullName: '',
-        email: '',
-        phone: '',
-        highSchool: 'Willow Glen High School',
-        twbiSchool: 'River Glen School (K-8)',
-        yearsInTwbi: '9',
-        collegePlans: '',
-        essayText: ''
-      });
-    }, 1400);
-  };
 
   // Submit Volunteer Form
   const handleVolunteerSubmit = (e: React.FormEvent) => {
@@ -1042,15 +992,6 @@ export default function App() {
     }
   }, [contactSuccess]);
 
-  useEffect(() => {
-    if (scholarshipSuccess) {
-      const timer = setTimeout(() => {
-        setScholarshipSuccess(false);
-        setScholarshipModalOpen(false);
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [scholarshipSuccess]);
 
   useEffect(() => {
     if (volunteerSuccess) {
@@ -2241,22 +2182,6 @@ export default function App() {
                   <div className="lg:col-span-6">
                     <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md relative">
                       
-                      {/* Success overlay state */}
-                      {scholarshipSuccess && (
-                        <div className="absolute inset-0 bg-white/95 rounded-2xl z-20 flex flex-col items-center justify-center text-center p-6 space-y-3 animate-fade-in">
-                          <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center shadow-inner">
-                            <Check className="w-8 h-8 stroke-[3]" />
-                          </div>
-                          <h3 className="font-serif font-bold text-xl text-brand-blue">Application Submitted!</h3>
-                          <p className="text-xs text-gray-500 max-w-md leading-relaxed">
-                            Thank you! The SJBEF scholarship committee has received your student profile. A copy has also been sent to your email and added directly to the volunteer admin submissions database.
-                          </p>
-                          <span className="text-[10px] text-brand-teal bg-brand-teal/5 border border-brand-teal/10 px-2.5 py-0.5 rounded-full font-semibold">
-                            Simulated Submission Successful
-                          </span>
-                        </div>
-                      )}
-
                       <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-6">
                         <div>
                           <h3 className="font-serif font-bold text-lg text-brand-blue">
@@ -2267,193 +2192,47 @@ export default function App() {
                         <GraduationCap className="w-8 h-8 text-brand-blue" />
                       </div>
 
-                      {/* Form Mode Selector */}
-                      <div className="flex border border-gray-150 p-1 bg-gray-50 rounded-xl mb-6">
-                        <button
-                          type="button"
-                          onClick={() => setScholarshipFormMode('google')}
-                          className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
-                            scholarshipFormMode === 'google'
-                              ? 'bg-white text-brand-blue shadow-sm border border-gray-150'
-                              : 'text-gray-500 hover:text-gray-800'
-                          }`}
-                        >
-                          <FileText className="w-3.5 h-3.5 text-brand-coral" />
-                          <span>{lang === 'en' ? 'Official Google Form' : 'Formulaire Google'}</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setScholarshipFormMode('local')}
-                          className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
-                            scholarshipFormMode === 'local'
-                              ? 'bg-white text-brand-blue shadow-sm border border-gray-150'
-                              : 'text-gray-500 hover:text-gray-800'
-                          }`}
-                        >
-                          <Sparkles className="w-3.5 h-3.5 text-brand-teal" />
-                          <span>{lang === 'en' ? 'Simulated Quick Apply' : 'Démo Rapide'}</span>
-                        </button>
-                      </div>
-
-                      {scholarshipFormMode === 'google' ? (
-                        <div className="space-y-5 animate-fade-in">
-                          <div className="bg-brand-blue/5 border border-brand-blue/10 p-4 rounded-xl space-y-3">
-                            <p className="text-xs text-gray-700 leading-relaxed">
-                              {lang === 'en' 
-                                ? 'The official SJBEF scholarship application has been successfully converted into an interactive Google Form. You can fill out your details directly below, or launch the form in a new tab.' 
-                                : 'Le formulaire officiel de candidature de la SJBEF a été converti en un formulaire Google interactif. Remplissez-le ci-dessous ou ouvrez-le dans un nouvel onglet.'}
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                              <a 
-                                href="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
-                              >
-                                <ExternalLink className="w-3.5 h-3.5" />
-                                <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
-                              </a>
-                              <a 
-                                href="https://docs.google.com/forms/d/1fVZixvBCG1TED6j3927VJSOL-V7oa9fmegYLeuJrcag/edit" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
-                                title="Edit Form Design"
-                              >
-                                <Settings className="w-3.5 h-3.5" />
-                                <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
-                              </a>
-                            </div>
-                          </div>
-
-                          {/* Embed Iframe */}
-                          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[580px] relative shadow-inner">
-                            <iframe 
-                              src="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform?embedded=true" 
-                              className="absolute inset-0 w-full h-full border-0"
-                              title="SJBEF Scholarship Google Form"
+                      <div className="space-y-5">
+                        <div className="bg-brand-blue/5 border border-brand-blue/10 p-4 rounded-xl space-y-3">
+                          <p className="text-xs text-gray-700 leading-relaxed">
+                            {lang === 'en' 
+                              ? 'The official SJBEF scholarship application is hosted via secure Google Forms. You can fill out your application directly below, or launch the form in a new tab to complete it.' 
+                              : 'Le formulaire officiel de candidature de la SJBEF est hébergé via Google Forms sécurisé. Remplissez votre dossier ci-dessous ou ouvrez-le dans un nouvel onglet.'}
+                          </p>
+                          <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                            <a 
+                              href="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
                             >
-                              Loading…
-                            </iframe>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                              <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
+                            </a>
+                            <a 
+                              href="https://docs.google.com/forms/d/1fVZixvBCG1TED6j3927VJSOL-V7oa9fmegYLeuJrcag/edit" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
+                              title="Edit Form Design"
+                            >
+                              <Settings className="w-3.5 h-3.5" />
+                              <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
+                            </a>
                           </div>
                         </div>
-                      ) : (
-                        /* Interactive Scholarship Form */
-                        <form onSubmit={handleScholarshipSubmit} className="space-y-4 animate-fade-in">
-                          
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-xs font-semibold text-gray-500 mb-1">Applicant Full Name *</label>
-                              <input 
-                                type="text" 
-                                required
-                                value={scholarshipForm.fullName}
-                                onChange={(e) => setScholarshipForm({...scholarshipForm, fullName: e.target.value})}
-                                placeholder="e.g. Sofia Roy"
-                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-xs font-semibold text-gray-500 mb-1">Email Address *</label>
-                              <input 
-                                type="email" 
-                                required
-                                value={scholarshipForm.email}
-                                onChange={(e) => setScholarshipForm({...scholarshipForm, email: e.target.value})}
-                                placeholder="sofia.roy@gmail.com"
-                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                              />
-                            </div>
-                          </div>
 
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                              <label className="block text-xs font-semibold text-gray-500 mb-1">Active High School</label>
-                              <select 
-                                value={scholarshipForm.highSchool}
-                                onChange={(e) => setScholarshipForm({...scholarshipForm, highSchool: e.target.value})}
-                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                              >
-                                <option value="Mount Saint Charles Academy">Mount Saint Charles Academy (Woonsocket)</option>
-                                <option value="Woonsocket High School">Woonsocket High School</option>
-                                <option value="Saint Raphael Academy">Saint Raphael Academy (Pawtucket)</option>
-                                <option value="La Salle Academy">La Salle Academy (Providence)</option>
-                                <option value="Lewiston High School">Lewiston High School (Maine)</option>
-                                <option value="Other New England High School">Other High School</option>
-                              </select>
-                            </div>
-                            <div>
-                              <label className="block text-xs font-semibold text-gray-500 mb-1">Heritage / Language Eligibility</label>
-                              <select 
-                                value={scholarshipForm.twbiSchool}
-                                onChange={(e) => setScholarshipForm({...scholarshipForm, twbiSchool: e.target.value})}
-                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                              >
-                                <option value="French-Canadian / Franco-American Ancestry">French-Canadian / Franco-American Ancestry</option>
-                                <option value="French Language & Literature Student">French Language & Literature Student</option>
-                                <option value="Catholic High School Student with French studies">Catholic High School with French studies</option>
-                                <option value="USJB Family Lineage (Grandchild/Descendant)">USJB Family Lineage (Descendant)</option>
-                                <option value="Other French Cultural Affiliation">Other French Cultural Affiliation</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Years of French Language Study</label>
-                            <select 
-                                value={scholarshipForm.yearsInTwbi}
-                                onChange={(e) => setScholarshipForm({...scholarshipForm, yearsInTwbi: e.target.value})}
-                                className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                            >
-                              <option value="4">4 Years (High School level)</option>
-                              <option value="8">8 Years+ (Elementary & High School)</option>
-                              <option value="2">2 Years (Introductory level)</option>
-                              <option value="None">None (Heritage speaker / Family lineage only)</option>
-                            </select>
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Plans for Higher Education (Institution & Major)</label>
-                            <input 
-                              type="text" 
-                              value={scholarshipForm.collegePlans}
-                              onChange={(e) => setScholarshipForm({...scholarshipForm, collegePlans: e.target.value})}
-                              placeholder="e.g. Boston College, History & French Literature"
-                              className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-xs font-semibold text-gray-500 mb-1">Brief Statement: How has your French heritage or studies shaped your worldview? (In EN or FR) *</label>
-                            <textarea 
-                              required
-                              rows={3}
-                              value={scholarshipForm.essayText}
-                              onChange={(e) => setScholarshipForm({...scholarshipForm, essayText: e.target.value})}
-                              placeholder="Write a brief paragraph..."
-                              className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition resize-none"
-                            ></textarea>
-                          </div>
-
-                          <button 
-                            type="submit" 
-                            disabled={scholarshipSending}
-                            className="w-full py-3 rounded-xl bg-brand-blue hover:bg-brand-blue/95 text-white font-bold text-xs tracking-wide shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                        {/* Embed Iframe */}
+                        <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[600px] relative shadow-inner">
+                          <iframe 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform?embedded=true" 
+                            className="absolute inset-0 w-full h-full border-0"
+                            title="SJBEF Scholarship Google Form"
                           >
-                            {scholarshipSending ? (
-                              <>
-                                <RefreshCw className="w-4 h-4 animate-spin" />
-                                <span>Submitting Application...</span>
-                              </>
-                            ) : (
-                              <>
-                                <Send className="w-3.5 h-3.5" />
-                                <span>Submit Scholarship Profile</span>
-                              </>
-                            )}
-                          </button>
-                        </form>
-                      )}
+                            Loading…
+                          </iframe>
+                        </div>
+                      </div>
 
                     </div>
                   </div>
@@ -3131,31 +2910,7 @@ export default function App() {
                 {/* Interactive Controls Bar */}
                 <div className="bg-brand-warm border border-gray-150 rounded-2xl p-4 sm:p-6 shadow-xs mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
                   
-                  {/* Digital vs PDF Mode Toggle */}
-                  <div className="flex bg-gray-100 p-1 rounded-xl w-full md:w-auto">
-                    <button
-                      onClick={() => setNewsletterMode('digital')}
-                      className={`flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all ${
-                        newsletterMode === 'digital'
-                          ? 'bg-white text-brand-blue shadow-xs'
-                          : 'text-gray-500 hover:text-gray-800'
-                      }`}
-                    >
-                      📄 {lang === 'en' ? 'Digital Interactive Edition' : 'Édition Numérique'}
-                    </button>
-                    <button
-                      onClick={() => setNewsletterMode('pdf')}
-                      className={`flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all ${
-                        newsletterMode === 'pdf'
-                          ? 'bg-white text-brand-blue shadow-xs'
-                          : 'text-gray-500 hover:text-gray-800'
-                      }`}
-                    >
-                      📁 {lang === 'en' ? 'Original PDF View' : 'Vue Document PDF'}
-                    </button>
-                  </div>
-
-                  {/* Filters and publishing button */}
+                  {/* Filters Block */}
                   <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto items-stretch sm:items-center">
                     
                     {/* Search Field */}
@@ -3171,7 +2926,7 @@ export default function App() {
                     </div>
 
                     {/* Filter Year */}
-                    <div className="flex items-center gap-1 shrink-0">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <Filter className="w-3.5 h-3.5 text-gray-500" />
                       <select
                         value={newsletterYear}
@@ -3187,11 +2942,13 @@ export default function App() {
                         }
                       </select>
                     </div>
+                  </div>
 
-                    {/* Open Form toggle */}
+                  {/* Open Form toggle / Actions Block */}
+                  <div className="w-full md:w-auto flex justify-end">
                     <button
                       onClick={() => setNewsletterFormOpen(!newsletterFormOpen)}
-                      className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
+                      className={`w-full md:w-auto px-4 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
                         newsletterFormOpen 
                           ? 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300' 
                           : 'bg-brand-coral hover:bg-brand-coral/95 text-white'
@@ -3200,8 +2957,8 @@ export default function App() {
                       <Upload className="w-3.5 h-3.5" />
                       <span>{newsletterFormOpen ? (lang === 'en' ? 'Hide Form' : 'Masquer') : (lang === 'en' ? 'Publish Issue' : 'Publier')}</span>
                     </button>
-
                   </div>
+
                 </div>
 
                 {/* Collapsible Publish Bulletin Form */}
@@ -3536,6 +3293,30 @@ export default function App() {
                         {/* Interactive Viewer Content Area */}
                         <div className="p-6">
                           
+                          {/* Inner Tabs for Mode Toggle */}
+                          <div className="flex border-b border-gray-150 mb-6 gap-6">
+                            <button
+                              onClick={() => setNewsletterMode('digital')}
+                              className={`pb-3 text-xs sm:text-sm font-bold tracking-wide transition-all border-b-2 outline-none cursor-pointer ${
+                                newsletterMode === 'digital'
+                                  ? 'border-brand-blue text-brand-blue font-extrabold'
+                                  : 'border-transparent text-gray-400 hover:text-gray-600'
+                              }`}
+                            >
+                              📰 {lang === 'en' ? 'Digital Interactive Edition' : 'Édition Numérique'}
+                            </button>
+                            <button
+                              onClick={() => setNewsletterMode('pdf')}
+                              className={`pb-3 text-xs sm:text-sm font-bold tracking-wide transition-all border-b-2 outline-none cursor-pointer ${
+                                newsletterMode === 'pdf'
+                                  ? 'border-brand-blue text-brand-blue font-extrabold'
+                                  : 'border-transparent text-gray-400 hover:text-gray-600'
+                              }`}
+                            >
+                              📄 {lang === 'en' ? 'Original PDF View' : 'Vue Document PDF'}
+                            </button>
+                          </div>
+                          
                           {newsletterMode === 'digital' ? (
                             /* DIGITAL EDITION VIEW */
                             <div className="space-y-8 animate-fade-in">
@@ -3620,7 +3401,7 @@ export default function App() {
                                 <iframe
                                   src={activeNewsletter.pdfUrl}
                                   title={activeNewsletter.title}
-                                  className="w-full h-[550px] border-none"
+                                  className="w-full h-[750px] border-none"
                                 />
                               </div>
                             </div>
