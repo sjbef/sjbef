@@ -47,7 +47,7 @@ import {
   Phone
 } from 'lucide-react';
 import initialContent from './content.json';
-const scholarshipHeritageImg = "/src/assets/images/scholarship_heritage_1784081435433.jpg";
+const scholarshipHeritageImg = "/images/scholarship_heritage_1784081435433.jpg";
 
 // Define the interface for the bilingual content
 interface TranslationSet {
@@ -2656,7 +2656,9 @@ export default function App() {
                             <img 
                               src={item.imageUrl} 
                               alt={item.title}
-                              referrerPolicy="no-referrer"
+                              onError={(e) => {
+                                console.error(`Failed to load image: ${item.imageUrl}`, e);
+                              }}
                               className="w-full h-full object-cover transform group-hover:scale-[1.03] transition-transform duration-500"
                             />
                             {/* Year badge */}
