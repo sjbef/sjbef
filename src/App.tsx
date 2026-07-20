@@ -138,6 +138,29 @@ interface TranslationSet {
     award3: string;
     award4: string;
     trust_desc: string;
+    apply_period_title: string;
+    apply_period_desc: string;
+    eligibility_title: string;
+    eligibility_desc: string;
+    eligibility_item1: string;
+    eligibility_item2: string;
+    eligibility_item3: string;
+    eligibility_item4: string;
+    documents_title: string;
+    documents_desc: string;
+    documents_item1: string;
+    documents_item2: string;
+    documents_item3: string;
+    submission_title: string;
+    submission_desc: string;
+    submission_mail_address: string;
+    submission_online_desc: string;
+    downloads_title: string;
+    download_app_btn: string;
+    download_volunteer_btn: string;
+    download_seminarian_btn: string;
+    help_title: string;
+    help_desc: string;
   };
   donate: {
     section_title: string;
@@ -2127,114 +2150,270 @@ export default function App() {
               <section id="scholarships" className="py-20 bg-brand-warm border-b border-gray-150">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                {/* Header block */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-brand-coral font-bold uppercase tracking-widest text-xs">
+                    <span className="w-8 h-0.5 bg-brand-coral"></span>
+                    <EditableText path="scholarships.section_title" />
+                  </div>
                   
-                  {/* Left: Narrative and Details */}
-                  <div className="lg:col-span-6 space-y-6">
-                    <div className="flex items-center gap-2 text-brand-coral font-bold uppercase tracking-widest text-xs">
-                      <span className="w-8 h-0.5 bg-brand-coral"></span>
-                      <EditableText path="scholarships.section_title" />
+                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                    <EditableText path="scholarships.title" />
+                  </h2>
+                  
+                  <p className="text-base text-gray-600 leading-relaxed max-w-4xl">
+                    <EditableText path="scholarships.description" />
+                  </p>
+                </div>
+
+                {/* Application Period Info-Banner */}
+                <div className="mt-8 bg-brand-blue text-white rounded-2xl p-6 sm:p-8 shadow-md flex flex-col md:flex-row gap-6 items-center justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-brand-coral font-bold uppercase tracking-widest text-xs bg-white/15 px-3 py-1 rounded-full w-fit">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <EditableText path="scholarships.apply_period_title" />
                     </div>
-                    
-                    <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
-                      <EditableText path="scholarships.title" />
-                    </h2>
-                    
-                    <p className="text-base text-gray-600 leading-relaxed">
-                      <EditableText path="scholarships.description" />
+                    <p className="text-sm text-white/95 leading-relaxed max-w-2xl">
+                      <EditableText path="scholarships.apply_period_desc" />
                     </p>
-
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 space-y-4 shadow-xs">
-                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2">
-                        <EditableText path="scholarships.requirements_title" />
-                      </h3>
-
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                          <EditableText path="scholarships.req1" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                          <EditableText path="scholarships.req2" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                          <EditableText path="scholarships.req3" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                          <EditableText path="scholarships.req4" />
-                        </li>
-                      </ul>
-
-                      <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <div className="flex items-center gap-1.5 font-semibold text-brand-coral">
-                          <Calendar className="w-4 h-4" />
-                          <EditableText path="scholarships.deadline" />
-                        </div>
-                        <span className="bg-blue-50 text-brand-blue px-2 py-0.5 rounded-full font-bold">Annual Cycle</span>
-                      </div>
+                  </div>
+                  <div className="bg-white/10 border border-white/20 px-4 py-3 rounded-xl text-center shrink-0 w-full md:w-auto">
+                    <span className="text-[10px] text-brand-coral uppercase tracking-wider font-bold">Annual Cycle</span>
+                    <div className="text-lg font-bold font-serif text-white mt-0.5">
+                      <EditableText path="scholarships.deadline" />
                     </div>
                   </div>
+                </div>
 
-                  {/* Right: Scholarship Interactive Application Card */}
-                  <div className="lg:col-span-6">
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md relative">
+                {/* Two-Column Streamlined Requirements & Application Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 items-start">
+                  
+                  {/* Left Column: Requirements and Details */}
+                  <div className="lg:col-span-7 space-y-6">
+                    
+                    {/* Eligibility Requirements Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
+                        <CheckCircle className="w-5 h-5 text-brand-coral" />
+                        <EditableText path="scholarships.eligibility_title" />
+                      </h3>
+                      <p className="text-xs text-gray-500 italic">
+                        <EditableText path="scholarships.eligibility_desc" />
+                      </p>
+                      <ul className="space-y-4 pt-2">
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.eligibility_item1" />
+                        </li>
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.eligibility_item2" />
+                        </li>
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.eligibility_item3" />
+                        </li>
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.eligibility_item4" />
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Required Documents Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
+                        <FileText className="w-5 h-5 text-brand-coral" />
+                        <EditableText path="scholarships.documents_title" />
+                      </h3>
+                      <p className="text-xs text-gray-500 italic">
+                        <EditableText path="scholarships.documents_desc" />
+                      </p>
+                      <ul className="space-y-4 pt-2">
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.documents_item1" />
+                        </li>
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.documents_item2" />
+                        </li>
+                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                          <EditableText path="scholarships.documents_item3" />
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Submission and Process Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
+                        <Shield className="w-5 h-5 text-brand-coral" />
+                        <EditableText path="scholarships.submission_title" />
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        <EditableText path="scholarships.submission_desc" />
+                      </p>
                       
-                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-6">
-                        <div>
-                          <h3 className="font-serif font-bold text-lg text-brand-blue">
-                            <EditableText path="scholarships.apply_title" />
-                          </h3>
-                          <p className="text-[11px] text-brand-coral font-bold mt-0.5">Franco-American & French Heritage Scholarship</p>
-                        </div>
-                        <GraduationCap className="w-8 h-8 text-brand-blue" />
+                      <div className="bg-brand-warm border border-gray-200/60 p-4 rounded-xl space-y-2 mt-2">
+                        <h4 className="text-xs font-bold text-brand-blue uppercase tracking-wider flex items-center gap-1.5">
+                          <MapPin className="w-3.5 h-3.5 text-brand-coral" />
+                          {lang === 'en' ? 'Mailing Address for Hard Copies & Transcripts' : 'Adresse Postale pour Copies Papier & Relevés'}
+                        </h4>
+                        <p className="text-xs text-gray-600 font-medium leading-relaxed bg-white/75 border border-gray-100 p-2.5 rounded-lg select-all">
+                          <EditableText path="scholarships.submission_mail_address" />
+                        </p>
                       </div>
 
-                      <div className="space-y-5">
-                        <div className="bg-brand-blue/5 border border-brand-blue/10 p-4 rounded-xl space-y-3">
-                          <p className="text-xs text-gray-700 leading-relaxed">
-                            {lang === 'en' 
-                              ? 'The official SJBEF scholarship application is hosted via secure Google Forms. You can fill out your application directly below, or launch the form in a new tab to complete it.' 
-                              : 'Le formulaire officiel de candidature de la SJBEF est hébergé via Google Forms sécurisé. Remplissez votre dossier ci-dessous ou ouvrez-le dans un nouvel onglet.'}
-                          </p>
-                          <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                            <a 
-                              href="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
-                            >
-                              <ExternalLink className="w-3.5 h-3.5" />
-                              <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
-                            </a>
-                            <a 
-                              href="https://docs.google.com/forms/d/1fVZixvBCG1TED6j3927VJSOL-V7oa9fmegYLeuJrcag/edit" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
-                              title="Edit Form Design"
-                            >
-                              <Settings className="w-3.5 h-3.5" />
-                              <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
-                            </a>
-                          </div>
-                        </div>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        <EditableText path="scholarships.submission_online_desc" />
+                      </p>
+                    </div>
 
-                        {/* Embed Iframe */}
-                        <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[600px] relative shadow-inner">
-                          <iframe 
-                            src="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform?embedded=true" 
-                            className="absolute inset-0 w-full h-full border-0"
-                            title="SJBEF Scholarship Google Form"
-                          >
-                            Loading…
-                          </iframe>
+                  </div>
+
+                  {/* Right Column: Downloads, Links & Forms */}
+                  <div className="lg:col-span-5 space-y-6">
+                    
+                    {/* Printable PDF Downloads Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-5">
+                      <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                        <div>
+                          <h3 className="font-serif font-bold text-lg text-brand-blue">
+                            <EditableText path="scholarships.downloads_title" />
+                          </h3>
+                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
+                            {lang === 'en' ? 'Official Printable PDF Forms' : 'Formulaires PDF Officiels'}
+                          </p>
                         </div>
+                        <Download className="w-6 h-6 text-brand-blue shrink-0" />
+                      </div>
+
+                      <div className="flex flex-col gap-3">
+                        
+                        {/* General Scholarship Application Link */}
+                        <a 
+                          href="/documents/SJBEF-Scholarship-Application.pdf" 
+                          download
+                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
+                        >
+                          <div className="space-y-1">
+                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
+                              <EditableText path="scholarships.download_app_btn" />
+                            </p>
+                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
+                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 227 KB
+                            </span>
+                          </div>
+                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
+                        </a>
+
+                        {/* Volunteer Form Link */}
+                        <a 
+                          href="/documents/SJBEF-Volunteer-Form.pdf" 
+                          download
+                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
+                        >
+                          <div className="space-y-1">
+                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
+                              <EditableText path="scholarships.download_volunteer_btn" />
+                            </p>
+                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
+                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 225 KB
+                            </span>
+                          </div>
+                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
+                        </a>
+
+                        {/* Seminarian Form Link */}
+                        <a 
+                          href="/documents/Seminarian-Scholarship-Application.pdf" 
+                          download
+                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
+                        >
+                          <div className="space-y-1">
+                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
+                              <EditableText path="scholarships.download_seminarian_btn" />
+                            </p>
+                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
+                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 377 KB
+                            </span>
+                          </div>
+                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
+                        </a>
+
+                      </div>
+
+                      {/* Callout Support Section */}
+                      <div className="bg-blue-50/50 border border-blue-100 rounded-xl p-4 space-y-2">
+                        <h4 className="text-xs font-bold text-brand-blue flex items-center gap-1">
+                          <HelpCircle className="w-4 h-4 text-brand-coral shrink-0" />
+                          <EditableText path="scholarships.help_title" />
+                        </h4>
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          <EditableText path="scholarships.help_desc" />
+                        </p>
                       </div>
 
                     </div>
+
+                    {/* Interactive Online Application Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
+                      
+                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
+                        <div>
+                          <h3 className="font-serif font-bold text-base text-brand-blue">
+                            <EditableText path="scholarships.apply_title" />
+                          </h3>
+                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
+                            {lang === 'en' ? 'Submit Securely via Google Forms' : 'Soumettre via Google Forms'}
+                          </p>
+                        </div>
+                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="text-xs text-gray-700 leading-relaxed">
+                          {lang === 'en' 
+                            ? 'The official SJBEF scholarship application can also be completed online via Google Forms. You can complete your application directly below, or launch the form in a new tab.' 
+                            : 'La demande officielle de bourse de la SJBEF peut également être remplie en ligne via Google Forms. Remplissez le formulaire ci-dessous ou ouvrez-le dans un nouvel onglet.'}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                          <a 
+                            href="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
+                          </a>
+                          <a 
+                            href="https://docs.google.com/forms/d/1fVZixvBCG1TED6j3927VJSOL-V7oa9fmegYLeuJrcag/edit" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
+                            title="Edit Form Design"
+                          >
+                            <Settings className="w-3.5 h-3.5" />
+                            <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Embed Google Form Iframe */}
+                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
+                        <iframe 
+                          src="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform?embedded=true" 
+                          className="absolute inset-0 w-full h-full border-0"
+                          title="SJBEF Scholarship Google Form"
+                        >
+                          Loading…
+                        </iframe>
+                      </div>
+
+                    </div>
+
                   </div>
 
                 </div>
