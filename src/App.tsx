@@ -1132,10 +1132,9 @@ export default function App() {
           >
             <div className="h-11 px-2.5 rounded-xl bg-white flex items-center justify-center overflow-hidden border border-gray-100 shadow-sm group-hover:scale-105 transition-transform duration-300">
               <img 
-                src="https://www.sjbef.org/wp-content/uploads/2020/09/logo-e1603238453234.png" 
+                src="/images/logo/logo-e1603238453234.png" 
                 alt="SJBEF Logo" 
                 className="h-9 w-auto object-contain"
-                referrerPolicy="no-referrer"
               />
             </div>
             <div>
@@ -1827,14 +1826,9 @@ export default function App() {
                 {/* About Banner Image */}
                 <div className="mb-12 overflow-hidden rounded-2xl border border-gray-150 bg-white p-2.5 shadow-sm max-w-4xl mx-auto">
                   <img 
-                    src="https://www.sjbef.org/wp-content/uploads/2014/09/About2.png" 
+                    src="/images/about/About2.png" 
                     alt="About Us - Saint-Jean-Baptiste Educational Foundation" 
                     className="w-full h-auto object-contain rounded-xl max-h-[300px] mx-auto"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      // Fallback if the external site is down or blocks hotlinking
-                      e.currentTarget.style.display = 'none';
-                    }}
                   />
                 </div>
                 
@@ -4454,14 +4448,13 @@ export default function App() {
             
             {/* Branding Column */}
             <div className="md:col-span-5 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-10 px-2 rounded-lg bg-white flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="https://www.sjbef.org/wp-content/uploads/2020/09/logo-e1603238453234.png" 
-                    alt="SJBEF Logo" 
-                    className="h-8 w-auto object-contain"
-                    referrerPolicy="no-referrer"
-                  />
+             <div className="flex items-center gap-3">
+               <div className="h-10 px-2 rounded-lg bg-white flex items-center justify-center overflow-hidden">
+                 <img 
+                   src="/images/logo/logo-e1603238453234.png" 
+                   alt="SJBEF Logo" 
+                   className="h-8 w-auto object-contain"
+                 />
                 </div>
                 <span className="font-serif font-extrabold text-xl tracking-tight text-white leading-none">SJBEF</span>
               </div>
