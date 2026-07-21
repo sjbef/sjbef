@@ -2408,6 +2408,63 @@ export default function App() {
 
                     </div>
 
+                    {/* Seminarian Application Online Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
+                      
+                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
+                        <div>
+                          <h3 className="font-serif font-bold text-base text-brand-blue">
+                            {lang === 'en' ? 'Apply for the Seminarian Scholarship' : 'Postuler pour la Bourse de Séminaire'}
+                          </h3>
+                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
+                            {lang === 'en' ? 'Submit Securely via Google Forms' : 'Soumettre via Google Forms'}
+                          </p>
+                        </div>
+                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="text-xs text-gray-700 leading-relaxed">
+                          {lang === 'en' 
+                            ? 'The Seminarian scholarship application is available online via Google Forms. Open the form in a new tab or edit the form (owner access required).' 
+                            : 'La demande de bourse pour séminaristes est disponible en ligne via Google Forms. Ouvrez le formulaire dans un nouvel onglet ou modifiez le formulaire (accès propriétaire requis).' }
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                          <a 
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSdilHjT_j9YAYyqT5--zYXI0_BeUDUjjhsbGBWUY9ZjfYHkhA/viewform" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>{lang === 'en' ? 'Open Seminarian Form' : 'Ouvrir le Formulaire de Séminaire'}</span>
+                          </a>
+                          <a 
+                            href="https://docs.google.com/forms/d/1aQcJOcQEQ7cCu-3cZ-3xQuInCygvEeZ79vothK5MwSU/edit" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
+                            title="Edit Seminarian Form"
+                          >
+                            <Settings className="w-3.5 h-3.5" />
+                            <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Embed Seminarian Google Form Iframe */}
+                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
+                        <iframe 
+                          src="https://docs.google.com/forms/d/e/1FAIpQLSdilHjT_j9YAYyqT5--zYXI0_BeUDUjjhsbGBWUY9ZjfYHkhA/viewform?embedded=true" 
+                          className="absolute inset-0 w-full h-full border-0"
+                          title="SJBEF Seminarian Google Form"
+                        >
+                          Loading…
+                        </iframe>
+                      </div>
+
+                    </div>
+
                   </div>
 
                 </div>
