@@ -2830,7 +2830,7 @@ export default function App() {
                               src={item.imageUrl}
                               alt={item.title}
                               referrerPolicy="no-referrer"
-                              className={`w-full h-full object-cover ${/caroline-puccini|sophia-puccini|nicole-ledwidge/i.test(item.imageUrl) ? 'object-top' : 'object-center'} transform group-hover:scale-[1.03] transition-transform duration-500`}
+                              className={`w-full h-full object-cover ${/(caroline-puccini|sophia-puccini|nicole-ledwidge|img-1504-rotated-1|img-1501-1-rotated-1|scholar5-1|scholar6-1|scholar10-1|scholar12-1|scholar14-1|scholar17-1)/i.test(item.imageUrl) ? 'object-top' : 'object-center'} transform group-hover:scale-[1.03] transition-transform duration-500`}
                             />
                             {/* Year badge */}
                             <div className="absolute top-3 left-3 bg-brand-blue/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1">
