@@ -2465,6 +2465,63 @@ export default function App() {
 
                     </div>
 
+                    {/* Volunteer Service Form Card */}
+                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
+                      
+                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
+                        <div>
+                          <h3 className="font-serif font-bold text-base text-brand-blue">
+                            {lang === 'en' ? 'Scholarship Program – Summary of Volunteer Service' : 'Programme de Bourses – Résumé du Service Bénévole'}
+                          </h3>
+                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
+                            {lang === 'en' ? 'Return with Scholarship Application' : 'À Retourner avec la Demande de Bourse'}
+                          </p>
+                        </div>
+                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="text-xs text-gray-700 leading-relaxed">
+                          {lang === 'en' 
+                            ? 'Document your leadership positions and volunteer service. This form should be returned with your scholarship application. Open the form in a new tab or edit the form (owner access required).' 
+                            : 'Documentez vos postes de leadership et votre service bénévole. Ce formulaire doit être retourné avec votre demande de bourse. Ouvrez le formulaire dans un nouvel onglet ou modifiez-le (accès propriétaire requis).' }
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                          <a 
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>{lang === 'en' ? 'Open Volunteer Form' : 'Ouvrir le Formulaire Bénévole'}</span>
+                          </a>
+                          <a 
+                            href="https://docs.google.com/forms/d/1IIbcTppfBetSzKyow0QLo5_gg1g1MPCdFR_4wNIZfIA/edit" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
+                            title="Edit Volunteer Form"
+                          >
+                            <Settings className="w-3.5 h-3.5" />
+                            <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Embed Volunteer Service Google Form Iframe */}
+                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
+                        <iframe 
+                          src="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform?embedded=true" 
+                          className="absolute inset-0 w-full h-full border-0"
+                          title="SJBEF Volunteer Service Google Form"
+                        >
+                          Loading…
+                        </iframe>
+                      </div>
+
+                    </div>
+
                   </div>
 
                 </div>
