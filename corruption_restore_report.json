@@ -1,0 +1,9 @@
+{
+  "latest_backup": "public/images/duplicates_backup/20260721T003146Z",
+  "total_images": 99,
+  "corrupted_initial": 0,
+  "corrupted_list": [],
+  "restored": [],
+  "failed_restores": [],
+  "remaining_corrupted": []
+}
