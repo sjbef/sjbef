@@ -2826,11 +2826,11 @@ export default function App() {
                         >
                           {/* Image Box */}
                           <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 shrink-0 border-b border-gray-100">
-                            <img 
-                              src={item.imageUrl} 
+                            <img
+                              src={item.imageUrl}
                               alt={item.title}
                               referrerPolicy="no-referrer"
-                              className="w-full h-full object-cover transform group-hover:scale-[1.03] transition-transform duration-500"
+                              className={`w-full h-full object-cover ${/caroline-puccini|sophia-puccini|nicole-ledwidge/i.test(item.imageUrl) ? 'object-top' : 'object-center'} transform group-hover:scale-[1.03] transition-transform duration-500`}
                             />
                             {/* Year badge */}
                             <div className="absolute top-3 left-3 bg-brand-blue/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1">
