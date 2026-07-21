@@ -1,0 +1,842 @@
+{
+  "checked_at": "2026-07-21T00:37:23Z",
+  "entries": [
+    {
+      "filename": "caroline-puccini-1.jpeg",
+      "localUrl": "/images/gallery/scholarships/2025/caroline-puccini-1.jpeg",
+      "urlpath": "/images/gallery/scholarships/2025/caroline-puccini-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "sophia-puccini-1.jpeg",
+      "localUrl": "/images/gallery/scholarships/2025/sophia-puccini-1.jpeg",
+      "urlpath": "/images/gallery/scholarships/2025/sophia-puccini-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 68047,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "nicole-ledwidge-1.jpeg",
+      "localUrl": "/images/gallery/scholarships/2025/nicole-ledwidge-1.jpeg",
+      "urlpath": "/images/gallery/scholarships/2025/nicole-ledwidge-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 87753,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "jack-hebert-scaled-1.jpeg",
+      "localUrl": "/images/gallery/scholarships/2025/jack-hebert-scaled-1.jpeg",
+      "urlpath": "/images/gallery/scholarships/2025/jack-hebert-scaled-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "recipients-and-parents-1.jpeg",
+      "localUrl": "/images/gallery/scholarships/2025/recipients-and-parents-1.jpeg",
+      "urlpath": "/images/gallery/scholarships/2025/recipients-and-parents-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 132665,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "jack-hebert-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2024/jack-hebert-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2024/jack-hebert-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 53682,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "noelle-champigny-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2024/noelle-champigny-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2024/noelle-champigny-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "ella-gesner-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2024/ella-gesner-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2024/ella-gesner-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 58781,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "nicole-ledwidge-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2024/nicole-ledwidge-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2024/nicole-ledwidge-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 58394,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "fullsizerender-1-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/fullsizerender-1-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/fullsizerender-1-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 40851,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1515-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1515-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1515-rotated-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 68854,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1512-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1512-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1512-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1510-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1510-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1510-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1508-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1508-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1508-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1505-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1505-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1505-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1504-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1504-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1504-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1501-1-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1501-1-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1501-1-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1498-1-1-rotated-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1498-1-1-rotated-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1498-1-1-rotated-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar1-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar1-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar1-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 76270,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar2-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar2-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar2-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 76848,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar3-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar3-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar3-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 101003,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar4-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar4-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar4-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar5-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar5-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar5-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 69075,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar6-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar6-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar6-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar7-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar7-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar7-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar8-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar8-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar8-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar9-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar9-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar9-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar10-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar10-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar10-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 48312,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar11-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar11-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar11-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar12-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar12-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar12-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar13-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar13-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar13-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 76506,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar14-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar14-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar14-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar15-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar15-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar15-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar16-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar16-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar16-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 53745,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar17-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar17-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar17-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 94426,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar18-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar18-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar18-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar19-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar19-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar19-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar20-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar20-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar20-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar21-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar21-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar21-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 108102,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar22-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar22-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar22-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 99759,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar23-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar23-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar23-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar24-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar24-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar24-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar25-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar25-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar25-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 71406,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar26-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar26-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar26-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar27-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar27-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar27-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar28-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar28-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar28-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 93901,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar29-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar29-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar29-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 91698,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar30-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar30-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar30-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 97378,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "scholar31-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar31-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar31-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "scholar32-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2014/scholar32-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2014/scholar32-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "jack-hebert-1.jpeg",
+      "localUrl": "/images/gallery/scholarships/2025/jack-hebert-1.jpeg",
+      "urlpath": "/images/gallery/scholarships/2025/jack-hebert-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 137591,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1515-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1515-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1515-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 50145,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1512-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1512-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1512-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1510-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1510-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1510-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1508-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1508-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1508-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1505-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1505-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1505-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 52745,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1504-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1504-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1504-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1501-1-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1501-1-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1501-1-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-1498-1-1-1.jpg",
+      "localUrl": "/images/gallery/scholarships/2023/img-1498-1-1-1.jpg",
+      "urlpath": "/images/gallery/scholarships/2023/img-1498-1-1-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 38729,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "st.-monica-st.-michael-school-school-grant-scaled-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-scaled-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-scaled-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "woonsocket-school-grant-1-1.jpeg",
+      "localUrl": "/images/gallery/grants/2025/woonsocket-school-grant-1-1.jpeg",
+      "urlpath": "/images/gallery/grants/2025/woonsocket-school-grant-1-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 63302,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "chapter-91-school-grant-scaled-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/chapter-91-school-grant-scaled-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/chapter-91-school-grant-scaled-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "cfl-chapter-441-school-grant-1-scaled-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-scaled-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-scaled-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-9888-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/img-9888-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/img-9888-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "sjbf-check-presentation-scaled-1.jpg",
+      "localUrl": "/images/gallery/grants/2024/sjbf-check-presentation-scaled-1.jpg",
+      "urlpath": "/images/gallery/grants/2024/sjbf-check-presentation-scaled-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "image0-scaled-1.jpeg",
+      "localUrl": "/images/gallery/grants/2024/image0-scaled-1.jpeg",
+      "urlpath": "/images/gallery/grants/2024/image0-scaled-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-8028-scaled-1.jpg",
+      "localUrl": "/images/gallery/grants/2024/img-8028-scaled-1.jpg",
+      "urlpath": "/images/gallery/grants/2024/img-8028-scaled-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-3615-scaled-1.jpeg",
+      "localUrl": "/images/gallery/grants/2024/img-3615-scaled-1.jpeg",
+      "urlpath": "/images/gallery/grants/2024/img-3615-scaled-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-2796-scaled-1.jpeg",
+      "localUrl": "/images/gallery/grants/2024/img-2796-scaled-1.jpeg",
+      "urlpath": "/images/gallery/grants/2024/img-2796-scaled-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "image-50398721-1.jpg",
+      "localUrl": "/images/gallery/grants/2023/image-50398721-1.jpg",
+      "urlpath": "/images/gallery/grants/2023/image-50398721-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-5138-rotated-1.jpg",
+      "localUrl": "/images/gallery/grants/2023/img-5138-rotated-1.jpg",
+      "urlpath": "/images/gallery/grants/2023/img-5138-rotated-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 83287,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "image0-1.jpeg",
+      "localUrl": "/images/gallery/grants/2023/image0-1.jpeg",
+      "urlpath": "/images/gallery/grants/2023/image0-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "image01-1.jpeg",
+      "localUrl": "/images/gallery/grants/2023/image01-1.jpeg",
+      "urlpath": "/images/gallery/grants/2023/image01-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 45822,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-4313-1.jpg",
+      "localUrl": "/images/gallery/grants/2023/img-4313-1.jpg",
+      "urlpath": "/images/gallery/grants/2023/img-4313-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 56953,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1112-scaled-1.jpeg",
+      "localUrl": "/images/gallery/grants/2023/img-1112-scaled-1.jpeg",
+      "urlpath": "/images/gallery/grants/2023/img-1112-scaled-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "380967280-270505032536188-128825652816386638-n-1.jpg",
+      "localUrl": "/images/gallery/grants/2023/380967280-270505032536188-128825652816386638-n-1.jpg",
+      "urlpath": "/images/gallery/grants/2023/380967280-270505032536188-128825652816386638-n-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 159444,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "picture1-1.jpg",
+      "localUrl": "/images/gallery/grants/2023/picture1-1.jpg",
+      "urlpath": "/images/gallery/grants/2023/picture1-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 106129,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "image1-scaled-1.jpeg",
+      "localUrl": "/images/gallery/grants/2023/image1-scaled-1.jpeg",
+      "urlpath": "/images/gallery/grants/2023/image1-scaled-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "holy-rosary-school-in-gardner-1-scaled-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-scaled-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-scaled-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "chapter-n373-school-grant-1-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/chapter-n373-school-grant-1-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/chapter-n373-school-grant-1-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 139367,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "all-saints-academy-1.png",
+      "localUrl": "/images/gallery/grants/2024/all-saints-academy-1.png",
+      "urlpath": "/images/gallery/grants/2024/all-saints-academy-1.png",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "st.-monica-st.-michael-school-school-grant-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "holy-rosary-school-in-gardner-1-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-1.jpg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "chapter-91-school-grant-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/chapter-91-school-grant-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/chapter-91-school-grant-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 89225,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "cfl-chapter-441-school-grant-1-1.jpg",
+      "localUrl": "/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-1.jpg",
+      "urlpath": "/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 105508,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "sjbf-check-presentation-1.jpg",
+      "localUrl": "/images/gallery/grants/2024/sjbf-check-presentation-1.jpg",
+      "urlpath": "/images/gallery/grants/2024/sjbf-check-presentation-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 91440,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "image0-1.jpeg",
+      "localUrl": "/images/gallery/grants/2024/image0-1.jpeg",
+      "urlpath": "/images/gallery/grants/2024/image0-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-8028-1.jpg",
+      "localUrl": "/images/gallery/grants/2024/img-8028-1.jpg",
+      "urlpath": "/images/gallery/grants/2024/img-8028-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 138301,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-3615-1.jpeg",
+      "localUrl": "/images/gallery/grants/2024/img-3615-1.jpeg",
+      "urlpath": "/images/gallery/grants/2024/img-3615-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 144515,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-2796-1.jpeg",
+      "localUrl": "/images/gallery/grants/2024/img-2796-1.jpeg",
+      "urlpath": "/images/gallery/grants/2024/img-2796-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    },
+    {
+      "filename": "img-5138-1.jpg",
+      "localUrl": "/images/gallery/grants/2023/img-5138-1.jpg",
+      "urlpath": "/images/gallery/grants/2023/img-5138-1.jpg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 83373,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "img-1112-1.jpeg",
+      "localUrl": "/images/gallery/grants/2023/img-1112-1.jpeg",
+      "urlpath": "/images/gallery/grants/2023/img-1112-1.jpeg",
+      "http_status": 200,
+      "exists_on_disk": true,
+      "file_size": 126033,
+      "readable_by_sips": true
+    },
+    {
+      "filename": "image1-1.jpeg",
+      "localUrl": "/images/gallery/grants/2023/image1-1.jpeg",
+      "urlpath": "/images/gallery/grants/2023/image1-1.jpeg",
+      "http_status": 404,
+      "exists_on_disk": false,
+      "file_size": null,
+      "readable_by_sips": false
+    }
+  ]
+}
