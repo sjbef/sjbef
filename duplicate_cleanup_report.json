@@ -1,0 +1,737 @@
+{
+  "timestamp": "20260721T003146Z",
+  "moved_count": 83,
+  "moved": [
+    {
+      "from": "public/images/gallery/grants/2023/image-50398721-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/image-50398721-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/image0-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/image0-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/image01.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/image01.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/image1-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/image1-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/image1-scaled-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/image1-scaled-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/image1-scaled.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/image1-scaled.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/img-1112-scaled-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/img-1112-scaled-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/img-1112-scaled.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/img-1112-scaled.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/img-1112.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/img-1112.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/img-5138-rotated.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/img-5138-rotated.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2023/picture1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2023/picture1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/all-saints-academy-1.png",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/all-saints-academy-1.png"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/image0-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/image0-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/image0-scaled-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/image0-scaled-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/image0-scaled.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/image0-scaled.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/image0.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/image0.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-2796-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-2796-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-2796-scaled-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-2796-scaled-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-2796-scaled.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-2796-scaled.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-3615-scaled-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-3615-scaled-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-3615-scaled.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-3615-scaled.jpeg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-8028-scaled-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-8028-scaled-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/img-8028-scaled.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/img-8028-scaled.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/sjbf-check-presentation-scaled-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/sjbf-check-presentation-scaled-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2024/sjbf-check-presentation-scaled.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2024/sjbf-check-presentation-scaled.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-scaled-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-scaled-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-scaled.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-scaled.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/cfl-chapter-441-school-grant-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/cfl-chapter-441-school-grant-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/chapter-91-school-grant-scaled-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/chapter-91-school-grant-scaled-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-scaled-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-scaled-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/img-9888-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/img-9888-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-scaled-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-scaled-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar11-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar11-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar11.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar11.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar12-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar12-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar14-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar14-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar15-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar15-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar17.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar17.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar18-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar18-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar19-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar19-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar20-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar20-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar21.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar21.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar23-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar23-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar24-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar24-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar26-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar26-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar27-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar27-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar28.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar28.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar31-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar31-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar31.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar31.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar32-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar32-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar32.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar32.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar4-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar4-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar5.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar5.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar6-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar6-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar7-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar7-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar8-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar8-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2014/scholar9-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2014/scholar9-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1498-1-1-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1498-1-1-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1498-1-1-rotated.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1498-1-1-rotated.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1501-1-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1501-1-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1501-1-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1501-1-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1504-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1504-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1504-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1504-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1504-rotated.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1504-rotated.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1505-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1505-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1508-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1508-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1508-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1508-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1508-rotated.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1508-rotated.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1510-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1510-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1510-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1510-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1510-rotated.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1510-rotated.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1512-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1512-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2023/img-1512-rotated-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2023/img-1512-rotated-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2024/ella-gesner.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2024/ella-gesner.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2024/noelle-champigny-1.jpg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2024/noelle-champigny-1.jpg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2025/caroline-puccini-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2025/caroline-puccini-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2025/jack-hebert-scaled-1.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2025/jack-hebert-scaled-1.jpeg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2025/jack-hebert-scaled.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2025/jack-hebert-scaled.jpeg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2025/jack-hebert.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2025/jack-hebert.jpeg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2025/nicole-ledwidge.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2025/nicole-ledwidge.jpeg"
+    },
+    {
+      "from": "public/images/gallery/scholarships/2025/sophia-puccini.jpeg",
+      "to": "public/images/duplicates_backup/20260721T003146Z/images/gallery/scholarships/2025/sophia-puccini.jpeg"
+    }
+  ],
+  "final_count": 99,
+  "final_files": [
+    {
+      "path": "public/images/gallery/grants/2023/380967280-270505032536188-128825652816386638-n-1.jpg",
+      "size": 159444
+    },
+    {
+      "path": "public/images/gallery/grants/2023/380967280-270505032536188-128825652816386638-n.jpg",
+      "size": 21550
+    },
+    {
+      "path": "public/images/gallery/grants/2023/image-50398721.jpg",
+      "size": 27792
+    },
+    {
+      "path": "public/images/gallery/grants/2023/image0.jpeg",
+      "size": 23854
+    },
+    {
+      "path": "public/images/gallery/grants/2023/image01-1.jpeg",
+      "size": 45822
+    },
+    {
+      "path": "public/images/gallery/grants/2023/image1.jpeg",
+      "size": 97011
+    },
+    {
+      "path": "public/images/gallery/grants/2023/img-1112-1.jpeg",
+      "size": 126033
+    },
+    {
+      "path": "public/images/gallery/grants/2023/img-4313-1.jpg",
+      "size": 56953
+    },
+    {
+      "path": "public/images/gallery/grants/2023/img-4313.jpg",
+      "size": 44534
+    },
+    {
+      "path": "public/images/gallery/grants/2023/img-5138-1.jpg",
+      "size": 83373
+    },
+    {
+      "path": "public/images/gallery/grants/2023/img-5138-rotated-1.jpg",
+      "size": 83287
+    },
+    {
+      "path": "public/images/gallery/grants/2023/img-5138.jpg",
+      "size": 83287
+    },
+    {
+      "path": "public/images/gallery/grants/2023/picture1-1.jpg",
+      "size": 106129
+    },
+    {
+      "path": "public/images/gallery/grants/2024/all-saints-academy.png",
+      "size": 1558657
+    },
+    {
+      "path": "public/images/gallery/grants/2024/img-2796.jpeg",
+      "size": 88410
+    },
+    {
+      "path": "public/images/gallery/grants/2024/img-3615-1.jpeg",
+      "size": 144515
+    },
+    {
+      "path": "public/images/gallery/grants/2024/img-3615.jpeg",
+      "size": 40869
+    },
+    {
+      "path": "public/images/gallery/grants/2024/img-8028-1.jpg",
+      "size": 138301
+    },
+    {
+      "path": "public/images/gallery/grants/2024/img-8028.jpg",
+      "size": 38860
+    },
+    {
+      "path": "public/images/gallery/grants/2024/sjbf-check-presentation-1.jpg",
+      "size": 91440
+    },
+    {
+      "path": "public/images/gallery/grants/2024/sjbf-check-presentation.jpg",
+      "size": 90674
+    },
+    {
+      "path": "public/images/gallery/grants/2025/cfl-chapter-441-school-grant-1-1.jpg",
+      "size": 105508
+    },
+    {
+      "path": "public/images/gallery/grants/2025/chapter-91-school-grant-1.jpg",
+      "size": 89225
+    },
+    {
+      "path": "public/images/gallery/grants/2025/chapter-91-school-grant-scaled.jpg",
+      "size": 88736
+    },
+    {
+      "path": "public/images/gallery/grants/2025/chapter-91-school-grant.jpg",
+      "size": 33405
+    },
+    {
+      "path": "public/images/gallery/grants/2025/chapter-n373-school-grant-1-1.jpg",
+      "size": 139367
+    },
+    {
+      "path": "public/images/gallery/grants/2025/chapter-n373-school-grant-1.jpg",
+      "size": 21082
+    },
+    {
+      "path": "public/images/gallery/grants/2025/holy-rosary-school-in-gardner-1-scaled.jpg",
+      "size": 81902
+    },
+    {
+      "path": "public/images/gallery/grants/2025/holy-rosary-school-in-gardner-1.jpg",
+      "size": 81178
+    },
+    {
+      "path": "public/images/gallery/grants/2025/img-9888.jpg",
+      "size": 67914
+    },
+    {
+      "path": "public/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant-scaled.jpg",
+      "size": 82991
+    },
+    {
+      "path": "public/images/gallery/grants/2025/st.-monica-st.-michael-school-school-grant.jpg",
+      "size": 14948
+    },
+    {
+      "path": "public/images/gallery/grants/2025/woonsocket-school-grant-1-1.jpeg",
+      "size": 63302
+    },
+    {
+      "path": "public/images/gallery/grants/2025/woonsocket-school-grant-1.jpeg",
+      "size": 20500
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar1-1.jpg",
+      "size": 76270
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar1.jpg",
+      "size": 92749
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar10-1.jpg",
+      "size": 48312
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar10.jpg",
+      "size": 7131
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar12.jpg",
+      "size": 45402
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar13-1.jpg",
+      "size": 76506
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar13.jpg",
+      "size": 8951
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar14.jpg",
+      "size": 59941
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar15.jpg",
+      "size": 68679
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar16-1.jpg",
+      "size": 53745
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar16.jpg",
+      "size": 6719
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar17-1.jpg",
+      "size": 94426
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar18.jpg",
+      "size": 72360
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar19.jpg",
+      "size": 99848
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar2-1.jpg",
+      "size": 76848
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar2.jpg",
+      "size": 8086
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar20.jpg",
+      "size": 78422
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar21-1.jpg",
+      "size": 108102
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar22-1.jpg",
+      "size": 99759
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar22.jpg",
+      "size": 9428
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar23.jpg",
+      "size": 43046
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar24.jpg",
+      "size": 70152
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar25-1.jpg",
+      "size": 71406
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar25.jpg",
+      "size": 7403
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar26.jpg",
+      "size": 63538
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar27.jpg",
+      "size": 64936
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar28-1.jpg",
+      "size": 93901
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar29-1.jpg",
+      "size": 91698
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar29.jpg",
+      "size": 8522
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar3-1.jpg",
+      "size": 101003
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar3.jpg",
+      "size": 8862
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar30-1.jpg",
+      "size": 97378
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar30.jpg",
+      "size": 97378
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar4.jpg",
+      "size": 69977
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar5-1.jpg",
+      "size": 69075
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar6.jpg",
+      "size": 46944
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar7.jpg",
+      "size": 63671
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar8.jpg",
+      "size": 66584
+    },
+    {
+      "path": "public/images/gallery/scholarships/2014/scholar9.jpg",
+      "size": 79677
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/fullsizerender-1-1.jpg",
+      "size": 40851
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1498-1-1-1.jpg",
+      "size": 38729
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1498-1-1.jpg",
+      "size": 50432
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1501-1-rotated.jpg",
+      "size": 63861
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1501-1.jpg",
+      "size": 63922
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1504.jpg",
+      "size": 67174
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1505-1.jpg",
+      "size": 52745
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1505-rotated.jpg",
+      "size": 70565
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1508.jpg",
+      "size": 67380
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1510.jpg",
+      "size": 66281
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1512-rotated.jpg",
+      "size": 67577
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1515-1.jpg",
+      "size": 50145
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1515-rotated-1.jpg",
+      "size": 68854
+    },
+    {
+      "path": "public/images/gallery/scholarships/2023/img-1515-rotated.jpg",
+      "size": 68854
+    },
+    {
+      "path": "public/images/gallery/scholarships/2024/ella-gesner-1.jpg",
+      "size": 58781
+    },
+    {
+      "path": "public/images/gallery/scholarships/2024/jack-hebert-1.jpg",
+      "size": 53682
+    },
+    {
+      "path": "public/images/gallery/scholarships/2024/jack-hebert.jpg",
+      "size": 133877
+    },
+    {
+      "path": "public/images/gallery/scholarships/2024/nicole-ledwidge-1.jpg",
+      "size": 58394
+    },
+    {
+      "path": "public/images/gallery/scholarships/2024/nicole-ledwidge.jpg",
+      "size": 10008
+    },
+    {
+      "path": "public/images/gallery/scholarships/2024/noelle-champigny.jpg",
+      "size": 50860
+    },
+    {
+      "path": "public/images/gallery/scholarships/2025/caroline-puccini.jpeg",
+      "size": 76584
+    },
+    {
+      "path": "public/images/gallery/scholarships/2025/jack-hebert-1.jpeg",
+      "size": 137591
+    },
+    {
+      "path": "public/images/gallery/scholarships/2025/nicole-ledwidge-1.jpeg",
+      "size": 87753
+    },
+    {
+      "path": "public/images/gallery/scholarships/2025/recipients-and-parents-1.jpeg",
+      "size": 132665
+    },
+    {
+      "path": "public/images/gallery/scholarships/2025/recipients-and-parents.jpeg",
+      "size": 39261
+    },
+    {
+      "path": "public/images/gallery/scholarships/2025/sophia-puccini-1.jpeg",
+      "size": 68047
+    }
+  ]
+}
