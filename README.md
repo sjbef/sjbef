@@ -37,7 +37,7 @@ There's no staging site, so check `npm run build` locally first.
 
 | Path | What's there |
 |---|---|
-| `src/App.tsx` | The whole site: every page section, the admin panel, and all components live in this one file |
+| `src/App.tsx` | The whole site: every page section and component lives in this one file |
 | `src/content.json` | Most page text, in two languages. **French is under the key `es`**, not `fr` (a quirk of the template; the app's `lang` state uses `'en' \| 'es'` too) |
 | `src/index.css` | Tailwind setup and brand colors |
 | `public/images/gallery/` | Gallery photos by type and year (`grants/2025/…`, `scholarships/2014/…`) |
@@ -59,18 +59,11 @@ There's no staging site, so check `npm run build` locally first.
 - **Gallery photos:** add the image under `public/images/gallery/<grants|scholarships>/<year>/`
   and add an entry (`localUrl`, `caption`, `year`, …) to
   `public/page-assets/page_assets_manifest.json`, copying an existing entry's shape.
+- **Newsletters:** add an entry to the `defaultNewsletters` list in
+  `src/App.tsx`; put its PDF in `public/newsletters/`.
 - **Scholarship forms:** the three forms are Google Forms owned by
   `sjbefadmin@gmail.com`; edit them in that account's Google Drive. The site
   only links to and embeds their public `…/viewform` URLs.
-
-### The built-in admin panel
-
-The **Volunteer Editor** button in the header opens a "Live Copy Editor", a visual edit
-mode, and gallery/newsletter managers. These run entirely in the visitor's
-browser: changes are kept in that browser's `localStorage` and nobody else sees
-them. To publish text edits made there, use **Download content.json**, replace
-`src/content.json` with the downloaded file, and push. The panel is open to
-anyone, but it can't change the live site.
 
 ## Known limitations
 
@@ -78,7 +71,7 @@ These parts of the site look functional but aren't connected to anything yet:
 
 - **Contact form**: shows a success message but doesn't send email.
 - **Donation form**: a simulation; no payment is processed.
-- **Volunteer sign-up and gallery submissions**: stored only in the visitor's browser.
+- **Volunteer sign-up form**: shows a success message but doesn't send anything.
 
 The scholarship application, seminarian, and volunteer service forms *do* work.
 They're real Google Forms. The scholarship application requires applicants to

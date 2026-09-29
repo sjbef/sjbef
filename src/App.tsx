@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Globe, 
   BookOpen, 
   GraduationCap, 
   Award, 
@@ -8,16 +7,11 @@ import {
   Mail, 
   CheckCircle, 
   Image,
-  Upload,
   Search,
   Filter, 
-  Edit2, 
   ExternalLink, 
-  Settings, 
   Download, 
-  AlertCircle, 
   RefreshCw, 
-  FileJson, 
   Languages, 
   ArrowRight, 
   ArrowLeft,
@@ -33,16 +27,11 @@ import {
   Building, 
   Shield, 
   HeartHandshake, 
-  Eye, 
-  Copy, 
   Sparkles, 
-  AlertTriangle,
   Info,
   Calendar,
   Send,
   HelpCircle,
-  Inbox,
-  Lock,
   DollarSign,
   Phone
 } from 'lucide-react';
@@ -59,7 +48,6 @@ interface TranslationSet {
     gallery: string;
     donate: string;
     contact: string;
-    admin: string;
   };
   hero: {
     badge: string;
@@ -211,20 +199,6 @@ interface ContentConfig {
   es: TranslationSet;
 }
 
-// Interface for simulated form submissions
-interface FormSubmission {
-  id: string;
-  type: 'Inquiry' | 'Scholarship' | 'Volunteer';
-  timestamp: string;
-  senderName: string;
-  senderEmail: string;
-  subject?: string;
-  message?: string;
-  schoolAffiliation?: string;
-  essayUrl?: string;
-  selectedRole?: string;
-}
-
 interface GalleryItem {
   id: string;
   category: 'scholarships' | 'grants';
@@ -235,7 +209,6 @@ interface GalleryItem {
   description: string;
   imageUrl: string;
   date?: string;
-  isCustom?: boolean;
 }
 
 interface NewsletterArticle {
@@ -253,14 +226,12 @@ interface NewsletterItem {
   pdfUrl: string;
   description: string;
   articles: NewsletterArticle[];
-  isCustom?: boolean;
 }
 
 export default function App() {
-  const [content, setContent] = useState<ContentConfig>(initialContent as ContentConfig);
+  const content = initialContent as ContentConfig;
   const [lang, setLang] = useState<'en' | 'es'>('en');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'public' | 'admin'>('public');
   const [currentSection, setCurrentSection] = useState<'home' | 'about' | 'twbi' | 'scholarships' | 'gallery' | 'newsletters' | 'donate' | 'contact'>('home');
 
   // Photo Gallery States
@@ -268,7 +239,6 @@ export default function App() {
   const [galleryYear, setGalleryYear] = useState<string>('all');
   const [gallerySearch, setGallerySearch] = useState<string>('');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [submissionFormOpen, setSubmissionFormOpen] = useState(false);
 
   // Default gallery items
   const defaultGalleryItems: GalleryItem[] = [
@@ -384,18 +354,7 @@ export default function App() {
     }
   ];
 
-  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(() => {
-    try {
-      const saved = localStorage.getItem('sjb_gallery_items_v2');
-      return saved ? JSON.parse(saved) : defaultGalleryItems;
-    } catch (e) {
-      return defaultGalleryItems;
-    }
-  });
-
-  useEffect(() => {
-    localStorage.setItem('sjb_gallery_items_v2', JSON.stringify(galleryItems));
-  }, [galleryItems]);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(defaultGalleryItems);
 
   // Attempt to load locally scraped page assets manifest at runtime
   useEffect(() => {
@@ -449,11 +408,7 @@ export default function App() {
             };
           });
 
-          setGalleryItems(prev => {
-            // Filter out default/placeholder items, keep user custom-added ones
-            const customItems = prev.filter(i => i.isCustom);
-            return [...customItems, ...importedItems];
-          });
+          setGalleryItems(importedItems);
         }
       } catch (err) {
         console.log('Local page_assets_manifest.json not found. Using defaults.');
@@ -478,20 +433,6 @@ export default function App() {
     }
     return true;
   });
-
-  // Photo Submission Form States
-  const [photoForm, setPhotoForm] = useState({
-    category: 'scholarships' as 'scholarships' | 'grants',
-    title: '',
-    who: '',
-    year: '2023',
-    date: '2023-06-04',
-    chapter: '',
-    description: '',
-    imageSrc: ''
-  });
-  const [photoSubmitting, setPhotoSubmitting] = useState(false);
-  const [photoSuccess, setPhotoSuccess] = useState(false);
 
   // =========================================================
   // NEWSLETTER STATES & DEFAULTS
@@ -571,41 +512,12 @@ export default function App() {
     }
   ];
 
-  const [newsletters, setNewsletters] = useState<NewsletterItem[]>(() => {
-    try {
-      const saved = localStorage.getItem('sjb_newsletters_v2');
-      return saved ? JSON.parse(saved) : defaultNewsletters;
-    } catch (e) {
-      return defaultNewsletters;
-    }
-  });
-
-  useEffect(() => {
-    localStorage.setItem('sjb_newsletters_v2', JSON.stringify(newsletters));
-  }, [newsletters]);
+  const newsletters = defaultNewsletters;
 
   const [selectedNewsletterId, setSelectedNewsletterId] = useState<string>('news-1');
   const [newsletterSearch, setNewsletterSearch] = useState<string>('');
   const [newsletterYear, setNewsletterYear] = useState<string>('all');
   const [newsletterMode, setNewsletterMode] = useState<'digital' | 'pdf'>('digital');
-  const [newsletterFormOpen, setNewsletterFormOpen] = useState(false);
-  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
-
-  // Form state for creating a new newsletter
-  const [newNewsletterForm, setNewNewsletterForm] = useState({
-    title: '',
-    season: 'Spring' as 'Spring' | 'Summer' | 'Fall' | 'Winter' | 'Special',
-    year: '2024',
-    date: '2024-05-15',
-    pdfUrl: '',
-    description: '',
-    articleTitle1: '',
-    articleAuthor1: '',
-    articleContent1: '',
-    articleTitle2: '',
-    articleAuthor2: '',
-    articleContent2: ''
-  });
 
   // Derived filtered newsletters list
   const filteredNewsletters = newsletters.filter(item => {
@@ -625,101 +537,7 @@ export default function App() {
   // Get active selected newsletter details
   const activeNewsletter = newsletters.find(n => n.id === selectedNewsletterId) || newsletters[0] || defaultNewsletters[0];
 
-  // Handler for adding a newsletter
-  const handleAddNewsletter = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newNewsletterForm.title || !newNewsletterForm.description) {
-      alert("Please provide at least a title and short description.");
-      return;
-    }
 
-    const articles: NewsletterArticle[] = [];
-    if (newNewsletterForm.articleTitle1) {
-      articles.push({
-        title: newNewsletterForm.articleTitle1,
-        author: newNewsletterForm.articleAuthor1 || 'Staff Writer',
-        content: newNewsletterForm.articleContent1.split('\n\n').filter(Boolean)
-      });
-    }
-    if (newNewsletterForm.articleTitle2) {
-      articles.push({
-        title: newNewsletterForm.articleTitle2,
-        author: newNewsletterForm.articleAuthor2 || 'Staff Writer',
-        content: newNewsletterForm.articleContent2.split('\n\n').filter(Boolean)
-      });
-    }
-
-    // Default article if none provided
-    if (articles.length === 0) {
-      articles.push({
-        title: 'Announcing ' + newNewsletterForm.title,
-        author: 'Foundation Board',
-        content: [newNewsletterForm.description]
-      });
-    }
-
-    const newItem: NewsletterItem = {
-      id: `news-custom-${Date.now()}`,
-      title: newNewsletterForm.title,
-      season: newNewsletterForm.season,
-      year: newNewsletterForm.year,
-      date: newNewsletterForm.date,
-      pdfUrl: newNewsletterForm.pdfUrl || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-      description: newNewsletterForm.description,
-      articles: articles,
-      isCustom: true
-    };
-
-    setNewsletters(prev => [newItem, ...prev]);
-    setSelectedNewsletterId(newItem.id);
-    setNewsletterSuccess(true);
-    setNewsletterFormOpen(false);
-
-    // Save to dynamic submissions dashboard too as an audit log
-    const adminLogEntry: FormSubmission = {
-      id: `PUB-${Math.floor(1000 + Math.random() * 9000)}`,
-      type: 'Inquiry',
-      timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
-      senderName: "Administrator Editor",
-      senderEmail: "editor@sjbef.org",
-      subject: `📰 Published Newsletter: ${newItem.title}`,
-      message: `Season: ${newItem.season}\nYear: ${newItem.year}\nDate: ${newItem.date}\nDescription: ${newItem.description}\nPDF URL: ${newItem.pdfUrl}\nTotal Articles: ${articles.length}`
-    };
-    setSubmissions(prev => [adminLogEntry, ...prev]);
-
-    // Reset form
-    setNewNewsletterForm({
-      title: '',
-      season: 'Spring',
-      year: '2024',
-      date: '2024-05-15',
-      pdfUrl: '',
-      description: '',
-      articleTitle1: '',
-      articleAuthor1: '',
-      articleContent1: '',
-      articleTitle2: '',
-      articleAuthor2: '',
-      articleContent2: ''
-    });
-  };
-
-  // Handler for deleting a custom newsletter
-  const handleDeleteNewsletter = (id: string) => {
-    if (confirm("Are you sure you want to delete this custom newsletter?")) {
-      setNewsletters(prev => prev.filter(n => n.id !== id));
-      if (selectedNewsletterId === id) {
-        setSelectedNewsletterId('news-1');
-      }
-    }
-  };
-
-  // Edit mode states for visual content customization
-  const [editMode, setEditMode] = useState(false);
-  const [selectedPath, setSelectedPath] = useState<string | null>(null);
-  const [editValueEn, setEditValueEn] = useState('');
-  const [editValueEs, setEditValueEs] = useState('');
-  
   // Custom Dynamic Contact Forms States
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -744,46 +562,11 @@ export default function App() {
   const [volunteerSuccess, setVolunteerSuccess] = useState(false);
   const [volunteerSending, setVolunteerSending] = useState(false);
 
-  // Simulated Form Submissions Database State
-  const [submissions, setSubmissions] = useState<FormSubmission[]>([
-    {
-      id: "SUB-1024",
-      type: "Scholarship",
-      timestamp: "2026-07-14 14:32",
-      senderName: "Mathieu Gendreau",
-      senderEmail: "mathieu.g@msc.edu",
-      schoolAffiliation: "USJB Heritage Scholar -> Boston College",
-      subject: "College: Boston College (French & History)",
-      message: "Essay: Preserving the language of my grandparents has connected me to my Franco-American heritage and deepened my appreciation of New England history."
-    },
-    {
-      id: "SUB-1023",
-      type: "Volunteer",
-      timestamp: "2026-07-13 10:15",
-      senderName: "Gabrielle Roy-Martin",
-      senderEmail: "g.martin@gmail.com",
-      selectedRole: "Translation Support (French/English)",
-      message: "I am a fluent French-English bilingual resident and grandchild of an original USJB member in Woonsocket. I'd love to help catalog foundation archives and assist with newsletters."
-    },
-    {
-      id: "SUB-1022",
-      type: "Inquiry",
-      timestamp: "2026-07-11 09:44",
-      senderName: "Mrs. Elise Vance",
-      senderEmail: "evance@sjsne.com",
-      subject: "Heritage Library Grant Inquiry",
-      message: "Do you have educational grants available for purchasing French historical/heritage books? Our New England regional history courses would benefit greatly from adding Franco-American narrative literature."
-    }
-  ]);
-
   // Donation State
   const [donationSuccess, setDonationSuccess] = useState(false);
   const [selectedDonationTier, setSelectedDonationTier] = useState<string | null>(null);
   const [customDonationAmount, setCustomDonationAmount] = useState('');
   const [donationModalOpen, setDonationModalOpen] = useState(false);
-
-  // Guide Slide State (for interactive hosting steps)
-  const [activeGuideStep, setActiveGuideStep] = useState(1);
 
   // Retrieve text from content configuration by path
   const getText = (path: string, targetLang: 'en' | 'es'): string => {
@@ -799,67 +582,6 @@ export default function App() {
     return typeof current === 'string' ? current : '';
   };
 
-  // Helper to trigger edit panel from click
-  const handleElementClick = (path: string, e: React.MouseEvent) => {
-    if (!editMode) return;
-    e.preventDefault();
-    e.stopPropagation();
-    setSelectedPath(path);
-    setEditValueEn(getText(path, 'en'));
-    setEditValueEs(getText(path, 'es'));
-  };
-
-  // Save edits back into state
-  const handleSaveTextEdit = () => {
-    if (!selectedPath) return;
-    const updated = JSON.parse(JSON.stringify(content));
-    const keys = selectedPath.split('.');
-    
-    // Update English
-    let currEn = updated.en;
-    for (let i = 0; i < keys.length - 1; i++) currEn = currEn[keys[i]];
-    currEn[keys[keys.length - 1]] = editValueEn;
-
-    // Update Spanish
-    let currEs = updated.es;
-    for (let i = 0; i < keys.length - 1; i++) currEs = currEs[keys[i]];
-    currEs[keys[keys.length - 1]] = editValueEs;
-
-    setContent(updated);
-    setSelectedPath(null);
-  };
-
-  // Live update text as volunteer types
-  const updateText = (path: string, targetLang: 'en' | 'es', value: string) => {
-    const updated = JSON.parse(JSON.stringify(content));
-    const keys = path.split('.');
-    let curr = updated[targetLang];
-    for (let i = 0; i < keys.length - 1; i++) {
-      curr = curr[keys[i]];
-    }
-    curr[keys[keys.length - 1]] = value;
-    setContent(updated);
-  };
-
-  // Reset to original file defaults
-  const handleResetToDefault = () => {
-    if (window.confirm("Are you sure you want to reset all edits to original defaults?")) {
-      setContent(initialContent as ContentConfig);
-      setSelectedPath(null);
-    }
-  };
-
-  // Download modified content.json
-  const handleDownloadJson = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "content.json");
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-  };
-
   // Submit General Inquiry Form
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -870,18 +592,6 @@ export default function App() {
     setContactSending(true);
     
     setTimeout(() => {
-      // Append submission to live database
-      const newSub: FormSubmission = {
-        id: `SUB-${Math.floor(1000 + Math.random() * 9000)}`,
-        type: 'Inquiry',
-        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
-        senderName: contactForm.name,
-        senderEmail: contactForm.email,
-        subject: contactForm.subject || "General Inquiry",
-        message: `School Affiliation: ${contactForm.affiliation}\n\n${contactForm.message}`
-      };
-      
-      setSubmissions([newSub, ...submissions]);
       setContactSending(false);
       setContactSuccess(true);
       // Reset form
@@ -906,17 +616,6 @@ export default function App() {
     setVolunteerSending(true);
 
     setTimeout(() => {
-      const newSub: FormSubmission = {
-        id: `SUB-${Math.floor(1000 + Math.random() * 9000)}`,
-        type: 'Volunteer',
-        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
-        senderName: volunteerForm.name,
-        senderEmail: volunteerForm.email,
-        selectedRole: volunteerForm.role,
-        message: `Availability: ${volunteerForm.availability} | Phone: ${volunteerForm.phone || 'N/A'}`
-      };
-
-      setSubmissions([newSub, ...submissions]);
       setVolunteerSending(false);
       setVolunteerSuccess(true);
       setVolunteerForm({
@@ -940,73 +639,6 @@ export default function App() {
     setDonationSuccess(true);
   };
 
-  // Submit Photo to Gallery Form
-  const handlePhotoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!photoForm.title || !photoForm.who) {
-      alert("Please enter a photo title and details on who is in the photo.");
-      return;
-    }
-    setPhotoSubmitting(true);
-
-    setTimeout(() => {
-      const newItem: GalleryItem = {
-        id: `gal-custom-${Date.now()}`,
-        category: photoForm.category,
-        title: photoForm.title,
-        year: photoForm.year,
-        who: photoForm.who,
-        chapter: photoForm.chapter || "N/A",
-        description: photoForm.description || `${photoForm.who} at ${photoForm.chapter || 'Chapter'}.`,
-        imageUrl: photoForm.imageSrc || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop",
-        date: photoForm.date,
-        isCustom: true
-      };
-
-      setGalleryItems(prev => [newItem, ...prev]);
-      setPhotoSubmitting(false);
-      setPhotoSuccess(true);
-
-      // Add to simulated form submissions log for Admin panel
-      const adminLogEntry: FormSubmission = {
-        id: `SUB-${Math.floor(1000 + Math.random() * 9000)}`,
-        type: 'Inquiry',
-        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
-        senderName: photoForm.who,
-        senderEmail: "member-submission@sjbef.org",
-        subject: `📸 Gallery Photo Upload: ${photoForm.title}`,
-        message: `Category: ${photoForm.category === 'scholarships' ? 'Scholarship Recipients' : 'Catholic School Grants'}\nChapter: ${photoForm.chapter}\nYear: ${photoForm.year}\nDescription: ${photoForm.description}\nImage Status: Saved to browser local storage`
-      };
-      setSubmissions(prev => [adminLogEntry, ...prev]);
-
-      // Reset form
-      setPhotoForm({
-        category: 'scholarships',
-        title: '',
-        who: '',
-        year: '2023',
-        date: '2023-06-04',
-        chapter: '',
-        description: '',
-        imageSrc: ''
-      });
-    }, 1200);
-  };
-
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhotoForm(prev => ({
-          ...prev,
-          imageSrc: reader.result as string
-        }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   // Clear simulated notifications
   useEffect(() => {
     if (contactSuccess) {
@@ -1023,23 +655,8 @@ export default function App() {
     }
   }, [volunteerSuccess]);
 
-  useEffect(() => {
-    if (photoSuccess) {
-      const timer = setTimeout(() => setPhotoSuccess(false), 6000);
-      return () => clearTimeout(timer);
-    }
-  }, [photoSuccess]);
-
-  useEffect(() => {
-    if (newsletterSuccess) {
-      const timer = setTimeout(() => setNewsletterSuccess(false), 6000);
-      return () => clearTimeout(timer);
-    }
-  }, [newsletterSuccess]);
-
   // Scroll helper mapped to section switching
   const scrollToSection = (id: string) => {
-    setActiveTab('public');
     setMobileMenuOpen(false);
     
     // Map id string to valid section state
@@ -1062,65 +679,19 @@ export default function App() {
     }, 50);
   };
 
-  // Component that wraps text with edit triggers
+  // Renders a text entry from content.json in the current language
   const EditableText: React.FC<{
     path: string;
     className?: string;
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div';
   }> = ({ path, className = '', as = 'span' }) => {
-    const rawText = getText(path, lang);
-    const isSelected = selectedPath === path;
     const Component = as;
-
-    if (editMode) {
-      return (
-        <Component
-          onClick={(e) => handleElementClick(path, e)}
-          className={`relative inline-block cursor-help transition-all duration-200 group/edit border border-dashed rounded px-1 -mx-1 ${
-            isSelected 
-              ? 'border-brand-coral bg-brand-coral/10 text-brand-coral' 
-              : 'border-brand-teal/40 hover:border-brand-coral hover:bg-brand-teal/5'
-          } ${className}`}
-          title="Click to edit bilingually"
-        >
-          {rawText || <span className="text-gray-300 italic">(empty)</span>}
-          <span className="absolute -top-3.5 -right-1.5 hidden group-hover/edit:flex items-center gap-0.5 bg-brand-coral text-white text-[10px] px-1 rounded shadow-sm pointer-events-none z-10 font-sans font-medium">
-            <Edit2 className="w-2.5 h-2.5" /> Edit
-          </span>
-        </Component>
-      );
-    }
-
-    return <Component className={className}>{rawText}</Component>;
+    return <Component className={className}>{getText(path, lang)}</Component>;
   };
 
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-brand-teal/20 selection:text-brand-blue">
       
-      {/* 1. ANNOUNCEMENT HERO WATERMARK IN VOLUNTEER EDIT MODE */}
-      {editMode && (
-        <div className="sticky top-0 z-50 bg-brand-coral text-white py-2 px-4 shadow-md flex items-center justify-between text-sm animate-pulse">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4" />
-            <span><strong>Visual Editor Active:</strong> Click any text block highlighted with dashed lines to edit in English & Spanish!</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={handleDownloadJson}
-              className="bg-white text-brand-coral hover:bg-orange-50 font-semibold px-3 py-1 rounded text-xs flex items-center gap-1 transition shadow-sm"
-            >
-              <Download className="w-3.5 h-3.5" /> Export content.json
-            </button>
-            <button 
-              onClick={() => setEditMode(false)}
-              className="bg-brand-blue hover:bg-brand-blue/80 text-white font-medium px-2 py-0.5 rounded text-xs transition"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* 2. MAIN HEADER */}
       <header className="bg-white border-b border-gray-100 sticky top-0 z-40 transition-all duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
@@ -1151,7 +722,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('home')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'home' && activeTab === 'public'
+                currentSection === 'home'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1161,7 +732,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('about')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'about' && activeTab === 'public'
+                currentSection === 'about'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1171,7 +742,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('twbi')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'twbi' && activeTab === 'public'
+                currentSection === 'twbi'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1181,7 +752,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('scholarships')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'scholarships' && activeTab === 'public'
+                currentSection === 'scholarships'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1191,7 +762,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('gallery')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'gallery' && activeTab === 'public'
+                currentSection === 'gallery'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1201,7 +772,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('newsletters')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'newsletters' && activeTab === 'public'
+                currentSection === 'newsletters'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1211,7 +782,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('donate')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'donate' && activeTab === 'public'
+                currentSection === 'donate'
                   ? 'bg-rose-50 text-rose-600 font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1221,7 +792,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('contact')} 
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'contact' && activeTab === 'public'
+                currentSection === 'contact'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
@@ -1253,18 +824,6 @@ export default function App() {
               </button>
             </div>
 
-            {/* Volunteer Admin Portal Button */}
-            <button
-              onClick={() => setActiveTab(activeTab === 'admin' ? 'public' : 'admin')}
-              className={`ml-1 px-4 py-2 text-xs font-bold rounded-lg flex items-center gap-2 transition ${
-                activeTab === 'admin' 
-                  ? 'bg-brand-coral text-white shadow-md' 
-                  : 'bg-brand-blue/10 hover:bg-brand-blue/20 text-brand-blue'
-              }`}
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>{getText('nav.admin', lang)}</span>
-            </button>
           </nav>
 
           {/* Mobile Buttons */}
@@ -1275,19 +834,6 @@ export default function App() {
               className="p-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-200 font-bold text-gray-700 flex items-center gap-1"
             >
               {lang === 'en' ? '🇫🇷 FR' : '🇺🇸 EN'}
-            </button>
-
-            {/* Volunteer Mode mobile shortcut */}
-            <button
-              onClick={() => setActiveTab(activeTab === 'admin' ? 'public' : 'admin')}
-              className={`p-1.5 rounded-lg border transition ${
-                activeTab === 'admin' 
-                  ? 'bg-brand-coral border-brand-coral text-white' 
-                  : 'bg-brand-blue/5 border-brand-blue/10 text-brand-blue'
-              }`}
-              title="Volunteer Editor"
-            >
-              <Settings className="w-5 h-5" />
             </button>
 
             <button 
@@ -1306,7 +852,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('home')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'home' && activeTab === 'public'
+                currentSection === 'home'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
@@ -1316,7 +862,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('about')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'about' && activeTab === 'public'
+                currentSection === 'about'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
@@ -1326,7 +872,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('twbi')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'twbi' && activeTab === 'public'
+                currentSection === 'twbi'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
@@ -1336,7 +882,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('scholarships')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'scholarships' && activeTab === 'public'
+                currentSection === 'scholarships'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
@@ -1346,7 +892,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('gallery')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'gallery' && activeTab === 'public'
+                currentSection === 'gallery'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
@@ -1356,7 +902,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('newsletters')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'newsletters' && activeTab === 'public'
+                currentSection === 'newsletters'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
@@ -1366,7 +912,7 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('donate')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'donate' && activeTab === 'public'
+                currentSection === 'donate'
                   ? 'bg-rose-50 text-rose-600 font-bold'
                   : 'hover:bg-gray-50 text-brand-blue font-bold'
               }`}
@@ -1376,24 +922,12 @@ export default function App() {
             <button 
               onClick={() => scrollToSection('contact')} 
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'contact' && activeTab === 'public'
+                currentSection === 'contact'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
               {getText('nav.contact', lang)}
-            </button>
-            <div className="h-px bg-gray-100 my-1"></div>
-            
-            <button
-              onClick={() => {
-                setActiveTab(activeTab === 'admin' ? 'public' : 'admin');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-center py-2 px-3 text-sm font-bold rounded-lg bg-brand-blue text-white flex items-center justify-center gap-2 shadow-xs"
-            >
-              <Settings className="w-4 h-4" />
-              <span>{getText('nav.admin', lang)}</span>
             </button>
           </div>
         )}
@@ -1403,9 +937,8 @@ export default function App() {
       <main className="flex-grow">
         
         {/* ========================================================= */}
-        {/* TAB 1: PUBLIC FACING WEBSITE REPRESENTING THE REBUILT SITE */}
+        {/* PUBLIC WEBSITE */}
         {/* ========================================================= */}
-        {activeTab === 'public' && (
           <div className="flex flex-col">
             
             {/* 1. HOME SCREEN / LANDING */}
@@ -2605,23 +2138,6 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* Submissions feedback if successfully submitted */}
-                {photoSuccess && (
-                  <div className="mb-8 max-w-2xl mx-auto bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 sm:p-5 flex items-start gap-3 shadow-xs animate-fade-in">
-                    <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-bold text-sm text-emerald-900">
-                        {lang === 'en' ? 'Photo Submitted Successfully!' : 'Photo Soumise avec Succès !'}
-                      </h4>
-                      <p className="text-xs mt-1 text-emerald-700 leading-relaxed">
-                        {lang === 'en' 
-                          ? 'Thank you for your contribution! The photograph has been saved locally to your browser and instantly added to the active gallery view below.'
-                          : 'Merci pour votre contribution ! La photographie a été enregistrée localement dans votre navigateur et ajoutée instantanément à la galerie ci-dessous.'}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
                 {/* Main Filter & Action Controls */}
                 <div className="bg-white border border-gray-150 rounded-2xl p-4 sm:p-6 shadow-xs mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
                   
@@ -2688,214 +2204,8 @@ export default function App() {
                       </select>
                     </div>
 
-                    {/* Submit Toggle button */}
-                    <button
-                      onClick={() => setSubmissionFormOpen(!submissionFormOpen)}
-                      className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
-                        submissionFormOpen 
-                          ? 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300' 
-                          : 'bg-brand-coral hover:bg-brand-coral/95 text-white'
-                      }`}
-                    >
-                      <Upload className="w-3.5 h-3.5" />
-                      <span>{submissionFormOpen ? (lang === 'en' ? 'Hide Form' : 'Masquer') : (lang === 'en' ? 'Submit Photo' : 'Soumettre une Photo')}</span>
-                    </button>
-
                   </div>
                 </div>
-
-                {/* Collapsible Photo Submission Form */}
-                {submissionFormOpen && (
-                  <div className="mb-10 bg-white border border-gray-150 rounded-2xl p-6 shadow-md max-w-3xl mx-auto animate-fade-in">
-                    <div className="flex items-center gap-2.5 border-b border-gray-100 pb-3 mb-5">
-                      <Image className="w-5 h-5 text-brand-coral" />
-                      <div>
-                        <h3 className="text-base font-bold text-brand-blue">
-                          {lang === 'en' ? 'SJB Memorial Photo Submission Form' : 'Formulaire de Soumission de Photos'}
-                        </h3>
-                        <p className="text-xs text-gray-500">
-                          {lang === 'en' 
-                            ? 'Complete this form to submit your historical event, scholarship night, or Catholic school grant photo.'
-                            : 'Complétez ce formulaire pour soumettre une photo d\'événement historique, de remise de bourse ou de subvention.'}
-                        </p>
-                      </div>
-                    </div>
-
-                    <form onSubmit={handlePhotoSubmit} className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Target Photo Gallery *' : 'Galerie de destination *'}
-                          </label>
-                          <select
-                            value={photoForm.category}
-                            onChange={(e) => setPhotoForm({...photoForm, category: e.target.value as 'scholarships' | 'grants'})}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          >
-                            <option value="scholarships">🎓 {lang === 'en' ? 'Scholarship Recipients' : 'Lauréats de Bourses'}</option>
-                            <option value="grants">🏫 {lang === 'en' ? 'Catholic School Grants' : 'Subventions Scolaires'}</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Photo Title / Caption Header *' : 'Titre de la photo / Légende *'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={photoForm.title}
-                            onChange={(e) => setPhotoForm({...photoForm, title: e.target.value})}
-                            placeholder={lang === 'en' ? 'e.g. Jack Hebert Scholarship Presentation' : 'Ex: Remise de bourse à Sophia Puccini'}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Who is in the photo? (Names) *' : 'Qui figure sur la photo ? (Noms) *'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={photoForm.who}
-                            onChange={(e) => setPhotoForm({...photoForm, who: e.target.value})}
-                            placeholder="e.g. Ella Gesner, Al Dumoulin"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Year (e.g. 2023) *' : 'Année *'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={photoForm.year}
-                            onChange={(e) => setPhotoForm({...photoForm, year: e.target.value})}
-                            placeholder="2023"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Date Taken (approx)' : 'Date approximative'}
-                          </label>
-                          <input
-                            type="date"
-                            value={photoForm.date}
-                            onChange={(e) => setPhotoForm({...photoForm, date: e.target.value})}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Organization / Chapter *' : 'Organisation / Section *'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={photoForm.chapter}
-                            onChange={(e) => setPhotoForm({...photoForm, chapter: e.target.value})}
-                            placeholder="e.g. Chapter N442 Somerset, MA"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Context / Detailed Description' : 'Description détaillée'}
-                          </label>
-                          <input
-                            type="text"
-                            value={photoForm.description}
-                            onChange={(e) => setPhotoForm({...photoForm, description: e.target.value})}
-                            placeholder={lang === 'en' ? 'e.g. Presented by Chapter President Al Dumoulin during scholarship night' : 'Présentation officielle...'}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-                      </div>
-
-                      {/* File Selector & Drag-Drop */}
-                      <div>
-                        <label className="block text-xs font-semibold text-gray-500 mb-2">
-                          {lang === 'en' ? 'Select or Drag Photograph *' : 'Sélectionnez ou Glissez une Photo *'}
-                        </label>
-                        
-                        <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-gray-50 flex flex-col items-center justify-center text-center hover:bg-gray-50/50 hover:border-brand-blue/40 transition relative">
-                          {photoForm.imageSrc ? (
-                            <div className="space-y-3">
-                              <img 
-                                src={photoForm.imageSrc} 
-                                alt="Pre-view submission" 
-                                className="w-40 h-32 object-cover rounded-lg border border-gray-200 shadow-sm mx-auto"
-                              />
-                              <button
-                                type="button"
-                                onClick={() => setPhotoForm(prev => ({ ...prev, imageSrc: '' }))}
-                                className="text-[11px] font-bold text-red-500 hover:text-red-700 underline"
-                              >
-                                {lang === 'en' ? 'Remove Image' : 'Supprimer l\'image'}
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="space-y-2 pointer-events-none">
-                              <div className="bg-white p-3 rounded-full shadow-xs inline-block border border-gray-100 text-gray-400">
-                                <Upload className="w-6 h-6 mx-auto text-brand-blue" />
-                              </div>
-                              <p className="text-xs font-bold text-gray-700">
-                                {lang === 'en' ? 'Click to browse files or drag here' : 'Cliquez pour parcourir ou glissez ici'}
-                              </p>
-                              <p className="text-[10px] text-gray-400">
-                                Supports JPEG, PNG, or WEBP images up to 5MB
-                              </p>
-                            </div>
-                          )}
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhotoUpload}
-                            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end gap-3 pt-3 border-t border-gray-150">
-                        <button
-                          type="button"
-                          onClick={() => setSubmissionFormOpen(false)}
-                          className="px-4 py-2 text-xs font-bold text-gray-500 hover:text-gray-700"
-                        >
-                          {lang === 'en' ? 'Cancel' : 'Annuler'}
-                        </button>
-                        <button
-                          type="submit"
-                          disabled={photoSubmitting}
-                          className="px-5 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-blue/95 text-white font-bold text-xs tracking-wide shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
-                        >
-                          {photoSubmitting ? (
-                            <>
-                              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                              <span>{lang === 'en' ? 'Uploading...' : 'Téléchargement...'}</span>
-                            </>
-                          ) : (
-                            <>
-                              <Send className="w-3.5 h-3.5" />
-                              <span>{lang === 'en' ? 'Submit and Publish Photo' : 'Publier la Photo'}</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                )}
 
                 {/* Grid layout containing cards */}
                 {filteredGalleryItems.length > 0 ? (
@@ -2922,13 +2232,6 @@ export default function App() {
                               {item.year}
                             </div>
                             
-                            {/* Custom submission tag */}
-                            {item.isCustom && (
-                              <div className="absolute top-3 right-3 bg-brand-coral text-white text-[9px] font-extrabold tracking-wider px-2 py-0.5 rounded-md uppercase">
-                                {lang === 'en' ? 'Custom' : 'Ajoutée'}
-                              </div>
-                            )}
-
                             {/* Hover overlay with detail icon */}
                             <div className="absolute inset-0 bg-brand-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                               <div className="bg-white/95 p-3 rounded-full text-brand-blue shadow-lg scale-90 group-hover:scale-100 transition-transform duration-300">
@@ -2984,12 +2287,6 @@ export default function App() {
                         className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-lg transition"
                       >
                         {lang === 'en' ? 'Reset Filters' : 'Réinitialiser'}
-                      </button>
-                      <button
-                        onClick={() => setSubmissionFormOpen(true)}
-                        className="px-4 py-2 bg-brand-coral text-white text-xs font-bold rounded-lg transition"
-                      >
-                        {lang === 'en' ? 'Add Photo Now' : 'Ajouter une photo'}
                       </button>
                     </div>
                   </div>
@@ -3147,23 +2444,6 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* Submissions feedback if successfully published */}
-                {newsletterSuccess && (
-                  <div className="mb-8 max-w-2xl mx-auto bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 sm:p-5 flex items-start gap-3 shadow-xs animate-fade-in">
-                    <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-bold text-sm text-emerald-900">
-                        {lang === 'en' ? 'Newsletter Published Successfully!' : 'Bulletin Publié avec Succès !'}
-                      </h4>
-                      <p className="text-xs mt-1 text-emerald-700 leading-relaxed">
-                        {lang === 'en' 
-                          ? 'The new bulletin issue has been saved to your local browser storage and instantly added to the active reader archive below.'
-                          : 'Le nouveau bulletin a été enregistré dans le stockage de votre navigateur et ajouté instantanément aux archives ci-dessous.'}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
                 {/* Interactive Controls Bar */}
                 <div className="bg-brand-warm border border-gray-150 rounded-2xl p-4 sm:p-6 shadow-xs mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
                   
@@ -3201,223 +2481,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Open Form toggle / Actions Block */}
-                  <div className="w-full md:w-auto flex justify-end">
-                    <button
-                      onClick={() => setNewsletterFormOpen(!newsletterFormOpen)}
-                      className={`w-full md:w-auto px-4 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-xs cursor-pointer ${
-                        newsletterFormOpen 
-                          ? 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300' 
-                          : 'bg-brand-coral hover:bg-brand-coral/95 text-white'
-                      }`}
-                    >
-                      <Upload className="w-3.5 h-3.5" />
-                      <span>{newsletterFormOpen ? (lang === 'en' ? 'Hide Form' : 'Masquer') : (lang === 'en' ? 'Publish Issue' : 'Publier')}</span>
-                    </button>
-                  </div>
-
                 </div>
-
-                {/* Collapsible Publish Bulletin Form */}
-                {newsletterFormOpen && (
-                  <div className="mb-10 bg-white border border-gray-150 rounded-2xl p-6 shadow-md max-w-4xl mx-auto animate-fade-in">
-                    <div className="flex items-center gap-2.5 border-b border-gray-100 pb-3 mb-5">
-                      <FileText className="w-5 h-5 text-brand-coral" />
-                      <div>
-                        <h3 className="text-base font-bold text-brand-blue">
-                          {lang === 'en' ? 'Publish Newsletter Bulletin' : 'Publier un Bulletin d\'Information'}
-                        </h3>
-                        <p className="text-xs text-gray-500">
-                          {lang === 'en' 
-                            ? 'Add a new newsletter issue to the archive with its PDF attachment and article details.'
-                            : 'Ajoutez un nouveau numéro de bulletin aux archives avec sa pièce jointe PDF et ses articles.'}
-                        </p>
-                      </div>
-                    </div>
-
-                    <form onSubmit={handleAddNewsletter} className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div className="sm:col-span-2">
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Newsletter Title *' : 'Titre du Bulletin *'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={newNewsletterForm.title}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, title: e.target.value})}
-                            placeholder={lang === 'en' ? 'e.g. SJBEF Annual Bulletin - Winter 2024' : 'Ex: Bulletin Annuel SJBEF - Hiver 2024'}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Season *' : 'Saison *'}
-                          </label>
-                          <select
-                            value={newNewsletterForm.season}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, season: e.target.value as any})}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          >
-                            <option value="Spring">🌸 {lang === 'en' ? 'Spring' : 'Printemps'}</option>
-                            <option value="Summer">☀️ {lang === 'en' ? 'Summer' : 'Été'}</option>
-                            <option value="Fall">🍁 {lang === 'en' ? 'Fall' : 'Automne'}</option>
-                            <option value="Winter">❄️ {lang === 'en' ? 'Winter' : 'Hiver'}</option>
-                            <option value="Special">⭐ {lang === 'en' ? 'Special Edition' : 'Édition Spéciale'}</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Year (e.g. 2024) *' : 'Année *'}
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={newNewsletterForm.year}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, year: e.target.value})}
-                            placeholder="2024"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'Publication Date' : 'Date de Publication'}
-                          </label>
-                          <input
-                            type="date"
-                            value={newNewsletterForm.date}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, date: e.target.value})}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">
-                            {lang === 'en' ? 'PDF Link / URL' : 'Lien PDF / URL'}
-                          </label>
-                          <input
-                            type="url"
-                            value={newNewsletterForm.pdfUrl}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, pdfUrl: e.target.value})}
-                            placeholder="e.g. https://yef115.org/wp-content/uploads/2020/11/YEF-Newsletter-Fall-2020.pdf"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-gray-500 mb-1">
-                          {lang === 'en' ? 'Newsletter Summary / Description *' : 'Résumé du Bulletin *'}
-                        </label>
-                        <textarea
-                          required
-                          rows={2}
-                          value={newNewsletterForm.description}
-                          onChange={(e) => setNewNewsletterForm({...newNewsletterForm, description: e.target.value})}
-                          placeholder={lang === 'en' ? 'Provide a summary of the key features of this bulletin issue.' : 'Résumez les points clés du bulletin.'}
-                          className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/15 focus:border-brand-blue rounded-lg p-2.5 outline-none transition resize-none"
-                        />
-                      </div>
-
-                      {/* Article 1 Details */}
-                      <div className="bg-gray-50 p-4 rounded-xl border border-gray-150 space-y-3">
-                        <h4 className="text-xs font-bold text-brand-blue">
-                          📰 {lang === 'en' ? 'Featured Article #1 (Optional)' : 'Article Principal #1 (Optionnel)'}
-                        </h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-[10px] font-semibold text-gray-500 mb-0.5">Article Title</label>
-                            <input
-                              type="text"
-                              value={newNewsletterForm.articleTitle1}
-                              onChange={(e) => setNewNewsletterForm({...newNewsletterForm, articleTitle1: e.target.value})}
-                              placeholder="e.g. Over $35,000 Awarded in Scholarships"
-                              className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[10px] font-semibold text-gray-500 mb-0.5">Author</label>
-                            <input
-                              type="text"
-                              value={newNewsletterForm.articleAuthor1}
-                              onChange={(e) => setNewNewsletterForm({...newNewsletterForm, articleAuthor1: e.target.value})}
-                              placeholder="e.g. Paul Plante"
-                              className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-[10px] font-semibold text-gray-500 mb-0.5">Article Content (use double enter for paragraphs)</label>
-                          <textarea
-                            rows={3}
-                            value={newNewsletterForm.articleContent1}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, articleContent1: e.target.value})}
-                            placeholder="Write the full article text here..."
-                            className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Article 2 Details */}
-                      <div className="bg-gray-50 p-4 rounded-xl border border-gray-150 space-y-3">
-                        <h4 className="text-xs font-bold text-brand-blue">
-                          📰 {lang === 'en' ? 'Featured Article #2 (Optional)' : 'Article Principal #2 (Optionnel)'}
-                        </h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-[10px] font-semibold text-gray-500 mb-0.5">Article Title</label>
-                            <input
-                              type="text"
-                              value={newNewsletterForm.articleTitle2}
-                              onChange={(e) => setNewNewsletterForm({...newNewsletterForm, articleTitle2: e.target.value})}
-                              className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[10px] font-semibold text-gray-500 mb-0.5">Author</label>
-                            <input
-                              type="text"
-                              value={newNewsletterForm.articleAuthor2}
-                              onChange={(e) => setNewNewsletterForm({...newNewsletterForm, articleAuthor2: e.target.value})}
-                              className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-[10px] font-semibold text-gray-500 mb-0.5">Article Content (use double enter for paragraphs)</label>
-                          <textarea
-                            rows={3}
-                            value={newNewsletterForm.articleContent2}
-                            onChange={(e) => setNewNewsletterForm({...newNewsletterForm, articleContent2: e.target.value})}
-                            className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end gap-3 pt-3 border-t border-gray-150">
-                        <button
-                          type="button"
-                          onClick={() => setNewsletterFormOpen(false)}
-                          className="px-4 py-2 text-xs font-bold text-gray-500 hover:text-gray-700"
-                        >
-                          {lang === 'en' ? 'Cancel' : 'Annuler'}
-                        </button>
-                        <button
-                          type="submit"
-                          className="px-5 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-blue/95 text-white font-bold text-xs tracking-wide shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
-                        >
-                          <Send className="w-3.5 h-3.5" />
-                          <span>{lang === 'en' ? 'Publish Newsletter' : 'Publier le Bulletin'}</span>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                )}
 
                 {/* Main Workspace Layout (Sidebar left, Viewer right) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -3465,11 +2529,6 @@ export default function App() {
                                     } {item.year}
                                   </span>
 
-                                  {item.isCustom && (
-                                    <span className="text-[8px] font-bold bg-brand-coral text-white px-1.5 py-0.2 rounded-md uppercase">
-                                      {lang === 'en' ? 'New' : 'Nouveau'}
-                                    </span>
-                                  )}
                                 </div>
                                 <h4 className="text-sm font-serif font-bold text-brand-blue line-clamp-1">
                                   {item.title}
@@ -3481,17 +2540,6 @@ export default function App() {
 
                               <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-[10px] text-gray-400">
                                 <span>📅 {item.date}</span>
-                                {item.isCustom && (
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleDeleteNewsletter(item.id);
-                                    }}
-                                    className="text-red-500 hover:text-red-700 font-bold hover:underline"
-                                  >
-                                    {lang === 'en' ? 'Delete' : 'Supprimer'}
-                                  </button>
-                                )}
                               </div>
                             </div>
                           );
@@ -4093,434 +3141,6 @@ export default function App() {
             )}
 
           </div>
-        )}
-
-        {/* ========================================================= */}
-        {/* TAB 2: VOLUNTEER EDITOR & FREE HOSTING BLUEPRINT */}
-        {/* ========================================================= */}
-        {activeTab === 'admin' && (
-          <div className="bg-gray-50 min-h-[80vh] border-b border-gray-200">
-            
-            {/* Header banner */}
-            <div className="bg-brand-blue text-white py-12 px-4 sm:px-6 lg:px-8 shadow-sm">
-              <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-bold text-white uppercase tracking-wider">
-                    <Settings className="w-3.5 h-3.5" />
-                    <span>Volunteer Admin Hub</span>
-                  </div>
-                  <h1 className="text-3xl sm:text-4xl font-serif font-extrabold tracking-tight">Migration & Easy Editor Workspace</h1>
-                  <p className="text-xs sm:text-sm text-blue-100 max-w-2xl leading-relaxed">
-                    Designed specifically for non-profit volunteers. Host your site for **$0 / month** with zero maintenance, and update all website translations dynamically without requiring a complex CMS database.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <button 
-                    onClick={handleDownloadJson}
-                    className="bg-brand-coral hover:bg-brand-coral/95 text-white font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 transition shadow-lg shadow-brand-coral/15 cursor-pointer"
-                  >
-                    <Download className="w-4 h-4" /> Download content.json
-                  </button>
-                  <button 
-                    onClick={handleResetToDefault}
-                    className="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-4 py-2.5 rounded-xl border border-white/20 transition flex items-center gap-2 cursor-pointer"
-                  >
-                    <RefreshCw className="w-3.5 h-3.5" /> Reset Defaults
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Hub Workspace Layout */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
-              
-              {/* Left Column: Interactive Guides & Form Submissions Inbox (8 Cols) */}
-              <div className="lg:col-span-8 space-y-8">
-                
-                {/* 1. MIGRATION ROADMAP & $0 HOSTING GUIDE */}
-                <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
-                  
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-gray-100 pb-4 gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-xl bg-blue-50 text-brand-blue">
-                        <Building className="w-6 h-6 stroke-[2.2]" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif font-bold text-lg text-brand-blue">Interactive Free Hosting Blueprint</h3>
-                        <p className="text-xs text-gray-400">Step-by-step deploy strategy for $0/mo & zero maintenance</p>
-                      </div>
-                    </div>
-
-                    {/* Step indicator pills */}
-                    <div className="flex gap-1.5 bg-gray-100 p-1 rounded-lg self-end sm:self-auto text-xs font-bold text-gray-500">
-                      {[1, 2, 3].map(step => (
-                        <button
-                          key={step}
-                          onClick={() => setActiveGuideStep(step)}
-                          className={`px-3 py-1 rounded-md transition ${
-                            activeGuideStep === step 
-                              ? 'bg-white text-brand-blue shadow-xs' 
-                              : 'hover:text-gray-800'
-                          }`}
-                        >
-                          Step {step}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Active Step Content */}
-                  <div className="bg-brand-warm rounded-2xl p-6 border border-gray-150 relative">
-                    
-                    {/* STEP 1: Static Hosting Deploy */}
-                    {activeGuideStep === 1 && (
-                      <div className="space-y-4 animate-fade-in">
-                        <div className="flex items-center gap-2 text-brand-blue font-bold text-sm">
-                          <span className="w-6 h-6 rounded-full bg-brand-blue text-white text-xs flex items-center justify-center font-bold">1</span>
-                          <span>Deploy Code to Netlify or Vercel (100% Free)</span>
-                        </div>
-                        
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          Since this is a low-traffic non-profit site, you should **never pay for web hosting**. Static file hosts serve websites at blazing speeds and automatically issue secure HTTPS certificates entirely for free.
-                        </p>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                          <div className="bg-white p-4 border border-gray-200 rounded-xl space-y-2">
-                            <h4 className="font-bold text-xs text-brand-blue flex items-center gap-1.5">
-                              <Building className="w-4 h-4 text-brand-teal" /> Netlify (Recommended)
-                            </h4>
-                            <p className="text-[11px] text-gray-500 leading-relaxed">
-                              Supports direct <strong>Drag-and-Drop deployment</strong>. Simply drag your compiled <code>dist/</code> folder into their browser panel. Your site goes online in 3 seconds. Free custom domain connection included!
-                            </p>
-                            <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-brand-teal hover:underline font-bold inline-flex items-center gap-1">
-                              Visit Netlify <ExternalLink className="w-3 h-3" />
-                            </a>
-                          </div>
-
-                          <div className="bg-white p-4 border border-gray-200 rounded-xl space-y-2">
-                            <h4 className="font-bold text-xs text-brand-blue flex items-center gap-1.5">
-                              <ExternalLink className="w-4 h-4 text-brand-teal" /> Vercel or GitHub Pages
-                            </h4>
-                            <p className="text-[11px] text-gray-500 leading-relaxed">
-                              Sign up with GitHub and connect your repository. Every time you push a text update or code fix, Vercel rebuilds and deploys automatically in the background. Free forever!
-                            </p>
-                            <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-brand-teal hover:underline font-bold inline-flex items-center gap-1">
-                              Visit Vercel <ExternalLink className="w-3 h-3" />
-                            </a>
-                          </div>
-                        </div>
-
-                        <div className="bg-blue-50 border border-blue-150 p-3 rounded-xl text-[11px] text-brand-blue flex items-start gap-2">
-                          <Info className="w-4 h-4 shrink-0 mt-0.5" />
-                          <span><strong>Note:</strong> Scalability, backups, and security are handled entirely by Vercel/Netlify globally. You never have to patch servers, configure PHP, or worry about database hacks!</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* STEP 2: Free Dynamic Forms */}
-                    {activeGuideStep === 2 && (
-                      <div className="space-y-4 animate-fade-in">
-                        <div className="flex items-center gap-2 text-brand-blue font-bold text-sm">
-                          <span className="w-6 h-6 rounded-full bg-brand-blue text-white text-xs flex items-center justify-center font-bold">2</span>
-                          <span>Configure Dynamic Forms with Zero Server Code</span>
-                        </div>
-                        
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          Legacy sites often use heavy database servers or complex plugins to handle contact messages. For a static host, you can route form submissions to volunteers' emails using free, zero-maintenance processors:
-                        </p>
-
-                        <div className="space-y-3 pt-1">
-                          
-                          {/* Option A */}
-                          <div className="bg-white p-4 border border-gray-200 rounded-xl flex gap-3.5 items-start">
-                            <div className="p-2 bg-brand-teal/5 text-brand-teal rounded-lg font-bold text-xs shrink-0">Method A</div>
-                            <div className="space-y-1">
-                              <h4 className="font-bold text-xs text-brand-blue">Netlify Forms (Recommended & Easiest)</h4>
-                              <p className="text-[11px] text-gray-500 leading-relaxed">
-                                Simply add a <code>data-netlify="true"</code> attribute to your HTML form tag. Netlify automatically detects it, processes all submissions in their dashboard, filters spam, and forwards entries to your volunteers' emails.
-                              </p>
-                              <pre className="bg-gray-100 p-2 rounded text-[10px] text-gray-700 overflow-x-auto font-mono">
-                                {`<form name="contact" method="POST" data-netlify="true">`}
-                              </pre>
-                            </div>
-                          </div>
-
-                          {/* Option B */}
-                          <div className="bg-white p-4 border border-gray-200 rounded-xl flex gap-3.5 items-start">
-                            <div className="p-2 bg-brand-coral/5 text-brand-coral rounded-lg font-bold text-xs shrink-0">Method B</div>
-                            <div className="space-y-1">
-                              <h4 className="font-bold text-xs text-brand-blue">Formspree.io (For Vercel or GitHub Pages)</h4>
-                              <p className="text-[11px] text-gray-500 leading-relaxed">
-                                Create a free account at Formspree, generate a unique form ID, and set it as your form action. It automatically accepts the input fields and emails them instantly to your non-profit inbox.
-                              </p>
-                              <pre className="bg-gray-100 p-2 rounded text-[10px] text-gray-700 overflow-x-auto font-mono">
-                                {`<form action="https://formspree.io/f/your-form-id" method="POST">`}
-                              </pre>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    )}
-
-                    {/* STEP 3: Simple Maintenance Without CMS */}
-                    {activeGuideStep === 3 && (
-                      <div className="space-y-4 animate-fade-in">
-                        <div className="flex items-center gap-2 text-brand-blue font-bold text-sm">
-                          <span className="w-6 h-6 rounded-full bg-brand-blue text-white text-xs flex items-center justify-center font-bold">3</span>
-                          <span>Volunteer Editing Protocol (The No-CMS Strategy)</span>
-                        </div>
-                        
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          Nonprofits usually struggle to keep CMS platforms like WordPress or Drupal updated, leading to severe hacking vulnerabilities and constant maintenance fees. Instead, this site utilizes a static <strong>Copy Architecture</strong>:
-                        </p>
-
-                        <div className="space-y-3">
-                          <div className="flex gap-3 items-start text-xs text-gray-600">
-                            <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                            <span>All website copy is isolated in a single plain text file: <code>content.json</code>.</span>
-                          </div>
-                          <div className="flex gap-3 items-start text-xs text-gray-600">
-                            <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                            <span>Volunteers use the **Bilingual Visual Copy Editor** on the right side of this dashboard to click and modify text live.</span>
-                          </div>
-                          <div className="flex gap-3 items-start text-xs text-gray-600">
-                            <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                            <span>Click **Download content.json** to save the updated copy config, and upload it to replace the old file. The live site updates instantly!</span>
-                          </div>
-                        </div>
-
-                        <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl text-[11px] text-amber-800 flex items-start gap-2">
-                          <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                          <span><strong>Zero Maintenance Security:</strong> Since there is no database or administrative WordPress panel, the site is virtually un-hackable! Volunteers never need to update plugins or security certificates.</span>
-                        </div>
-                      </div>
-                    )}
-
-                  </div>
-
-                </div>
-
-                {/* 2. DYNAMIC SUBMISSIONS DATABASE INBOX */}
-                <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
-                  
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-xl bg-teal-50 text-brand-teal">
-                        <Inbox className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif font-bold text-lg text-brand-blue">Dynamic Submissions Inbox</h3>
-                        <p className="text-xs text-gray-400">Volunteers review inquiries submitted through forms on the public site</p>
-                      </div>
-                    </div>
-                    
-                    <span className="text-xs bg-brand-blue text-white px-2.5 py-0.5 rounded-full font-bold">
-                      {submissions.length} Total
-                    </span>
-                  </div>
-
-                  {/* Submissions List */}
-                  <div className="space-y-4 max-h-[500px] overflow-y-auto pr-1">
-                    {submissions.length === 0 ? (
-                      <div className="text-center py-12 text-gray-400 space-y-2 bg-gray-50 rounded-2xl border border-dashed border-gray-250">
-                        <Mail className="w-8 h-8 mx-auto opacity-60" />
-                        <p className="text-sm font-semibold">No submissions received yet</p>
-                        <p className="text-xs">Submit forms on the public tab to see them populate here live!</p>
-                      </div>
-                    ) : (
-                      submissions.map((sub) => (
-                        <div key={sub.id} className="bg-white border border-gray-200 hover:border-gray-300 rounded-xl p-4 transition duration-200 space-y-3 shadow-xs">
-                          
-                          {/* Submission Header Tagging */}
-                          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs font-mono font-bold text-gray-400">{sub.id}</span>
-                              <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ${
-                                sub.type === 'Scholarship' 
-                                  ? 'bg-purple-100 text-purple-700 border border-purple-200' 
-                                  : sub.type === 'Volunteer' 
-                                    ? 'bg-blue-100 text-blue-700 border border-blue-200'
-                                    : 'bg-teal-100 text-teal-700 border border-teal-200'
-                              }`}>
-                                {sub.type} Form
-                              </span>
-                            </div>
-                            <span className="text-[11px] text-gray-400 font-medium">{sub.timestamp}</span>
-                          </div>
-
-                          {/* Sender Info */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                            <div>
-                              <span className="text-gray-400 font-semibold uppercase text-[10px] block">Sender Name</span>
-                              <span className="font-bold text-gray-700">{sub.senderName}</span>
-                            </div>
-                            <div>
-                              <span className="text-gray-400 font-semibold uppercase text-[10px] block">Email Address</span>
-                              <span className="font-medium text-brand-blue">{sub.senderEmail}</span>
-                            </div>
-                          </div>
-
-                          {/* Extra custom field rows */}
-                          {sub.schoolAffiliation && (
-                            <div className="text-xs bg-gray-50 border border-gray-150 p-2 rounded-lg">
-                              <span className="text-gray-400 font-semibold uppercase text-[9px] block">Academic Connection</span>
-                              <span className="font-semibold text-gray-600">{sub.schoolAffiliation}</span>
-                            </div>
-                          )}
-
-                          {sub.selectedRole && (
-                            <div className="text-xs bg-gray-50 border border-gray-150 p-2 rounded-lg">
-                              <span className="text-gray-400 font-semibold uppercase text-[9px] block">Requested Role</span>
-                              <span className="font-bold text-brand-coral">{sub.selectedRole}</span>
-                            </div>
-                          )}
-
-                          {/* Message/Essay content */}
-                          <div className="text-xs text-gray-600 bg-gray-50/50 p-3 rounded-lg border border-gray-150 leading-relaxed font-medium">
-                            {sub.subject && <div className="font-extrabold text-brand-blue mb-1">{sub.subject}</div>}
-                            <p className="whitespace-pre-line">{sub.message}</p>
-                          </div>
-
-                        </div>
-                      ))
-                    )}
-                  </div>
-
-                </div>
-
-              </div>
-
-              {/* Right Column: Visual Editor Controls Sidebar (4 Cols) */}
-              <div className="lg:col-span-4 space-y-6">
-                
-                {/* ADVANCED LIVE BILINGUAL EDITOR BAR */}
-                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-5 sticky top-24">
-                  
-                  <div className="flex items-center gap-2 text-brand-coral font-bold uppercase tracking-widest text-xs border-b border-gray-100 pb-3">
-                    <Edit2 className="w-4 h-4" />
-                    <span>Live Copy Editor</span>
-                  </div>
-
-                  <div className="space-y-4">
-                    
-                    {/* Toggle button to activate editing over the live pages */}
-                    <div className="bg-brand-warm rounded-xl p-4 border border-gray-150 text-center space-y-3">
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        Toggle **Visual Edit Mode** to click and modify text directly on the public website pages!
-                      </p>
-                      
-                      <button
-                        onClick={() => {
-                          setEditMode(!editMode);
-                          if (!editMode) {
-                            setActiveTab('public'); // auto redirect to let them click
-                          }
-                        }}
-                        className={`w-full py-2.5 rounded-xl font-bold text-xs tracking-wide shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer ${
-                          editMode 
-                            ? 'bg-brand-coral text-white' 
-                            : 'bg-brand-blue text-white hover:bg-brand-blue/95'
-                        }`}
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                        <span>{editMode ? "Disable Visual Editor" : "Enable Visual Editor"}</span>
-                      </button>
-
-                      {editMode && (
-                        <p className="text-[10px] text-brand-coral font-bold flex items-center justify-center gap-1 animate-pulse">
-                          <Eye className="w-3 h-3" />
-                          <span>Click a highlighted block to edit copy</span>
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Active translation editor outputs */}
-                    {selectedPath ? (
-                      <div className="space-y-3 border border-brand-teal/20 p-4 rounded-xl bg-brand-teal/5 animate-fade-in">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono bg-brand-teal text-white px-2 py-0.5 rounded-full font-bold">
-                            Selected Segment
-                          </span>
-                          <button 
-                            onClick={() => setSelectedPath(null)}
-                            className="text-[10px] text-gray-400 hover:text-gray-600 font-bold"
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                        
-                        <p className="text-[10px] text-gray-500 font-mono font-bold truncate">Path: {selectedPath}</p>
-
-                        <div className="space-y-2 pt-1 text-xs">
-                          {/* English Input */}
-                          <div>
-                            <label className="block text-[10px] text-gray-400 uppercase font-bold mb-1">English (EN)</label>
-                            <textarea
-                              rows={2}
-                              value={editValueEn}
-                              onChange={(e) => {
-                                setEditValueEn(e.target.value);
-                                updateText(selectedPath, 'en', e.target.value);
-                              }}
-                              className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none font-medium text-gray-700"
-                            />
-                          </div>
-
-                          {/* French Input */}
-                          <div>
-                            <label className="block text-[10px] text-gray-400 uppercase font-bold mb-1">French (FR)</label>
-                            <textarea
-                              rows={2}
-                              value={editValueEs}
-                              onChange={(e) => {
-                                setEditValueEs(e.target.value);
-                                updateText(selectedPath, 'es', e.target.value);
-                              }}
-                              className="w-full text-xs bg-white border border-gray-200 rounded-lg p-2 outline-none font-medium text-gray-700"
-                            />
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={handleSaveTextEdit}
-                          className="w-full py-2 bg-brand-blue hover:bg-brand-blue/90 text-white font-bold text-xs rounded-lg transition-colors mt-2"
-                        >
-                          Confirm & Lock Copy
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="text-center py-10 bg-gray-50 border border-dashed border-gray-200 rounded-xl text-gray-400 space-y-1">
-                        <Info className="w-5 h-5 mx-auto opacity-75 text-brand-blue" />
-                        <p className="text-xs font-semibold text-gray-600">No block selected</p>
-                        <p className="text-[10px] text-gray-400 max-w-[200px] mx-auto">
-                          Click any text on the website while edit mode is enabled, or explore values.
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Quick copy reference links */}
-                    <div className="pt-2 border-t border-gray-100 space-y-2">
-                      <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">Copy Reference Files</h4>
-                      <div className="space-y-1 text-xs">
-                        <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg border border-gray-100">
-                          <span className="font-mono text-[11px] text-gray-600">src/content.json</span>
-                          <span className="text-[10px] font-bold text-brand-blue uppercase">Copy Copy Config</span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-        )}
 
       </main>
 
@@ -4595,12 +3215,6 @@ export default function App() {
               &copy; {new Date().getFullYear()} Saint-Jean-Baptiste Educational Foundation (SJBEF). All rights reserved.<br />
               SJBEF is a registered 501(c)(3) tax-exempt nonprofit charitable organization. Contributions are tax-deductible to the full extent of the law.
             </p>
-            <div className="flex items-center gap-4 text-[10px] uppercase font-bold text-gray-500">
-              <button onClick={() => setActiveTab('admin')} className="hover:text-brand-coral transition flex items-center gap-1">
-                <Settings className="w-3.5 h-3.5" />
-                <span>Volunteer Workspace</span>
-              </button>
-            </div>
           </div>
 
         </div>
