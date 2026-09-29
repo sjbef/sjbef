@@ -2382,16 +2382,6 @@ export default function App() {
                             <ExternalLink className="w-3.5 h-3.5" />
                             <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
                           </a>
-                          <a 
-                            href="https://docs.google.com/forms/d/1fVZixvBCG1TED6j3927VJSOL-V7oa9fmegYLeuJrcag/edit" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
-                            title="Edit Form Design"
-                          >
-                            <Settings className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
-                          </a>
                         </div>
                       </div>
 
@@ -2426,8 +2416,8 @@ export default function App() {
                       <div className="space-y-4">
                         <p className="text-xs text-gray-700 leading-relaxed">
                           {lang === 'en' 
-                            ? 'The Seminarian scholarship application is available online via Google Forms. Open the form in a new tab or edit the form (owner access required).' 
-                            : 'La demande de bourse pour séminaristes est disponible en ligne via Google Forms. Ouvrez le formulaire dans un nouvel onglet ou modifiez le formulaire (accès propriétaire requis).' }
+                            ? 'The Seminarian scholarship application is available online via Google Forms. Open the form in a new tab.' 
+                            : 'La demande de bourse pour séminaristes est disponible en ligne via Google Forms. Ouvrez le formulaire dans un nouvel onglet.' }
                         </p>
                         <div className="flex flex-col sm:flex-row gap-2 pt-1">
                           <a 
@@ -2438,16 +2428,6 @@ export default function App() {
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                             <span>{lang === 'en' ? 'Open Seminarian Form' : 'Ouvrir le Formulaire de Séminaire'}</span>
-                          </a>
-                          <a 
-                            href="https://docs.google.com/forms/d/1aQcJOcQEQ7cCu-3cZ-3xQuInCygvEeZ79vothK5MwSU/edit" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
-                            title="Edit Seminarian Form"
-                          >
-                            <Settings className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
                           </a>
                         </div>
                       </div>
@@ -2483,8 +2463,8 @@ export default function App() {
                       <div className="space-y-4">
                         <p className="text-xs text-gray-700 leading-relaxed">
                           {lang === 'en' 
-                            ? 'Document your leadership positions and volunteer service. This form should be returned with your scholarship application. Open the form in a new tab or edit the form (owner access required).' 
-                            : 'Documentez vos postes de leadership et votre service bénévole. Ce formulaire doit être retourné avec votre demande de bourse. Ouvrez le formulaire dans un nouvel onglet ou modifiez-le (accès propriétaire requis).' }
+                            ? 'Document your leadership positions and volunteer service. This form should be returned with your scholarship application. Open the form in a new tab.' 
+                            : 'Documentez vos postes de leadership et votre service bénévole. Ce formulaire doit être retourné avec votre demande de bourse. Ouvrez le formulaire dans un nouvel onglet.' }
                         </p>
                         <div className="flex flex-col sm:flex-row gap-2 pt-1">
                           <a 
@@ -2495,16 +2475,6 @@ export default function App() {
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                             <span>{lang === 'en' ? 'Open Volunteer Form' : 'Ouvrir le Formulaire Bénévole'}</span>
-                          </a>
-                          <a 
-                            href="https://docs.google.com/forms/d/1IIbcTppfBetSzKyow0QLo5_gg1g1MPCdFR_4wNIZfIA/edit" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-gray-200"
-                            title="Edit Volunteer Form"
-                          >
-                            <Settings className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Edit Form' : 'Modifier le Formulaire'}</span>
                           </a>
                         </div>
                       </div>
