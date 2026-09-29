@@ -1,0 +1,8 @@
+# Build settings live here so the site can be recreated under any Netlify team
+# without re-entering them in the UI.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
