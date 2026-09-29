@@ -61,7 +61,6 @@ foundation's break-glass owner.
 5. Move the repo from this checkout (as `acferen`):
 
    ```sh
-   gh auth refresh -s admin:org      # one-time, lets gh see org role
    scripts/transfer-repo-to-org.sh sjbef
    ```
 
