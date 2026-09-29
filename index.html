@@ -9,6 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- Netlify Forms detection: the React contact form is rendered client-side,
+         so Netlify needs this static copy to register the form and its fields at
+         deploy time. Keep the field names in sync with the form in src/App.tsx. -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <select name="affiliation"></select>
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

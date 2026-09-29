@@ -64,14 +64,16 @@ There's no staging site, so check `npm run build` locally first.
 - **Scholarship forms:** the three forms are Google Forms owned by
   `sjbefadmin@gmail.com`; edit them in that account's Google Drive. The site
   only links to and embeds their public `…/viewform` URLs.
+- **Contact form:** submissions go to [Netlify Forms](https://docs.netlify.com/manage/forms/setup/)
+  (Netlify → the sjbef project → Forms → `contact`), which can email a
+  notification for each one. Netlify only processes forms on a deployed site,
+  not under `npm run dev`. Because the page is rendered by React, Netlify finds
+  the form through a hidden copy in `index.html`; if you add or rename a field,
+  change it in both places.
 
 ## Known limitations
 
-These parts of the site look functional but aren't connected to anything yet:
-
-- **Contact form**: shows a success message but doesn't send email.
 - **Donation form**: a simulation; no payment is processed.
-- **Volunteer sign-up form**: shows a success message but doesn't send anything.
 
 The scholarship application, seminarian, and volunteer service forms *do* work.
 They're real Google Forms. The scholarship application requires applicants to
