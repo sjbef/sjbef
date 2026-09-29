@@ -9,6 +9,21 @@ Never commit passwords, 2FA recovery codes, or API tokens. Store them wherever
 SJBEF keeps credentials (e.g. a shared Bitwarden/1Password vault owned by the
 foundation).
 
+## Fastest way back online (do this first, ~20 min)
+
+The domain transferred on 2026-09-28 and the old WordPress host went with it,
+so the site is down until Netlify serves it. Nothing below requires GitHub to
+be set up first:
+
+1. Build and zip the site: `npm run build && (cd dist && zip -qr ../sjbef-site.zip .)`
+2. Sign up at Netlify as `sjbefadmin@gmail.com` (section 2, step 1).
+3. **Add new project → Deploy manually** → drop `sjbef-site.zip`. Rename the
+   project to `sjbef`.
+4. Do section 3 (domain + Cloudflare). The site is back once HTTPS provisions.
+5. Later, do section 1 (GitHub org + transfer), then in Netlify **Project
+   configuration → Build & deploy → Link repository** → `sjbef/sjbef`. From then
+   on, pushes to `main` deploy automatically.
+
 ## State as of 2026-09-28
 
 | Item | Finding |
@@ -18,7 +33,8 @@ foundation).
 | Build | `npm run build` → `dist/`, no env vars needed (now pinned in `netlify.toml`) |
 | DNS | Cloudflare is authoritative (`grant`/`mia.ns.cloudflare.com`); records are proxied (orange cloud) |
 | Mail | MX → Cloudflare Email Routing (`route1-3.mx.cloudflare.net`) — do not touch |
-| Live site | **Broken: redirect loop.** `sjbef.org` 301 → `www.sjbef.org` 301 → `sjbef.org` … Both hops are served by Cloudflare, not Netlify |
+| Domain | Transferred 2026-09-28; the old WordPress hosting did not come with it |
+| Live site | **Down: redirect loop.** `sjbef.org` 301 → `www.sjbef.org` 301 → `sjbef.org` … Both hops are served by Cloudflare, not Netlify |
 | Netlify | Netlify does not currently have `sjbef.org` attached to any site |
 
 Because the domain isn't pointed at Netlify yet, there is no live deployment to
