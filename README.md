@@ -1,20 +1,85 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Saint-Jean-Baptiste Educational Foundation website
 
-# Run and deploy your AI Studio app
+Source for **<https://sjbef.org>**, the bilingual (English/French) website of
+the Saint-Jean-Baptiste Educational Foundation (SJBEF): scholarships, Catholic
+school grants, newsletters, photo gallery, and how to donate.
 
-This contains everything you need to run your app locally.
+It's a static React + Vite + Tailwind site. There is no server or database:
+`npm run build` produces plain files in `dist/`, which Netlify serves.
 
-View your app in AI Studio: https://ai.studio/apps/f183fcdd-3504-4308-adc7-5a1bc36d0cab
+Accounts, ownership, DNS, and email are documented in
+[`docs/org-migration.md`](docs/org-migration.md).
 
-## Run Locally
+## Run it locally
 
-**Prerequisites:**  Node.js
+Requires Node.js 22 (the version Netlify builds with).
 
+```sh
+npm install
+npm run dev       # http://localhost:3000
+npm run build     # production build into dist/
+npm run preview   # serve dist/ locally
+npm run lint      # TypeScript type check
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+No environment variables or API keys are needed. (`.env.example` and some
+dependencies are left over from the Google AI Studio template the site started
+from; the site doesn't use Gemini.)
+
+## Publishing
+
+Push to `main` on <https://github.com/sjbef/sjbef>. Netlify (project `sjbef`,
+owned by `sjbefadmin@gmail.com`) builds it with the settings in
+[`netlify.toml`](netlify.toml) and it's live at sjbef.org in about a minute.
+There's no staging site, so check `npm run build` locally first.
+
+## Where things are
+
+| Path | What's there |
+|---|---|
+| `src/App.tsx` | The whole site: every page section, the admin panel, and all components live in this one file |
+| `src/content.json` | Most page text, in two languages. **French is under the key `es`**, not `fr` (a quirk of the template; the app's `lang` state uses `'en' \| 'es'` too) |
+| `src/index.css` | Tailwind setup and brand colors |
+| `public/images/gallery/` | Gallery photos by type and year (`grants/2025/…`, `scholarships/2014/…`) |
+| `public/images/logo/`, `public/images/about/` | Logo and About-page images |
+| `public/documents/` | Printable PDF applications (scholarship, seminarian, volunteer service) |
+| `public/page-assets/page_assets_manifest.json` | The gallery's photo list (caption, year, `localUrl` into `public/images/gallery/`), originally scraped from the old WordPress site and loaded at runtime |
+| `public/images/duplicates_backup/` | Backup copies made by the image de-duplication cleanup; not used by the site |
+| `scripts/*.gs` | Google Apps Script that generated the three scholarship Google Forms (already created; kept for reference) |
+| `scripts/download-*.js`, `scripts/process-page-assets.js` | One-off tools used to pull images from the old WordPress site |
+| `scripts/compress-images.js` | Compresses gallery images in place with `sharp` (`--dry-run` to preview) |
+| `scripts/transfer-repo-to-org.sh` | Used once to move the repo into the `sjbef` GitHub org |
+| `*_report.json` (repo root) | Output from the image cleanup scripts |
+
+## Changing content
+
+- **Text:** edit `src/content.json` (both `en` and `es`), or the strings in
+  `src/App.tsx` for text that isn't in `content.json` yet. Many strings in
+  `App.tsx` are written inline as `lang === 'en' ? '…' : '…'`.
+- **Gallery photos:** add the image under `public/images/gallery/<grants|scholarships>/<year>/`
+  and add an entry (`localUrl`, `caption`, `year`, …) to
+  `public/page-assets/page_assets_manifest.json`, copying an existing entry's shape.
+- **Scholarship forms:** the three forms are Google Forms owned by
+  `sjbefadmin@gmail.com`; edit them in that account's Google Drive. The site
+  only links to and embeds their public `…/viewform` URLs.
+
+### The built-in admin panel
+
+The **Volunteer Editor** button in the header opens a "Live Copy Editor", a visual edit
+mode, and gallery/newsletter managers. These run entirely in the visitor's
+browser: changes are kept in that browser's `localStorage` and nobody else sees
+them. To publish text edits made there, use **Download content.json**, replace
+`src/content.json` with the downloaded file, and push. The panel is open to
+anyone, but it can't change the live site.
+
+## Known limitations
+
+These parts of the site look functional but aren't connected to anything yet:
+
+- **Contact form**: shows a success message but doesn't send email.
+- **Donation form**: a simulation; no payment is processed.
+- **Volunteer sign-up and gallery submissions**: stored only in the visitor's browser.
+
+The scholarship application, seminarian, and volunteer service forms *do* work.
+They're real Google Forms. The scholarship application requires applicants to
+sign in to Google because it has a file-upload question.
