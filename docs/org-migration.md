@@ -1,136 +1,103 @@
-# Moving SJBEF off personal GitHub/Netlify accounts
+# SJBEF organizational accounts
 
-Goal: the repo lives in an SJBEF GitHub organization, the site is hosted by an
-SJBEF Netlify team, and `sjbefadmin@gmail.com` (already the owner of Cloudflare
-and the Google nonprofit account) can recover all of it without Andrew's
-personal accounts.
+The website, its source code, DNS, email routing, and scholarship forms are
+owned by SJBEF accounts rather than any volunteer's personal account. The move
+off Andrew's personal GitHub/Netlify accounts was completed 2026-09-28/29; this
+file records how things are set up now and what's left.
 
 Never commit passwords, 2FA recovery codes, or API tokens. Store them wherever
 SJBEF keeps credentials (e.g. a shared Bitwarden/1Password vault owned by the
 foundation).
 
-## Fastest way back online (do this first, ~20 min)
+## Current setup
 
-The domain transferred on 2026-09-28 and the old WordPress host went with it,
-so the site is down until Netlify serves it. Nothing below requires GitHub to
-be set up first:
+| Piece | Where | Owner / access |
+|---|---|---|
+| Source code | <https://github.com/sjbef/sjbef> (public), branch `main` | GitHub org `sjbef`, owned by the business "St. John the Baptist Educational Foundation"; org owners: `sjbefadmin` (`sjbefadmin@gmail.com`) and `acferen` |
+| Hosting | Netlify project `sjbef` → <https://sjbef.netlify.app> (project ID `535e7202-…`) | Netlify account `sjbefadmin@gmail.com` (email login, not GitHub login) |
+| Build | `netlify.toml`: `npm run build` → `dist/`, Node 22; no env vars | Deploys automatically on every push to `main` |
+| Domain | `sjbef.org` (primary), `www.sjbef.org` 301 → apex | HTTPS: Let's Encrypt via Netlify, auto-renewing |
+| DNS | Cloudflare zone `sjbef.org` (`grant`/`mia.ns.cloudflare.com`) | Cloudflare account `sjbefadmin@gmail.com` |
+| Email | Cloudflare Email Routing (MX `route1-3.mx.cloudflare.net`, SPF, DKIM, DMARC) | Catch-all → `sjbefadmin@gmail.com`; `info@` has its own rule |
+| Scholarship forms | Google Forms: Scholarship Application, Seminarian Scholarship Application, Summary of Volunteer Service (plus the Scholarship Application "(File responses)" upload folder) | Owned by `sjbefadmin@gmail.com` |
 
-1. Build and zip the site: `npm run build && (cd dist && zip -qr ../sjbef-site.zip .)`
-2. Sign up at Netlify as `sjbefadmin@gmail.com` (section 2, step 1).
-3. **Add new project → Deploy manually** → drop `sjbef-site.zip`. Rename the
-   project to `sjbef`.
-4. Do section 3 (domain + Cloudflare). The site is back once HTTPS provisions.
-5. Later, do section 1 (GitHub org + transfer), then in Netlify **Project
-   configuration → Build & deploy → Link repository** → `sjbef/sjbef`. From then
-   on, pushes to `main` deploy automatically.
+### DNS records for the website
 
-## State as of 2026-09-28
+| Type | Name | Target | Proxy |
+|---|---|---|---|
+| CNAME | `@` | `sjbef.netlify.app` | DNS only (grey) |
+| CNAME | `www` | `sjbef.netlify.app` | DNS only (grey) |
 
-| Item | Finding |
-|---|---|
-| Repo | `acferen/sjbef`, private, default branch `main` |
-| Repo integrations | No webhooks, deploy keys, Actions secrets, or workflows — nothing breaks on transfer |
-| Build | `npm run build` → `dist/`, no env vars needed (now pinned in `netlify.toml`) |
-| DNS | Cloudflare is authoritative (`grant`/`mia.ns.cloudflare.com`); records are proxied (orange cloud) |
-| Mail | MX → Cloudflare Email Routing (`route1-3.mx.cloudflare.net`) — do not touch |
-| Domain | Transferred 2026-09-28; the old WordPress hosting did not come with it |
-| Live site | **Down: redirect loop.** `sjbef.org` 301 → `www.sjbef.org` 301 → `sjbef.org` … Both hops are served by Cloudflare, not Netlify |
-| Netlify | Netlify does not currently have `sjbef.org` attached to any site |
+Keep these **DNS only**. Cloudflare's "proxying is required for most security
+and performance features" banner can be ignored: Netlify provides the CDN,
+DDoS protection, and certificates, and proxying in front of Netlify breaks
+certificate renewal. Don't touch the MX/TXT records; they carry email.
 
-Because the domain isn't pointed at Netlify yet, there is no live deployment to
-protect: recreating the Netlify site under the new team is simpler than
-transferring the old one.
+The pre-migration zone export (old cPanel host `70.38.95.141`) is kept outside
+this repository.
 
-## 1. GitHub organization (~10 min)
+## Everyday operations
 
-GitHub organizations don't have their own login; they're owned by user
-accounts. So `sjbefadmin@gmail.com` needs its own GitHub *user* to act as the
-foundation's break-glass owner.
+- **Publish a change:** push to `main`. Netlify builds and deploys in about a
+  minute. Watch it under the Netlify project's **Deploys** tab.
+- **Check the live site:**
 
-1. Sign out of GitHub (or use a private window). Create a GitHub user with
-   `sjbefadmin@gmail.com` (e.g. username `sjbefadmin`). Turn on 2FA and save
-   the recovery codes in the SJBEF vault.
-2. As that user: **+ → New organization → Free**. Name: `sjbef` (available as
-   of 2026-09-28). Contact email: `sjbefadmin@gmail.com`. "Belongs to: a
-   business or institution" → St. John the Baptist Educational Foundation.
-3. Org **People → Invite member** → `acferen` with role **Owner**. Accept the
-   invite as `acferen`.
-4. Optional: apply for GitHub for Nonprofits (free Team plan) at
-   <https://github.com/solutions/industry/nonprofits> using the Google
-   nonprofit verification.
-5. Move the repo from this checkout (as `acferen`):
+  ```sh
+  curl -sIL https://sjbef.org     | grep -iE '^(HTTP|location|server)'
+  curl -sIL https://www.sjbef.org | grep -iE '^(HTTP|location|server)'
+  ```
 
-   ```sh
-   scripts/transfer-repo-to-org.sh sjbef
-   ```
+  Expect `HTTP/2 200` from `server: Netlify`; `www` gives one 301 to
+  `https://sjbef.org/` first.
+- **Check email:** Cloudflare → **Email → Email Routing → Activity log** shows
+  every message and whether it was *Forwarded*. Gmail hides a message sent to a
+  forward of your own address, so test from a different account.
+- **Give a new volunteer access:** invite their own GitHub user to the `sjbef`
+  org; share forms from `sjbefadmin`'s Google Drive. Don't hand out the
+  `sjbefadmin` password as a substitute for individual access.
 
-   This calls GitHub's transfer API, waits for `sjbef/sjbef` to exist, and
-   repoints `origin`. GitHub redirects the old `acferen/sjbef` URL. The repo
-   stays private.
+## Things we learned the hard way
 
-## 2. Netlify team (~15 min)
+- **Netlify's free plan won't build private repos owned by an organization.**
+  That's why the repo is public. It contains nothing secret; the site's content
+  is already public. Keeping it private would need Netlify Pro or a GitHub
+  Actions deploy using a Netlify token.
+- **Netlify uses whichever GitHub account the browser is signed into** when it
+  connects to GitHub. Do Netlify ↔ GitHub setup in a browser where only
+  `sjbefadmin` is signed in, or the foundation's Netlify ends up linked to a
+  personal GitHub account.
+- **New Netlify projects default to private** (visitors get a Netlify login
+  page, HTTP 401). Production visibility is set under **Project configuration →
+  Visitor access**: Private, applies to *Previews only*.
+- **The Scholarship Application requires applicants to sign in to Google**
+  because it has a file-upload question. An anonymous visitor gets a Google
+  sign-in page; that's expected.
+- **The old redirect loop** (`sjbef.org` ↔ `www`) came from the proxied records
+  pointing at the dead cPanel/WordPress host after the domain transfer. The
+  old cPanel records (`cpanel`, `cp`, `whm`, `webmail`, `webdisk`, `pop`,
+  `smtp`, `ftp`, `mail`, `cpcalendars`, `cpcontacts`,
+  `_cpanel-dcv-test-record`) were deleted.
 
-1. In a private window, sign up at <https://app.netlify.com/signup> **with
-   email** using `sjbefadmin@gmail.com` (not "Sign up with GitHub" — that would
-   tie the Netlify login to a GitHub account). Enable 2FA. Name the team
-   `SJBEF`.
-2. **Add new project → Import an existing project → GitHub.** When GitHub asks,
-   sign in as the `sjbefadmin` GitHub user and install the Netlify app on the
-   **`sjbef` organization**, limited to the `sjbef` repository.
-3. Choose `sjbef/sjbef`, branch `main`. Build settings come from `netlify.toml`
-   (`npm run build`, publish `dist`, Node 22). Deploy.
-4. **Project configuration → Change project name** → `sjbef` so the URL is
-   `https://sjbef.netlify.app`. Check that the site loads there.
-5. Optional: ask Netlify about their nonprofit discount if you ever need a paid
-   plan. The free plan is enough for this static site.
+## Done
 
-Andrew doesn't need to be a member of the Netlify team: pushing to `main` on
-GitHub triggers deploys. If you want to see the dashboard too, invite
-`acferen@gmail.com` under **Team → Members** (if the plan allows it).
+- [x] GitHub user `sjbefadmin` created; org `sjbef` created, business-owned.
+- [x] `acferen` added as a second org owner.
+- [x] Repo transferred `acferen/sjbef` → `sjbef/sjbef` (`scripts/transfer-repo-to-org.sh`) and made public.
+- [x] Netlify account `sjbefadmin@gmail.com`; project `sjbef` deploying from `sjbef/sjbef` `main`.
+- [x] `sjbef.org` + `www` pointed at Netlify, HTTPS issued, redirect loop gone.
+- [x] Old cPanel DNS records removed; email records untouched and forwarding tested.
+- [x] Old personal Netlify project (`lively-kelpie-49d487`, team `sjbef-poc`) deleted.
+- [x] Scholarship, Seminarian, and Volunteer Service forms and the file-upload folder transferred to `sjbefadmin@gmail.com`; `acferen` removed from them.
+- [x] Public "Edit Form" buttons removed from the site.
 
-## 3. Point sjbef.org at Netlify and fix the redirect loop (Cloudflare, ~15 min)
+## Still to do
 
-1. In Netlify: **Domain management → Add a domain** → `sjbef.org`. Accept
-   adding `www.sjbef.org`. Choose the primary domain. These steps assume
-   `sjbef.org` is primary and `www` redirects to it. Netlify then shows
-   "Awaiting External DNS"; use the targets it shows. For a site named `sjbef`
-   the target is `sjbef.netlify.app`.
-2. In Cloudflare (`sjbefadmin@gmail.com`) → `sjbef.org` zone:
-   - **Export the DNS records first** (DNS → Records → Export) and save the
-     file.
-   - **Rules → Redirect Rules** and **Rules → Page Rules**: delete or disable
-     any rule that redirects between `sjbef.org` and `www.sjbef.org`. This is
-     the loop. Let Netlify handle the apex/www redirect.
-   - DNS: replace the existing apex and `www` A/AAAA/CNAME records with:
-
-     | Type | Name | Target | Proxy |
-     |---|---|---|---|
-     | CNAME | `@` | `sjbef.netlify.app` | DNS only (grey) |
-     | CNAME | `www` | `sjbef.netlify.app` | DNS only (grey) |
-
-     Cloudflare flattens the apex CNAME automatically. Grey-cloud (DNS only)
-     lets Netlify issue its HTTPS certificate and avoids double proxying.
-   - Leave the MX, TXT (SPF/DKIM/DMARC/Google verification), and any other
-     records alone.
-3. Back in Netlify, wait for DNS verification. Under **HTTPS**, click
-   **Verify DNS / Provision certificate** if it doesn't happen automatically.
-4. Verify from a terminal:
-
-   ```sh
-   curl -sIL https://sjbef.org     | grep -iE '^(HTTP|location|x-nf-request-id)'
-   curl -sIL https://www.sjbef.org | grep -iE '^(HTTP|location|x-nf-request-id)'
-   ```
-
-   Expect at most one 301 (`www` → apex), then `HTTP/2 200` with an
-   `x-nf-request-id` header. Send a test email to `info@sjbef.org`.
-
-## 4. Clean up personal accounts (after the site has run a week or so)
-
-- Delete any old SJBEF site under Andrew's personal Netlify team.
-- In GitHub → `acferen` → **Settings → Applications**, remove the Netlify
-  installation's access to the transferred repo if it's still listed.
-- Keep `acferen` as an org owner (or downgrade to member). The `sjbefadmin`
-  user stays as the second owner, so either one can recover the other.
-- Move ownership of the Google Forms (scholarship, seminarian, volunteer
-  service) to `sjbefadmin@gmail.com` if a personal account still owns them.
-- Record the org name, Netlify team, and who the owners are in SJBEF's records.
+- [ ] Save `sjbefadmin`'s GitHub 2FA recovery codes (and Netlify/Cloudflare 2FA, if enabled) in the SJBEF vault.
+- [ ] As `sjbefadmin`, on each form: **Responses → ⋮ → Get email notifications for new responses**; optionally **Link to Sheets → Create a new spreadsheet**.
+- [ ] Open the Scholarship Application signed in as an unrelated Google account to confirm it loads.
+- [ ] Delete the unused duplicate "Seminarian Scholarship Application" form and, optionally, the Apps Script projects that generated the forms.
+- [ ] Delete the empty `sjbef-poc` Netlify team.
+- [ ] Optional: in GitHub as `acferen` → **Settings → Applications → Authorized OAuth Apps**, revoke Netlify if the personal Netlify account is no longer used.
+- [ ] Optional: apply for GitHub for Nonprofits (free Team plan) using the Google nonprofit verification.
+- [ ] Record the org name, Netlify project, owners, and recovery process in SJBEF's records.
+- [ ] The site's own contact, donation, volunteer, and gallery forms are still client-side simulations: they show a success message but deliver nothing. Connect each to a real service (monitored inbox, the foundation's payment account) before announcing them as working.
