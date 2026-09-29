@@ -10,3 +10,6 @@ coverage/
 # Editor backups
 \#*\#
 *~
+
+# Claude Code worktrees and local state
+.claude/
