@@ -1072,15 +1072,15 @@ export default function App() {
                     {/* Section Header */}
                     <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
                       <span className="text-[11px] bg-brand-blue/5 text-brand-blue border border-brand-blue/10 px-3 py-1 rounded-full font-bold uppercase tracking-widest">
-                        {lang === 'en' ? 'Explore Our Foundation' : 'Explore nuestra fundación'}
+                        {lang === 'en' ? 'Explore Our Foundation' : 'Découvrez notre fondation'}
                       </span>
                       <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
-                        {lang === 'en' ? 'How would you like to support or learn today?' : '¿Cómo le gustaría apoyar o aprender hoy?'}
+                        {lang === 'en' ? 'How would you like to support or learn today?' : 'Comment souhaitez-vous nous soutenir ou en apprendre davantage ?'}
                       </h2>
                       <p className="text-sm text-gray-500">
                         {lang === 'en' 
                           ? 'Select any of the sections below to access educational resources, historical archives, scholarships, or ways to get involved.' 
-                          : 'Seleccione cualquiera de las secciones a continuación para acceder a recursos educativos, archivos históricos, becas o formas de participar.'}
+                          : 'Choisissez une section ci-dessous pour accéder aux ressources éducatives, aux archives historiques, aux bourses ou aux façons de vous impliquer.'}
                       </p>
                     </div>
 
@@ -1273,8 +1273,8 @@ export default function App() {
                           <Mail className="w-6 h-6" />
                         </div>
                         <div>
-                          <h4 className="font-serif font-bold text-lg">{lang === 'en' ? 'Have Questions or Want to Volunteer?' : '¿Tiene preguntas o quiere ser voluntario?'}</h4>
-                          <p className="text-xs text-blue-100 mt-1">{lang === 'en' ? 'Reach out to our board of trustees or register to volunteer with SJBEF!' : 'Póngase en contacto con nuestra junta o regístrese como voluntario.'}</p>
+                          <h4 className="font-serif font-bold text-lg">{lang === 'en' ? 'Have Questions or Want to Volunteer?' : 'Des questions ou envie de faire du bénévolat ?'}</h4>
+                          <p className="text-xs text-blue-100 mt-1">{lang === 'en' ? 'Send a message to our Board of Trustees. We would love to hear from you!' : "Envoyez un message à notre conseil d'administration. Nous serons ravis de vous lire !"}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-1.5 bg-brand-coral hover:bg-brand-coral/90 text-white font-bold text-xs px-5 py-3 rounded-xl shadow-sm tracking-wide transition shrink-0">
