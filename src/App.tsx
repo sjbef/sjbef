@@ -166,6 +166,7 @@ interface TranslationSet {
     };
     donate_btn: string;
     tax_deductible: string;
+    mail_check: string;
   };
   contact: {
     section_title: string;
@@ -2847,6 +2848,11 @@ export default function App() {
                       <span>{getText('donate.donate_btn', lang)}</span>
                     </a>
                   </div>
+
+                  <p className="flex items-center justify-center gap-1.5 pt-2 border-t border-gray-150 text-xs text-gray-600">
+                    <Mail className="w-4 h-4 text-brand-teal shrink-0" />
+                    <EditableText path="donate.mail_check" />
+                  </p>
                 </div>
 
               </div>
