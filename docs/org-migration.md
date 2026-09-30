@@ -15,11 +15,15 @@ foundation).
 |---|---|---|
 | Source code | <https://github.com/sjbef/sjbef> (public), branch `main` | GitHub org `sjbef`, owned by the business "St. John the Baptist Educational Foundation"; org owners: `sjbefadmin` (`sjbefadmin@gmail.com`) and `acferen` |
 | Hosting | Netlify project `sjbef` → <https://sjbef.netlify.app> (project ID `535e7202-…`) | Netlify account `sjbefadmin@gmail.com` (email login, not GitHub login) |
-| Build | `netlify.toml`: `npm run build` → `dist/`, Node 22; no env vars | Deploys automatically on every push to `main` |
+| Build | `netlify.toml`: `npm run build` → `dist/`, Node 22; no env vars. Its `ignore` command skips builds when only Markdown, `docs/`, `scripts/`, or git config changed | Deploys automatically on every push to `main`; a free Deploy Preview for every pull request |
+| Netlify plan | Free (credit-based): 300 credits/month, reset on the 28th/29th | Each production deploy costs 15 credits (about 20/month). Deploy previews and form submissions are free. At 0 credits Netlify takes the site offline until the reset. No payment method on file |
+| Domain registration | `sjbef.org` at Cloudflare Registrar (transferred in 2026-09-28) | Auto-renew on; expires 2027-10-17; $11.20/year |
 | Domain | `sjbef.org` (primary), `www.sjbef.org` 301 → apex | HTTPS: Let's Encrypt via Netlify, auto-renewing |
 | DNS | Cloudflare zone `sjbef.org` (`grant`/`mia.ns.cloudflare.com`) | Cloudflare account `sjbefadmin@gmail.com` |
 | Email | Cloudflare Email Routing (MX `route1-3.mx.cloudflare.net`, SPF, DKIM, DMARC) | Catch-all → `sjbefadmin@gmail.com`; `info@` has its own rule |
 | Scholarship forms | Google Forms: Scholarship Application, Seminarian Scholarship Application, Summary of Volunteer Service (plus the Scholarship Application "(File responses)" upload folder) | Owned by `sjbefadmin@gmail.com` |
+| Contact form | Netlify Forms, form `contact` (Netlify project → **Forms**) | Email notification to `sjbefadmin@gmail.com` from `formresponses@netlify.com`, subject `[SJBEF Contact] <topic>`; Reply goes to the sender |
+| Google for Nonprofits | Account exists | Not configured yet |
 
 ### DNS records for the website
 
@@ -38,8 +42,20 @@ this repository.
 
 ## Everyday operations
 
-- **Publish a change:** push to `main`. Netlify builds and deploys in about a
-  minute. Watch it under the Netlify project's **Deploys** tab.
+- **Test a change (free):** push a branch and open a pull request against
+  `main`. Netlify builds a preview at
+  `https://deploy-preview-<PR number>--sjbef.netlify.app`. It's private, so view
+  it signed in to Netlify as `sjbefadmin`. Forms work on previews, and test
+  submissions are stored and emailed like real ones.
+- **Publish a change (15 credits):** merge the pull request, or push to `main`.
+  Netlify builds and deploys in about a minute; watch it under the project's
+  **Deploys** tab. Batch changes into one merge, and check **Usage & billing**
+  before a busy month. Docs-only pushes skip the build. To force a rebuild,
+  use **Deploys → Trigger deploy**; an empty commit won't do it.
+- **Contact form messages:** each one is emailed to `sjbefadmin@gmail.com` and
+  kept under the Netlify project's **Forms → contact**. Submissions contain
+  personal details, so export and delete old ones now and then, and delete
+  test entries.
 - **Check the live site:**
 
   ```sh
@@ -72,6 +88,18 @@ this repository.
 - **The Scholarship Application requires applicants to sign in to Google**
   because it has a file-upload question. An anonymous visitor gets a Google
   sign-in page; that's expected.
+- **Netlify form detection is off by default.** Turn it on under the project's
+  **Forms**. It only finds forms in deploys built *after* it's on, so trigger a
+  rebuild afterward. Because the site is rendered by React, Netlify finds the
+  form through a hidden copy in `index.html`; keep its field names in sync with
+  `src/App.tsx`.
+- **A form field named `subject` becomes the notification email's subject** and
+  overrides any subject set in the Netlify UI. The contact form's visible
+  subject box is therefore named `topic`, and a hidden `subject` field sends
+  `[SJBEF Contact] <topic>`. Give any new form its own tag, e.g.
+  `[SJBEF Volunteer]`.
+- **Deploy previews don't cost credits.** We checked on 2026-09-30: after a
+  preview build, the production deploy count in Usage & billing didn't change.
 - **The old redirect loop** (`sjbef.org` ↔ `www`) came from the proxied records
   pointing at the dead cPanel/WordPress host after the domain transfer. The
   old cPanel records (`cpanel`, `cp`, `whm`, `webmail`, `webdisk`, `pop`,
@@ -89,10 +117,17 @@ this repository.
 - [x] Old personal Netlify project (`lively-kelpie-49d487`, team `sjbef-poc`) deleted.
 - [x] Scholarship, Seminarian, and Volunteer Service forms and the file-upload folder transferred to `sjbefadmin@gmail.com`; `acferen` removed from them.
 - [x] Public "Edit Form" buttons removed from the site.
+- [x] Volunteer Editor tab and the in-browser photo/newsletter publishing removed (content changes go through GitHub).
+- [x] `sjbef.org` registration transferred to Cloudflare Registrar, auto-renew on.
+- [x] Contact form connected to Netlify Forms, with form detection on and an email notification to `sjbefadmin@gmail.com`.
+- [x] Volunteer sign-up card ("Join Our Board"), which never sent anything, removed from the Contact page.
+- [x] `netlify.toml` `ignore` rule so docs-only pushes don't spend deploy credits.
 
 ## Still to do
 
-- [ ] Save `sjbefadmin`'s GitHub 2FA recovery codes (and Netlify/Cloudflare 2FA, if enabled) in the SJBEF vault.
+- [ ] Account passwords and 2FA recovery codes are currently held by one volunteer. Move them to a shared SJBEF-owned vault that at least one other board member can open.
+- [ ] Confirm whose payment card is on the Cloudflare account (the domain renews each October), and that the domain's registrant contact is the foundation.
+- [ ] Configure the Google for Nonprofits account.
 - [ ] As `sjbefadmin`, on each form: **Responses → ⋮ → Get email notifications for new responses**; optionally **Link to Sheets → Create a new spreadsheet**.
 - [ ] Open the Scholarship Application signed in as an unrelated Google account to confirm it loads.
 - [ ] Delete the unused duplicate "Seminarian Scholarship Application" form and, optionally, the Apps Script projects that generated the forms.
@@ -100,4 +135,6 @@ this repository.
 - [ ] Optional: in GitHub as `acferen` → **Settings → Applications → Authorized OAuth Apps**, revoke Netlify if the personal Netlify account is no longer used.
 - [ ] Optional: apply for GitHub for Nonprofits (free Team plan) using the Google nonprofit verification.
 - [ ] Record the org name, Netlify project, owners, and recovery process in SJBEF's records.
-- [ ] The site's own contact, donation, volunteer, and gallery forms are still client-side simulations: they show a success message but deliver nothing. Connect each to a real service (monitored inbox, the foundation's payment account) before announcing them as working.
+- [ ] Decide who besides `sjbefadmin@gmail.com` should get contact-form notifications (e.g. whoever handles `info@sjbef.org`), and add them under Netlify → **Forms → Submission notifications**.
+- [ ] The donation form is still a simulation: no payment is processed. Connect it to the foundation's payment account before announcing online giving.
+- [ ] Optional: move the Seminarian and Volunteer Service Google Forms to Netlify Forms. Keep the Scholarship Application on Google Forms: Netlify limits uploads to 8 MB per submission, which transcripts and recommendation letters can exceed.
