@@ -42,10 +42,19 @@ draft can't be merged by accident. (Command line:
 ### 3. Wait for the preview
 
 After a minute or so, the pull request's checks show
-**netlify/sjbef/deploy-preview — Deploy Preview ready!**, and Netlify comments
-with the link:
+**netlify/sjbef/deploy-preview — Deploy Preview ready!** The preview's address
+is always
 
 `https://deploy-preview-<PR number>--sjbef.netlify.app`
+
+where the PR number is the one after `#` in the pull request's title (and at the
+end of its GitHub address, `…/pull/<number>`). For pull request #2, it's
+<https://deploy-preview-2--sjbef.netlify.app>. You can also click **Details**
+next to the deploy-preview check, or find it under Netlify → **Deploys**.
+
+Netlify keeps one comment on the pull request up to date. After a docs-only
+push it says the preview was **canceled**. That only means nothing needed
+rebuilding: the last real preview is still up at the same address.
 
 Previews are private. Open the link in a browser signed in to Netlify as
 `sjbefadmin`. Anyone else gets a Netlify login page.
