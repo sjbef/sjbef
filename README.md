@@ -47,6 +47,9 @@ Deploy previews are free and unlimited:
 3. When it looks right, merge the pull request. That merge is the one
    production deploy.
 
+Forms work on previews too. Test submissions are stored and emailed like real
+ones, so delete them afterward from Netlify → Forms.
+
 ## Where things are
 
 | Path | What's there |
