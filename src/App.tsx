@@ -15,7 +15,6 @@ import {
   Languages, 
   ArrowRight, 
   ArrowLeft,
-  UserPlus, 
   User,
   Users,
   FileText, 
@@ -167,6 +166,7 @@ interface TranslationSet {
     };
     donate_btn: string;
     tax_deductible: string;
+    mail_check: string;
   };
   contact: {
     section_title: string;
@@ -548,19 +548,9 @@ export default function App() {
   });
   const [contactSuccess, setContactSuccess] = useState(false);
   const [contactSending, setContactSending] = useState(false);
+  const [contactError, setContactError] = useState(false);
 
   // Scholarship Application Form States (unused now that we use official Google Form directly)
-
-  // Volunteer Sign-up Form States
-  const [volunteerForm, setVolunteerForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    role: 'Translation Support (French/English)',
-    availability: 'A few hours per month'
-  });
-  const [volunteerSuccess, setVolunteerSuccess] = useState(false);
-  const [volunteerSending, setVolunteerSending] = useState(false);
 
   // Donation State
   const [donationSuccess, setDonationSuccess] = useState(false);
@@ -582,19 +572,25 @@ export default function App() {
     return typeof current === 'string' ? current : '';
   };
 
-  // Submit General Inquiry Form
-  const handleContactSubmit = (e: React.FormEvent) => {
+  // Submit General Inquiry Form to Netlify Forms. The matching static form in
+  // index.html lets Netlify detect the "contact" form at deploy time.
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.email || !contactForm.message) {
       alert("Please fill in all required fields.");
       return;
     }
     setContactSending(true);
-    
-    setTimeout(() => {
-      setContactSending(false);
+    setContactError(false);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(e.currentTarget) as any).toString()
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       setContactSuccess(true);
-      // Reset form
       setContactForm({
         name: '',
         email: '',
@@ -602,30 +598,12 @@ export default function App() {
         message: '',
         affiliation: 'Parent'
       });
-    }, 1200);
-  };
-
-
-  // Submit Volunteer Form
-  const handleVolunteerSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!volunteerForm.name || !volunteerForm.email) {
-      alert("Name and email are required to register.");
-      return;
+    } catch (err) {
+      console.error('Contact form submission failed', err);
+      setContactError(true);
+    } finally {
+      setContactSending(false);
     }
-    setVolunteerSending(true);
-
-    setTimeout(() => {
-      setVolunteerSending(false);
-      setVolunteerSuccess(true);
-      setVolunteerForm({
-        name: '',
-        email: '',
-        phone: '',
-        role: 'Translation Support (Spanish/English)',
-        availability: 'A few hours per month'
-      });
-    }, 1000);
   };
 
   // Trigger simulated donation
@@ -647,13 +625,6 @@ export default function App() {
     }
   }, [contactSuccess]);
 
-
-  useEffect(() => {
-    if (volunteerSuccess) {
-      const timer = setTimeout(() => setVolunteerSuccess(false), 6000);
-      return () => clearTimeout(timer);
-    }
-  }, [volunteerSuccess]);
 
   // Scroll helper mapped to section switching
   const scrollToSection = (id: string) => {
@@ -1102,15 +1073,15 @@ export default function App() {
                     {/* Section Header */}
                     <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
                       <span className="text-[11px] bg-brand-blue/5 text-brand-blue border border-brand-blue/10 px-3 py-1 rounded-full font-bold uppercase tracking-widest">
-                        {lang === 'en' ? 'Explore Our Foundation' : 'Explore nuestra fundación'}
+                        {lang === 'en' ? 'Explore Our Foundation' : 'Découvrez notre fondation'}
                       </span>
                       <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
-                        {lang === 'en' ? 'How would you like to support or learn today?' : '¿Cómo le gustaría apoyar o aprender hoy?'}
+                        {lang === 'en' ? 'How would you like to support or learn today?' : 'Comment souhaitez-vous nous soutenir ou en apprendre davantage ?'}
                       </h2>
                       <p className="text-sm text-gray-500">
                         {lang === 'en' 
                           ? 'Select any of the sections below to access educational resources, historical archives, scholarships, or ways to get involved.' 
-                          : 'Seleccione cualquiera de las secciones a continuación para acceder a recursos educativos, archivos históricos, becas o formas de participar.'}
+                          : 'Choisissez une section ci-dessous pour accéder aux ressources éducatives, aux archives historiques, aux bourses ou aux façons de vous impliquer.'}
                       </p>
                     </div>
 
@@ -1303,8 +1274,8 @@ export default function App() {
                           <Mail className="w-6 h-6" />
                         </div>
                         <div>
-                          <h4 className="font-serif font-bold text-lg">{lang === 'en' ? 'Have Questions or Want to Volunteer?' : '¿Tiene preguntas o quiere ser voluntario?'}</h4>
-                          <p className="text-xs text-blue-100 mt-1">{lang === 'en' ? 'Reach out to our board of trustees or register to volunteer with SJBEF!' : 'Póngase en contacto con nuestra junta o regístrese como voluntario.'}</p>
+                          <h4 className="font-serif font-bold text-lg">{lang === 'en' ? 'Have Questions or Want to Volunteer?' : 'Des questions ou envie de faire du bénévolat ?'}</h4>
+                          <p className="text-xs text-blue-100 mt-1">{lang === 'en' ? 'Send a message to our Board of Trustees. We would love to hear from you!' : "Envoyez un message à notre conseil d'administration. Nous serons ravis de vous lire !"}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-1.5 bg-brand-coral hover:bg-brand-coral/90 text-white font-bold text-xs px-5 py-3 rounded-xl shadow-sm tracking-wide transition shrink-0">
@@ -2877,6 +2848,11 @@ export default function App() {
                       <span>{getText('donate.donate_btn', lang)}</span>
                     </a>
                   </div>
+
+                  <p className="flex items-center justify-center gap-1.5 pt-2 border-t border-gray-150 text-xs text-gray-600">
+                    <Mail className="w-4 h-4 text-brand-teal shrink-0" />
+                    <EditableText path="donate.mail_check" />
+                  </p>
                 </div>
 
               </div>
@@ -2902,9 +2878,6 @@ export default function App() {
                         <p className="text-xs text-gray-500 max-w-sm leading-relaxed">
                           <EditableText path="contact.form.success" />
                         </p>
-                        <span className="text-[10px] text-brand-teal bg-brand-teal/5 border border-brand-teal/10 px-2.5 py-0.5 rounded-full font-semibold">
-                          Simulated Inbox Delivery Complete
-                        </span>
                       </div>
                     )}
 
@@ -2921,7 +2894,25 @@ export default function App() {
                       </p>
                     </div>
 
-                    <form onSubmit={handleContactSubmit} className="space-y-4">
+                    <form
+                      name="contact"
+                      method="POST"
+                      data-netlify="true"
+                      netlify-honeypot="bot-field"
+                      onSubmit={handleContactSubmit}
+                      className="space-y-4"
+                    >
+                      <input type="hidden" name="form-name" value="contact" />
+                      {/* Netlify uses a field named "subject" as the notification email's subject line */}
+                      <input
+                        type="hidden"
+                        name="subject"
+                        value={`[SJBEF Contact] ${contactForm.subject || 'New message'}`}
+                      />
+                      <p className="hidden">
+                        <label>Don't fill this out: <input name="bot-field" /></label>
+                      </p>
+
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
@@ -2929,6 +2920,7 @@ export default function App() {
                           <input 
                             type="text" 
                             required
+                            name="name"
                             value={contactForm.name}
                             onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
                             placeholder="Sofia Ramirez"
@@ -2940,6 +2932,7 @@ export default function App() {
                           <input 
                             type="email" 
                             required
+                            name="email"
                             value={contactForm.email}
                             onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
                             placeholder="sofia@gmail.com"
@@ -2953,6 +2946,7 @@ export default function App() {
                           <label className="block text-xs font-semibold text-gray-500 mb-1">{getText('contact.form.subject', lang)}</label>
                           <input 
                             type="text" 
+                            name="topic"
                             value={contactForm.subject}
                             onChange={(e) => setContactForm({...contactForm, subject: e.target.value})}
                             placeholder="e.g. Donation Question"
@@ -2962,6 +2956,7 @@ export default function App() {
                         <div>
                           <label className="block text-xs font-semibold text-gray-500 mb-1">Your Affiliation</label>
                           <select 
+                            name="affiliation"
                             value={contactForm.affiliation}
                             onChange={(e) => setContactForm({...contactForm, affiliation: e.target.value})}
                             className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
@@ -2979,12 +2974,21 @@ export default function App() {
                         <textarea 
                           required
                           rows={4}
+                          name="message"
                           value={contactForm.message}
                           onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
                           placeholder="How can we help you?"
                           className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition resize-none"
                         ></textarea>
                       </div>
+
+                      {contactError && (
+                        <p className="text-xs text-red-600">
+                          {lang === 'en'
+                            ? 'Sorry, your message could not be sent. Please email info@sjbef.org or call 508-699-2764.'
+                            : "Désolé, votre message n'a pas pu être envoyé. Veuillez écrire à info@sjbef.org ou appeler le 508-699-2764."}
+                        </p>
+                      )}
 
                       <button 
                         type="submit" 
@@ -3065,71 +3069,6 @@ export default function App() {
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Volunteer quick recruitment sign-up */}
-                    <div className="bg-gradient-to-tr from-brand-blue to-blue-900 text-white rounded-2xl p-6 sm:p-8 shadow-md space-y-4 relative overflow-hidden">
-                      <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/5 rounded-full"></div>
-                      
-                      {volunteerSuccess ? (
-                        <div className="text-center py-4 space-y-2 animate-fade-in">
-                          <div className="w-10 h-10 rounded-full bg-white/10 mx-auto flex items-center justify-center">
-                            <Check className="w-6 h-6 text-emerald-400 stroke-[3]" />
-                          </div>
-                          <h4 className="font-bold">Volunteer Registered!</h4>
-                          <p className="text-xs text-blue-100">Our board team has received your registration. We'll be in touch soon!</p>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="space-y-1">
-                            <span className="text-[10px] bg-white/15 text-white px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Join Our Board</span>
-                            <h3 className="font-serif font-bold text-lg">Volunteer with SJBEF</h3>
-                            <p className="text-xs text-blue-100 leading-relaxed">
-                              Have bilingual advocacy skills, or want to support fundraising committees? Register below to help out!
-                            </p>
-                          </div>
-
-                          <form onSubmit={handleVolunteerSubmit} className="space-y-3 pt-2 text-gray-800">
-                            <input 
-                              type="text" 
-                              required
-                              placeholder="Your Name"
-                              value={volunteerForm.name}
-                              onChange={(e) => setVolunteerForm({...volunteerForm, name: e.target.value})}
-                              className="w-full text-xs bg-white/95 rounded-lg p-2 outline-none"
-                            />
-                            <div className="grid grid-cols-2 gap-2">
-                              <input 
-                                type="email" 
-                                required
-                                placeholder="Email Address"
-                                value={volunteerForm.email}
-                                onChange={(e) => setVolunteerForm({...volunteerForm, email: e.target.value})}
-                                className="w-full text-xs bg-white/95 rounded-lg p-2 outline-none"
-                              />
-                              <select 
-                                value={volunteerForm.role}
-                                onChange={(e) => setVolunteerForm({...volunteerForm, role: e.target.value})}
-                                className="w-full text-xs bg-white/95 rounded-lg p-2 outline-none"
-                              >
-                                <option value="Translation Support (Spanish/English)">Translation</option>
-                                <option value="Fundraising & Events Committee">Fundraising</option>
-                                <option value="Book Distribution Volunteer">Book Dist.</option>
-                                <option value="Scholarship Selection Panel">Scholarship Jury</option>
-                              </select>
-                            </div>
-
-                            <button 
-                              type="submit" 
-                              disabled={volunteerSending}
-                              className="w-full py-2 bg-brand-coral hover:bg-brand-coral/90 text-white font-bold text-xs rounded-lg shadow-sm tracking-wide transition flex items-center justify-center gap-1 cursor-pointer"
-                            >
-                              {volunteerSending ? <RefreshCw className="w-3 animate-spin" /> : <UserPlus className="w-3.5 h-3.5" />}
-                              <span>Join as Volunteer</span>
-                            </button>
-                          </form>
-                        </>
-                      )}
                     </div>
 
                   </div>

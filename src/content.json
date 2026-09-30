@@ -127,7 +127,8 @@
         "t4_desc": "Secures long-term endowment sustainability and larger-scale educational grants."
       },
       "donate_btn": "Donate Securely via PayPal",
-      "tax_deductible": "The Saint-Jean-Baptiste Educational Foundation is a registered 501(c)(3) nonprofit. All contributions are 100% tax-deductible."
+      "tax_deductible": "The Saint-Jean-Baptiste Educational Foundation is a registered 501(c)(3) nonprofit. All contributions are 100% tax-deductible.",
+      "mail_check": "Prefer to mail a check? Send it to: SJBEF, P.O. Box 275, Woonsocket, RI 02895"
     },
     "contact": {
       "section_title": "Get in Touch",
@@ -282,7 +283,8 @@
         "t4_desc": "Assure la pérennité du fonds de dotation général et le déploiement de subventions scolaires à plus grande échelle."
       },
       "donate_btn": "Faire un Don Sécurisé",
-      "tax_deductible": "La Fondation Éducative Saint-Jean-Baptiste est un organisme à but non lucratif certifié 501(c)(3). Vos contributions sont déductibles d'impôt."
+      "tax_deductible": "La Fondation Éducative Saint-Jean-Baptiste est un organisme à but non lucratif certifié 501(c)(3). Vos contributions sont déductibles d'impôt.",
+      "mail_check": "Vous préférez envoyer un chèque ? Adressez-le à : SJBEF, P.O. Box 275, Woonsocket, RI 02895"
     },
     "contact": {
       "section_title": "Nous Écrire",

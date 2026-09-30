@@ -31,7 +31,28 @@ from; the site doesn't use Gemini.)
 Push to `main` on <https://github.com/sjbef/sjbef>. Netlify (project `sjbef`,
 owned by `sjbefadmin@gmail.com`) builds it with the settings in
 [`netlify.toml`](netlify.toml) and it's live at sjbef.org in about a minute.
-There's no staging site, so check `npm run build` locally first.
+
+Each push to `main` is a production deploy and costs 15 of the Free plan's 300
+monthly Netlify credits. If the credits run out, Netlify takes the site offline
+until the next billing period. So batch changes into as few pushes as possible.
+Pushes that only change Markdown files, `docs/` or `scripts/` skip the build
+(see `ignore` in `netlify.toml`). To force a rebuild of the live site anyway,
+use Netlify → Deploys → Trigger deploy (15 credits).
+
+### Testing changes before publishing
+
+Deploy previews are free and unlimited:
+
+1. Push your changes to a branch and open a pull request against `main`.
+2. Netlify builds a preview at `https://deploy-preview-<PR number>--sjbef.netlify.app`.
+   Previews are private, so open the link in a browser signed in to Netlify as
+   `sjbefadmin`. Each new push to the branch rebuilds the preview.
+3. When it looks right, merge the pull request. That merge is the one
+   production deploy.
+
+Forms work on previews too. Test submissions are stored and emailed like real
+ones, so delete them afterward from Netlify → Forms. Full steps, including how
+to test forms and add a new one: [docs/testing-changes.md](docs/testing-changes.md).
 
 ## Where things are
 
@@ -64,14 +85,18 @@ There's no staging site, so check `npm run build` locally first.
 - **Scholarship forms:** the three forms are Google Forms owned by
   `sjbefadmin@gmail.com`; edit them in that account's Google Drive. The site
   only links to and embeds their public `…/viewform` URLs.
+- **Contact form:** submissions go to [Netlify Forms](https://docs.netlify.com/manage/forms/setup/)
+  (Netlify → the sjbef project → Forms → `contact`), which can email a
+  notification for each one. Netlify only processes forms on a deployed site,
+  not under `npm run dev`. Because the page is rendered by React, Netlify finds
+  the form through a hidden copy in `index.html`; if you add or rename a field,
+  change it in both places. The notification email's subject comes from a
+  hidden `subject` field (`[SJBEF Contact] <visitor's topic>`). That field
+  overrides any subject line set in the Netlify UI.
 
 ## Known limitations
 
-These parts of the site look functional but aren't connected to anything yet:
-
-- **Contact form**: shows a success message but doesn't send email.
 - **Donation form**: a simulation; no payment is processed.
-- **Volunteer sign-up form**: shows a success message but doesn't send anything.
 
 The scholarship application, seminarian, and volunteer service forms *do* work.
 They're real Google Forms. The scholarship application requires applicants to
