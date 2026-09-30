@@ -3,6 +3,11 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # Skip the build (and its 15-credit deploy) when the only changes since the
+  # last build are Markdown, docs/, scripts/, or git config. Netlify skips the
+  # build when this command exits 0, which `git diff --quiet` does when nothing
+  # outside the excluded paths changed.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude,glob)**/*.md' ':(exclude)docs' ':(exclude)scripts' ':(exclude).gitignore' ':(exclude).gitattributes'"
 
 [build.environment]
   NODE_VERSION = "22"

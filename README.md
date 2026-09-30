@@ -35,6 +35,9 @@ owned by `sjbefadmin@gmail.com`) builds it with the settings in
 Each push to `main` is a production deploy and costs 15 of the Free plan's 300
 monthly Netlify credits. If the credits run out, Netlify takes the site offline
 until the next billing period. So batch changes into as few pushes as possible.
+Pushes that only change Markdown files, `docs/` or `scripts/` skip the build
+(see `ignore` in `netlify.toml`). To force a rebuild anyway, use Netlify →
+Deploys → Trigger deploy.
 
 ### Testing changes before publishing
 
