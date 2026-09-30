@@ -36,8 +36,8 @@ Each push to `main` is a production deploy and costs 15 of the Free plan's 300
 monthly Netlify credits. If the credits run out, Netlify takes the site offline
 until the next billing period. So batch changes into as few pushes as possible.
 Pushes that only change Markdown files, `docs/` or `scripts/` skip the build
-(see `ignore` in `netlify.toml`). To force a rebuild anyway, use Netlify →
-Deploys → Trigger deploy.
+(see `ignore` in `netlify.toml`). To force a rebuild of the live site anyway,
+use Netlify → Deploys → Trigger deploy (15 credits).
 
 ### Testing changes before publishing
 
@@ -51,7 +51,8 @@ Deploy previews are free and unlimited:
    production deploy.
 
 Forms work on previews too. Test submissions are stored and emailed like real
-ones, so delete them afterward from Netlify → Forms.
+ones, so delete them afterward from Netlify → Forms. Full steps, including how
+to test forms and add a new one: [docs/testing-changes.md](docs/testing-changes.md).
 
 ## Where things are
 

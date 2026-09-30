@@ -51,7 +51,9 @@ this repository.
   Netlify builds and deploys in about a minute; watch it under the project's
   **Deploys** tab. Batch changes into one merge, and check **Usage & billing**
   before a busy month. Docs-only pushes skip the build. To force a rebuild,
-  use **Deploys → Trigger deploy**; an empty commit won't do it.
+  use **Deploys → Trigger deploy**; an empty commit won't do it. To rebuild a
+  preview for free, see step 5 of the testing guide.
+  Step-by-step testing guide: [testing-changes.md](testing-changes.md).
 - **Contact form messages:** each one is emailed to `sjbefadmin@gmail.com` and
   kept under the Netlify project's **Forms → contact**. Submissions contain
   personal details, so export and delete old ones now and then, and delete
