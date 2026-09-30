@@ -83,7 +83,9 @@ Deploy previews are free and unlimited:
   notification for each one. Netlify only processes forms on a deployed site,
   not under `npm run dev`. Because the page is rendered by React, Netlify finds
   the form through a hidden copy in `index.html`; if you add or rename a field,
-  change it in both places.
+  change it in both places. The notification email's subject comes from a
+  hidden `subject` field (`[SJBEF Contact] <visitor's topic>`). That field
+  overrides any subject line set in the Netlify UI.
 
 ## Known limitations
 

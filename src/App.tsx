@@ -2897,6 +2897,12 @@ export default function App() {
                       className="space-y-4"
                     >
                       <input type="hidden" name="form-name" value="contact" />
+                      {/* Netlify uses a field named "subject" as the notification email's subject line */}
+                      <input
+                        type="hidden"
+                        name="subject"
+                        value={`[SJBEF Contact] ${contactForm.subject || 'New message'}`}
+                      />
                       <p className="hidden">
                         <label>Don't fill this out: <input name="bot-field" /></label>
                       </p>
@@ -2934,7 +2940,7 @@ export default function App() {
                           <label className="block text-xs font-semibold text-gray-500 mb-1">{getText('contact.form.subject', lang)}</label>
                           <input 
                             type="text" 
-                            name="subject"
+                            name="topic"
                             value={contactForm.subject}
                             onChange={(e) => setContactForm({...contactForm, subject: e.target.value})}
                             placeholder="e.g. Donation Question"
