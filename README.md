@@ -31,7 +31,21 @@ from; the site doesn't use Gemini.)
 Push to `main` on <https://github.com/sjbef/sjbef>. Netlify (project `sjbef`,
 owned by `sjbefadmin@gmail.com`) builds it with the settings in
 [`netlify.toml`](netlify.toml) and it's live at sjbef.org in about a minute.
-There's no staging site, so check `npm run build` locally first.
+
+Each push to `main` is a production deploy and costs 15 of the Free plan's 300
+monthly Netlify credits. If the credits run out, Netlify takes the site offline
+until the next billing period. So batch changes into as few pushes as possible.
+
+### Testing changes before publishing
+
+Deploy previews are free and unlimited:
+
+1. Push your changes to a branch and open a pull request against `main`.
+2. Netlify builds a preview at `https://deploy-preview-<PR number>--sjbef.netlify.app`.
+   Previews are private, so open the link in a browser signed in to Netlify as
+   `sjbefadmin`. Each new push to the branch rebuilds the preview.
+3. When it looks right, merge the pull request. That merge is the one
+   production deploy.
 
 ## Where things are
 
