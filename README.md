@@ -62,6 +62,7 @@ to test forms and add a new one: [docs/testing-changes.md](docs/testing-changes.
 | `src/pages/LegacyPage.tsx` | Our Legacy page: SJBEF history and its scholarship and Catholic school grant mission |
 | `src/pages/GalleryPage.tsx` | Photo gallery, filters, and lightbox |
 | `src/pages/AboutPage.tsx` | About page: foundation history, mission, and board of trustees |
+| `src/pages/ScholarshipsPage.tsx` | Scholarship details, downloadable applications, and online Google Forms |
 | `src/content.json` | Most page text, in two languages. **French is under the key `es`**, not `fr` (a quirk of the template; the app's `lang` state uses `'en' \| 'es'` too) |
 | `src/index.css` | Tailwind setup and brand colors |
 | `public/images/gallery/` | Gallery photos by type and year (`grants/2025/…`, `scholarships/2014/…`) |
