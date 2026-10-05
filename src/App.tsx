@@ -3105,11 +3105,6 @@ export default function App() {
               <p className="text-xs text-gray-400 leading-relaxed max-w-sm">
                 The Saint-Jean-Baptiste Educational Foundation (SJBEF) is a volunteer-led registered 501(c)(3) nonprofit organization promoting French language, preserving culture, and providing higher education assistance in New England.
               </p>
-
-              <div className="flex items-center gap-1">
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></div>
-                <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest pl-1.5">Active heritage advocacy</span>
-              </div>
             </div>
 
             {/* Program Quick Links */}
