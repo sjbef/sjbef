@@ -1075,7 +1075,7 @@ export default function App() {
                       <span className="text-[11px] bg-brand-blue/5 text-brand-blue border border-brand-blue/10 px-3 py-1 rounded-full font-bold uppercase tracking-widest">
                         {lang === 'en' ? 'Explore Our Foundation' : 'Découvrez notre fondation'}
                       </span>
-                      <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                      <h2 className="section-title">
                         {lang === 'en' ? 'How would you like to support or learn today?' : 'Comment souhaitez-vous nous soutenir ou en apprendre davantage ?'}
                       </h2>
                       <p className="text-sm text-gray-500">
@@ -1345,7 +1345,7 @@ export default function App() {
                       <EditableText path="about.section_title" />
                     </div>
                     
-                    <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                    <h2 className="section-title">
                       <EditableText path="about.history_title" />
                     </h2>
 
@@ -1561,7 +1561,7 @@ export default function App() {
                     <span className="w-4 h-4 rounded-full bg-brand-blue/10 flex items-center justify-center text-[10px] text-brand-blue">2</span>
                     <EditableText path="twbi.section_title" />
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                  <h2 className="section-title">
                     <EditableText path="twbi.title" />
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -1655,7 +1655,7 @@ export default function App() {
                     <EditableText path="scholarships.section_title" />
                   </div>
                   
-                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                  <h2 className="section-title">
                     <EditableText path="scholarships.title" />
                   </h2>
                   
@@ -1690,7 +1690,7 @@ export default function App() {
                   <div className="lg:col-span-7 space-y-6">
                     
                     {/* Eligibility Requirements Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <div className="content-card">
                       <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
                         <CheckCircle className="w-5 h-5 text-brand-coral" />
                         <EditableText path="scholarships.eligibility_title" />
@@ -1719,7 +1719,7 @@ export default function App() {
                     </div>
 
                     {/* Required Documents Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <div className="content-card">
                       <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
                         <FileText className="w-5 h-5 text-brand-coral" />
                         <EditableText path="scholarships.documents_title" />
@@ -1744,7 +1744,7 @@ export default function App() {
                     </div>
 
                     {/* Submission and Process Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <div className="content-card">
                       <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
                         <Shield className="w-5 h-5 text-brand-coral" />
                         <EditableText path="scholarships.submission_title" />
@@ -2005,7 +2005,7 @@ export default function App() {
                   
                   {/* Left block: Member & Seminarian Scholarships */}
                   <div className="lg:col-span-7 space-y-8">
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <div className="content-card">
                       <div className="flex items-center gap-2.5 text-brand-blue font-serif font-bold text-xl border-b border-gray-100 pb-3">
                         <Award className="w-5 h-5 text-brand-teal" />
                         <EditableText path="scholarships.member_title" />
@@ -2015,7 +2015,7 @@ export default function App() {
                       </p>
                     </div>
 
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <div className="content-card">
                       <div className="flex items-center gap-2.5 text-brand-blue font-serif font-bold text-xl border-b border-gray-100 pb-3">
                         <Award className="w-5 h-5 text-brand-teal" />
                         <EditableText path="scholarships.seminarian_title" />
@@ -2044,7 +2044,7 @@ export default function App() {
                     </div>
 
                     {/* Special Undergraduate Awards card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <div className="content-card">
                       <div className="flex items-center gap-2.5 text-brand-blue font-serif font-bold text-lg border-b border-gray-100 pb-2">
                         <Sparkles className="w-4 h-4 text-brand-coral" />
                         <EditableText path="scholarships.special_title" />
@@ -2099,7 +2099,7 @@ export default function App() {
                     <span>{lang === 'en' ? 'Community Memories' : 'Mémoires de la Communauté'}</span>
                     <span className="w-8 h-0.5 bg-brand-blue"></span>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                  <h2 className="section-title">
                     {lang === 'en' ? 'SJB Educational Foundation Galleries' : 'Galerie de Photos SJBEF'}
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -2405,7 +2405,7 @@ export default function App() {
                     <span>{lang === 'en' ? 'Announcements & Updates' : 'Annonces et Mises à Jour'}</span>
                     <span className="w-8 h-0.5 bg-brand-blue"></span>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                  <h2 className="section-title">
                     {lang === 'en' ? 'SJB Foundation Newsletters' : "Bulletins d'Information de la Fondation"}
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -2712,7 +2712,7 @@ export default function App() {
                     <EditableText path="donate.section_title" />
                     <span className="w-8 h-0.5 bg-brand-blue"></span>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight">
+                  <h2 className="section-title">
                     <EditableText path="donate.title" />
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -2916,7 +2916,7 @@ export default function App() {
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">{getText('contact.form.name', lang)} *</label>
+                          <label className="form-label">{getText('contact.form.name', lang)} *</label>
                           <input 
                             type="text" 
                             required
@@ -2924,11 +2924,11 @@ export default function App() {
                             value={contactForm.name}
                             onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
                             placeholder="Sofia Ramirez"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                            className="form-control"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">{getText('contact.form.email', lang)} *</label>
+                          <label className="form-label">{getText('contact.form.email', lang)} *</label>
                           <input 
                             type="email" 
                             required
@@ -2936,30 +2936,30 @@ export default function App() {
                             value={contactForm.email}
                             onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
                             placeholder="sofia@gmail.com"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                            className="form-control"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">{getText('contact.form.subject', lang)}</label>
+                          <label className="form-label">{getText('contact.form.subject', lang)}</label>
                           <input 
                             type="text" 
                             name="topic"
                             value={contactForm.subject}
                             onChange={(e) => setContactForm({...contactForm, subject: e.target.value})}
                             placeholder="e.g. Donation Question"
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                            className="form-control"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-semibold text-gray-500 mb-1">Your Affiliation</label>
+                          <label className="form-label">Your Affiliation</label>
                           <select 
                             name="affiliation"
                             value={contactForm.affiliation}
                             onChange={(e) => setContactForm({...contactForm, affiliation: e.target.value})}
-                            className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition"
+                            className="form-control"
                           >
                             <option value="Parent">Parent of Dual Immersion Student</option>
                             <option value="Teacher">Bilingual Educator / Teacher</option>
@@ -2970,7 +2970,7 @@ export default function App() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-gray-500 mb-1">{getText('contact.form.message', lang)} *</label>
+                        <label className="form-label">{getText('contact.form.message', lang)} *</label>
                         <textarea 
                           required
                           rows={4}
@@ -2978,7 +2978,7 @@ export default function App() {
                           value={contactForm.message}
                           onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
                           placeholder="How can we help you?"
-                          className="w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition resize-none"
+                          className="form-control resize-none"
                         ></textarea>
                       </div>
 
