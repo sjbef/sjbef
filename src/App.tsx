@@ -517,7 +517,9 @@ export default function App() {
           <div className="flex flex-col">
             
             {/* 1. HOME SCREEN / LANDING */}
-            <HomePage lang={lang} EditableText={EditableText} getText={getText} navigateToSection={scrollToSection} />
+            {currentSection === 'home' && (
+              <HomePage lang={lang} EditableText={EditableText} getText={getText} navigateToSection={scrollToSection} />
+            )}
 
             {/* 2. BREADCRUMBS & BACK BUTTON FOR NON-HOME SECTIONS */}
             {currentSection !== 'home' && (
