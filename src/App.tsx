@@ -9,10 +9,10 @@ import {
   Image,
   Search,
   Filter, 
+  School,
   ExternalLink, 
   Download, 
   RefreshCw, 
-  Languages, 
   ArrowRight, 
   ArrowLeft,
   User,
@@ -43,7 +43,7 @@ interface TranslationSet {
   nav: {
     home: string;
     about: string;
-    twbi: string;
+    legacy: string;
     scholarships: string;
     gallery: string;
     donate: string;
@@ -86,22 +86,16 @@ interface TranslationSet {
     board_member2: string;
     board_member3: string;
   };
-  twbi: {
+  legacy: {
     section_title: string;
     title: string;
     description: string;
-    benefits: {
-      title: string;
-      b1_title: string;
-      b1_desc: string;
-      b2_title: string;
-      b2_desc: string;
-      b3_title: string;
-      b3_desc: string;
-      b4_title: string;
-      b4_desc: string;
-    };
-    sjusd_connection: string;
+    milestones: { title: string; description: string }[];
+    work_title: string;
+    scholarships_title: string;
+    scholarships_description: string;
+    grants_title: string;
+    grants_description: string;
   };
   scholarships: {
     section_title: string;
@@ -233,7 +227,7 @@ export default function App() {
   const content = initialContent as ContentConfig;
   const [lang, setLang] = useState<'en' | 'es'>('en');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentSection, setCurrentSection] = useState<'home' | 'about' | 'twbi' | 'scholarships' | 'gallery' | 'newsletters' | 'donate' | 'contact'>('home');
+  const [currentSection, setCurrentSection] = useState<'home' | 'about' | 'legacy' | 'scholarships' | 'gallery' | 'newsletters' | 'donate' | 'contact'>('home');
 
   // Photo Gallery States
   const [galleryCategory, setGalleryCategory] = useState<'scholarships' | 'grants'>('scholarships');
@@ -452,8 +446,8 @@ export default function App() {
           title: 'SJBEF Awards Over $35,000 in Scholarships to New England Youth',
           author: 'Paul Plante, Chairman of SJBEF',
           content: [
-            'We are extremely pleased to announce that in the fiscal year of 2025, the Saint-Jean-Baptiste Educational Foundation has distributed over $35,000 in higher education scholarships and bilingual school grants. This has been made possible by the persistent support of our community members, chapter organizers, and generous trusts.',
-            'As we advance our educational programs, we remain deeply committed to encouraging young Franco-Americans to explore their linguistic heritage, and supporting local schools with necessary textbooks and French immersion curricula.'
+            'We are extremely pleased to announce that in the fiscal year of 2025, the Saint-Jean-Baptiste Educational Foundation has distributed over $35,000 in higher education scholarships and grants to Catholic schools. This has been made possible by the persistent support of our community members, chapter organizers, and generous trusts.',
+            "As we advance our mission, we remain committed to encouraging young Franco-Americans to explore their linguistic heritage. Our grants support local schools' efforts to obtain resources such as textbooks and French-language curricula; the schools provide the education."
           ]
         },
         {
@@ -505,8 +499,8 @@ export default function App() {
           title: 'Catholic School Grants Advance French Literacy in RI & MA',
           author: 'Grants Review Board',
           content: [
-            'We have finalized three major grants this spring: Sacred Heart Academy, Holy Ghost Academy, and St. Joseph School in Woonsocket, Rhode Island. These grants supply French language storybooks, grammar workbooks, and custom history booklets to school classes.',
-            'By supporting bilingual education early, we help children form deep connections with their heritage and develop cognitive flexibility through multilingualism.'
+            'Grants to Sacred Heart Academy, Holy Ghost Academy, and St. Joseph School in Woonsocket, Rhode Island, support the schools’ work acquiring French language storybooks, grammar workbooks, and custom history booklets for their classes.',
+            'By supporting bilingual education early, schools can help children form deep connections with their heritage and develop cognitive flexibility through multilingualism.'
           ]
         }
       ]
@@ -632,10 +626,10 @@ export default function App() {
     setMobileMenuOpen(false);
     
     // Map id string to valid section state
-    const sectionMap: Record<string, 'home' | 'about' | 'twbi' | 'scholarships' | 'gallery' | 'newsletters' | 'donate' | 'contact'> = {
+    const sectionMap: Record<string, 'home' | 'about' | 'legacy' | 'scholarships' | 'gallery' | 'newsletters' | 'donate' | 'contact'> = {
       home: 'home',
       about: 'about',
-      twbi: 'twbi',
+      legacy: 'legacy',
       scholarships: 'scholarships',
       gallery: 'gallery',
       newsletters: 'newsletters',
@@ -711,15 +705,15 @@ export default function App() {
             >
               {getText('nav.about', lang)}
             </button>
-            <button 
-              onClick={() => scrollToSection('twbi')} 
+            <button
+              onClick={() => scrollToSection('legacy')}
               className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 ${
-                currentSection === 'twbi'
+                currentSection === 'legacy'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-600'
               }`}
             >
-              {getText('nav.twbi', lang)}
+              {getText('nav.legacy', lang)}
             </button>
             <button 
               onClick={() => scrollToSection('scholarships')} 
@@ -841,15 +835,15 @@ export default function App() {
             >
               {getText('nav.about', lang)}
             </button>
-            <button 
-              onClick={() => scrollToSection('twbi')} 
+            <button
+              onClick={() => scrollToSection('legacy')}
               className={`w-full text-left py-2 px-3 text-sm font-semibold rounded-md transition ${
-                currentSection === 'twbi'
+                currentSection === 'legacy'
                   ? 'bg-brand-blue/10 text-brand-blue font-bold'
                   : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
-              {getText('nav.twbi', lang)}
+              {getText('nav.legacy', lang)}
             </button>
             <button 
               onClick={() => scrollToSection('scholarships')} 
@@ -949,7 +943,7 @@ export default function App() {
                           <span>{getText('hero.ctaPrimary', lang)}</span>
                         </button>
                         <button 
-                          onClick={() => scrollToSection('twbi')}
+                          onClick={() => scrollToSection('legacy')}
                           className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white hover:bg-gray-50 text-gray-700 font-bold text-sm tracking-wide border border-gray-200 shadow-xs hover:border-gray-300 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
                         >
                           <span>{getText('hero.ctaSecondary', lang)}</span>
@@ -967,35 +961,34 @@ export default function App() {
                         {/* Interactive Frame */}
                         <div className="relative bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xl">
                           
-                          {/* Bilingual Banner */}
+                          {/* Scholarship and school-grant support */}
                           <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-5">
                             <div className="flex items-center gap-2 text-xs font-bold text-brand-blue uppercase tracking-wider">
-                              <Languages className="w-4 h-4 text-brand-teal" />
-                              <span>{lang === 'en' ? 'Bilingual Heritage' : 'Héritage Bilingue'}</span>
+                              <GraduationCap className="w-4 h-4 text-brand-teal" />
+                              <span>{lang === 'en' ? 'Financial Support for Education' : 'Soutien financier à l’éducation'}</span>
                             </div>
                             <span className="text-[10px] bg-brand-teal/10 text-brand-teal px-2 py-0.5 rounded-full font-bold">
-                              {lang === 'en' ? 'French Immersion' : 'Immersion Française'}
+                              {lang === 'en' ? 'Scholarships & Grants' : 'Bourses et subventions'}
                             </span>
                           </div>
 
-                          {/* Visual Interactive Text Sandbox */}
                           <div className="space-y-4">
                             <div className="bg-brand-blue/5 rounded-xl p-4 border border-brand-blue/10 hover:bg-brand-blue/10 transition duration-300 group">
                               <p className="text-[11px] font-bold text-brand-blue uppercase tracking-wider mb-1">
-                                {lang === 'en' ? 'English Concept' : 'Concept Anglais'}
+                                {lang === 'en' ? 'Student Scholarships' : 'Bourses étudiantes'}
                               </p>
-                              <blockquote className="font-serif italic text-sm text-brand-blue leading-relaxed font-semibold">
-                                &ldquo;Two languages, one heart. Preserving heritage and academic excellence through bilingual literacy.&rdquo;
-                              </blockquote>
+                              <p className="font-serif text-sm text-brand-blue leading-relaxed font-semibold">
+                                {lang === 'en' ? 'Financial assistance for eligible students pursuing higher education.' : 'Aide financière aux étudiants admissibles qui poursuivent des études supérieures.'}
+                              </p>
                             </div>
 
                             <div className="bg-brand-teal/5 rounded-xl p-4 border border-brand-teal/10 hover:bg-brand-teal/10 transition duration-300">
                               <p className="text-[11px] font-bold text-brand-teal uppercase tracking-wider mb-1">
-                                {lang === 'en' ? 'French Concept' : 'Concept Français'}
+                                {lang === 'en' ? 'Catholic School Grants' : 'Subventions aux écoles catholiques'}
                               </p>
-                              <blockquote className="font-serif italic text-sm text-brand-teal leading-relaxed font-semibold">
-                                &ldquo;Deux langues, un cœur. Préserver le patrimoine et l'excellence académique à travers l'alphabétisation bilingue.&rdquo;
-                              </blockquote>
+                              <p className="font-serif text-sm text-brand-teal leading-relaxed font-semibold">
+                                {lang === 'en' ? 'Financial grants that support Catholic education.' : 'Des subventions financières qui soutiennent l’éducation catholique.'}
+                              </p>
                             </div>
                           </div>
 
@@ -1003,7 +996,7 @@ export default function App() {
                           <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
                             <div className="flex items-center gap-1.5 font-medium">
                               <Building className="w-4 h-4 text-brand-teal" />
-                              <span>{lang === 'en' ? 'Catholic & Regional Schools' : 'Écoles Catholiques & Régionales'}</span>
+                              <span>{lang === 'en' ? 'Students & Catholic Schools' : 'Étudiants et écoles catholiques'}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
@@ -1118,31 +1111,31 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Card 2: TWBI */}
+                      {/* Card 2: Catholic school grants */}
                       <div 
-                        onClick={() => scrollToSection('twbi')}
+                        onClick={() => scrollToSection('legacy')}
                         className="bg-white border border-gray-200 hover:border-emerald-500/40 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer transform hover:-translate-y-1"
                       >
                         <div className="flex items-center gap-4 mb-4">
                           <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Languages className="w-6 h-6 stroke-[2]" />
+                            <School className="w-6 h-6 stroke-[2]" />
                           </div>
                           <div>
                             <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                              {lang === 'en' ? 'Bilingual Support' : 'Soutien Bilingue'}
+                              {lang === 'en' ? 'Financial Support' : 'Soutien financier'}
                             </span>
                             <h3 className="font-serif font-bold text-lg text-brand-blue mt-0.5">
-                              {getText('nav.twbi', lang)}
+                              {lang === 'en' ? 'Catholic School Grants' : 'Subventions aux écoles catholiques'}
                             </h3>
                           </div>
                         </div>
                         <p className="text-xs text-gray-500 leading-relaxed min-h-[50px]">
                           {lang === 'en'
-                            ? 'Support for bilingualism & literacy in public schools, providing books, classroom grants, and educational guides.'
-                            : 'Soutien au bilinguisme et à l\'alphabétisation dans les écoles, fournissant des livres, des subventions et des guides.'}
+                            ? 'SJBEF supports Catholic education through grants to Catholic schools.'
+                            : 'La SJBEF soutient l’éducation catholique par des subventions aux écoles catholiques.'}
                         </p>
                         <div className="mt-4 pt-3 border-t border-gray-50 flex items-center text-xs font-bold text-emerald-600 group-hover:text-emerald-700">
-                          <span>{lang === 'en' ? 'Explore Program' : 'Explorer le Programme'}</span>
+                          <span>{lang === 'en' ? 'Learn about our grants' : 'En savoir plus sur nos subventions'}</span>
                           <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -1304,7 +1297,7 @@ export default function App() {
                     <ChevronRight className="w-3.5 h-3.5 text-gray-300" />
                     <span className="text-brand-blue font-extrabold">
                       {currentSection === 'about' && getText('nav.about', lang)}
-                      {currentSection === 'twbi' && getText('nav.twbi', lang)}
+                      {currentSection === 'legacy' && getText('nav.legacy', lang)}
                       {currentSection === 'scholarships' && getText('nav.scholarships', lang)}
                       {currentSection === 'gallery' && getText('nav.gallery', lang)}
                       {currentSection === 'newsletters' && getText('nav.newsletters', lang)}
@@ -1386,7 +1379,7 @@ export default function App() {
                       <div>
                         <h4 className="font-bold text-sm text-brand-blue">We are 100% Volunteer Managed</h4>
                         <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                          Every teacher grant, textbook, and senior scholarship we secure is run and supported by parent volunteers, local educators, and community donors with zero overhead.
+                          SJBEF’s scholarship and Catholic school grant work is supported by volunteers and community donors.
                         </p>
                       </div>
                     </div>
@@ -1551,7 +1544,7 @@ export default function App() {
             </section>
             )}
 
-            {currentSection === 'twbi' && <LegacyPage EditableText={EditableText} />}
+            {currentSection === 'legacy' && <LegacyPage EditableText={EditableText} />}
 
             {/* SCHOLARSHIPS & ACTIVE FORMS */}
             {currentSection === 'scholarships' && (
@@ -2871,10 +2864,10 @@ export default function App() {
                             onChange={(e) => setContactForm({...contactForm, affiliation: e.target.value})}
                             className="form-control"
                           >
-                            <option value="Parent">Parent of Dual Immersion Student</option>
-                            <option value="Teacher">Bilingual Educator / Teacher</option>
-                            <option value="Student">TWBI Program Graduate / Student</option>
-                            <option value="Community">SJBEF / New England Supporter</option>
+                            <option value="Parent">{lang === 'en' ? 'Parent or family member' : 'Parent ou membre de la famille'}</option>
+                            <option value="Teacher">{lang === 'en' ? 'Catholic school representative' : 'Représentant d’une école catholique'}</option>
+                            <option value="Student">{lang === 'en' ? 'Student or scholarship applicant' : 'Étudiant ou candidat à une bourse'}</option>
+                            <option value="Community">{lang === 'en' ? 'Member, donor, or community supporter' : 'Membre, donateur ou sympathisant'}</option>
                           </select>
                         </div>
                       </div>
@@ -3013,7 +3006,7 @@ export default function App() {
               </div>
               
               <p className="text-xs text-gray-400 leading-relaxed max-w-sm">
-                The Saint-Jean-Baptiste Educational Foundation (SJBEF) is a volunteer-led registered 501(c)(3) nonprofit organization promoting French language, preserving culture, and providing higher education assistance in New England.
+                The Saint-Jean-Baptiste Educational Foundation (SJBEF) is a volunteer-led 501(c)(3) nonprofit that supports education through student scholarships and grants to Catholic schools in New England.
               </p>
             </div>
 
