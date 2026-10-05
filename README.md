@@ -58,7 +58,8 @@ to test forms and add a new one: [docs/testing-changes.md](docs/testing-changes.
 
 | Path | What's there |
 |---|---|
-| `src/App.tsx` | Site shell, navigation, shared state, and page sections not yet extracted |
+| `src/App.tsx` | Site shell, navigation, and shared state |
+| `src/pages/HomePage.tsx` | Home hero, foundation highlights, quick statistics, and navigation cards |
 | `src/pages/LegacyPage.tsx` | Our Legacy page: SJBEF history and its scholarship and Catholic school grant mission |
 | `src/pages/GalleryPage.tsx` | Photo gallery, filters, and lightbox |
 | `src/pages/AboutPage.tsx` | About page: foundation history, mission, and board of trustees |
