@@ -18,6 +18,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@layer components {
+  .section-title {
+    @apply text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight;
+  }
+
+  .content-card {
+    @apply bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs space-y-4;
+  }
+
+  .form-label {
+    @apply block text-xs font-semibold text-gray-500 mb-1;
+  }
+
+  .form-control {
+    @apply w-full text-xs bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue rounded-lg p-2.5 outline-none transition;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -32,4 +50,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a9a9a9;
 }
-
