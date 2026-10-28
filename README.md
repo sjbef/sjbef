@@ -22,9 +22,7 @@ npm run preview   # serve dist/ locally
 npm run lint      # TypeScript type check
 ```
 
-No environment variables or API keys are needed. (`.env.example` and some
-dependencies are left over from the Google AI Studio template the site started
-from; the site doesn't use Gemini.)
+No environment variables or API keys are needed.
 
 ## Publishing
 
@@ -73,22 +71,19 @@ to test forms and add a new one: [docs/testing-changes.md](docs/testing-changes.
 | `public/images/gallery/` | Gallery photos by type and year (`grants/2025/…`, `scholarships/2014/…`) |
 | `public/images/logo/`, `public/images/about/` | Logo and About-page images |
 | `public/documents/` | Printable PDF applications (scholarship, seminarian, volunteer service) |
-| `public/page-assets/page_assets_manifest.json` | The gallery's photo list (caption, year, `localUrl` into `public/images/gallery/`), originally scraped from the old WordPress site and loaded at runtime |
-| `public/images/duplicates_backup/` | Backup copies made by the image de-duplication cleanup; not used by the site |
+| `public/page-assets/page_assets_manifest.json` | The gallery's photo list (category, caption, year, and `localUrl` into `public/images/gallery/`), loaded at runtime |
 | `scripts/*.gs` | Google Apps Script that generated the three scholarship Google Forms (already created; kept for reference) |
-| `scripts/download-*.js`, `scripts/process-page-assets.js` | One-off tools used to pull images from the old WordPress site |
 | `scripts/compress-images.js` | Compresses gallery images in place with `sharp` (`--dry-run` to preview) |
-| `scripts/transfer-repo-to-org.sh` | Used once to move the repo into the `sjbef` GitHub org |
-| `*_report.json` (repo root) | Output from the image cleanup scripts |
+| `archive/` | Historical migration scripts, image backups, and audit reports; not included in the website build |
 
 ## Changing content
 
 - **Text:** edit `src/content.json` (both `en` and `es`), or the strings in
   `src/App.tsx` for text that isn't in `content.json` yet. Many strings in
   `App.tsx` are written inline as `lang === 'en' ? '…' : '…'`.
-- **Gallery photos:** add the image under `public/images/gallery/<grants|scholarships>/<year>/`
-  and add an entry (`localUrl`, `caption`, `year`, …) to
-  `public/page-assets/page_assets_manifest.json`, copying an existing entry's shape.
+- **Gallery photos and captions:** follow
+  [the gallery photo guide](docs/gallery-photos.md) to add photos to the school
+  grants or scholarship gallery, improve captions, or adjust thumbnail crops.
 - **Newsletters:** add an entry to the `defaultNewsletters` list in
   `src/App.tsx`; put its PDF in `public/newsletters/`.
 - **Scholarship forms:** the three forms are Google Forms owned by

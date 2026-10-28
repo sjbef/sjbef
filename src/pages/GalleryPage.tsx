@@ -10,12 +10,33 @@ interface GalleryItem {
   chapter: string;
   description: string;
   imageUrl: string;
-  date?: string;
+}
+
+interface GalleryManifestEntry {
+  category: GalleryItem['category'];
+  filename: string;
+  localUrl: string;
+  caption?: string;
+  altText?: string;
+  year: string;
 }
 
 interface GalleryPageProps {
   lang: 'en' | 'es';
   isActive: boolean;
+}
+
+function isGalleryManifestEntry(value: unknown): value is GalleryManifestEntry {
+  if (typeof value !== 'object' || value === null) return false;
+  const entry = value as Record<string, unknown>;
+  return (
+    (entry.category === 'grants' || entry.category === 'scholarships') &&
+    typeof entry.filename === 'string' &&
+    typeof entry.localUrl === 'string' &&
+    typeof entry.year === 'string' &&
+    (entry.caption === undefined || typeof entry.caption === 'string') &&
+    (entry.altText === undefined || typeof entry.altText === 'string')
+  );
 }
 
 export default function GalleryPage({ lang, isActive }: GalleryPageProps) {
@@ -25,181 +46,53 @@ export default function GalleryPage({ lang, isActive }: GalleryPageProps) {
   const [gallerySearch, setGallerySearch] = useState<string>('');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Default gallery items
-  const defaultGalleryItems: GalleryItem[] = [
-    {
-      id: "gal-1",
-      category: "scholarships",
-      title: "Sophia Puccini Scholarship Award",
-      year: "2023",
-      who: "Sophia Puccini",
-      chapter: "Chapter N442, Somerset, MA",
-      description: "Sophia Puccini receiving a $1,000.00 scholarship, presented by Paul Pinsonnault (Administrative Secretary SJBEF), Paul Plante (Chairman SJBEF), and Albert Dumoulin (President of Chapter N442).",
-      imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-2",
-      category: "scholarships",
-      title: "Ella Gesner Scholarship Award",
-      year: "2023",
-      who: "Ella Gesner",
-      chapter: "Chapter N442, Somerset, MA",
-      description: "Ella Gesner receiving a $1,000.00 scholarship, presented by Paul Pinsonnault (Administrative Secretary SJBEF), Paul Plante (Chairman SJBEF), and Albert Dumoulin (President of Chapter N442).",
-      imageUrl: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-3",
-      category: "scholarships",
-      title: "Caroline Puccini Scholarship Presentation",
-      year: "2023",
-      who: "Caroline Puccini",
-      chapter: "Chapter N442, Somerset, MA",
-      description: "Caroline Puccini receiving a scholarship, presented by Chapter N442's President Al Dumoulin.",
-      imageUrl: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-4",
-      category: "scholarships",
-      title: "Jack Hebert Scholarship Presentation",
-      year: "2023",
-      who: "Jack Hebert",
-      chapter: "Chapter N441, Westport, MA",
-      description: "Recipient Jack Hebert from Chapter N441 receiving his scholarship with SJBEF leadership Paul Pinsonnault and Paul Plante.",
-      imageUrl: "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-5",
-      category: "scholarships",
-      title: "Noelle Champigny Award Reception",
-      year: "2023",
-      who: "Noelle Champigny",
-      chapter: "Chapter N042, North Attleboro, MA",
-      description: "Noelle Champigny, Chapter N042, N. Attleboro, MA, receiving a scholarship from the Saint-Jean-Baptiste Educational Foundation.",
-      imageUrl: "https://images.unsplash.com/photo-1491841573546-b432714003ac?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-6",
-      category: "scholarships",
-      title: "Nicole Ledwidge Scholarship Presentation",
-      year: "2023",
-      who: "Nicole Ledwidge",
-      chapter: "Chapter N442, Somerset, MA",
-      description: "Nicole Ledwidge receiving scholarship from Chapter N442 Somerset, MA, presented by Chapter N442 President Al Dumoulin.",
-      imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-7",
-      category: "scholarships",
-      title: "Scholarship Night 2023 Group",
-      year: "2023",
-      who: "Chapters N441, N442, N042 Recipients",
-      chapter: "Chapters N441, N442, N042",
-      description: "Group photo showing SJBEF Chairman Paul Plante, Jack Hebert (N441), Sophia Puccini (N442), Caroline Puccini (N442), Ella Gesner (N442), Jonathan Cabral (N442), Alexander Cormier (N042), and Paul Pinsonnault (Admin Secretary). Hosted by Chapter N442, Somerset, MA.",
-      imageUrl: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
-      date: "2023-06-04"
-    },
-    {
-      id: "gal-8",
-      category: "grants",
-      title: "Holy Ghost Academy Grant Presentation",
-      year: "2024",
-      who: "Holy Ghost Bilingual French Class",
-      chapter: "New England Regional",
-      description: "Grant awarded to support French bilingual resources, books, and cultural learning aids for kindergarten students.",
-      imageUrl: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop",
-      date: "2024-05-12"
-    },
-    {
-      id: "gal-9",
-      category: "grants",
-      title: "Sacred Heart Academy French Literacies",
-      year: "2024",
-      who: "High School French Literature Program",
-      chapter: "Catholic Schools, MA",
-      description: "Funding secured for the acquisition of contemporary French language literature textbooks and reading programs.",
-      imageUrl: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop",
-      date: "2024-04-18"
-    },
-    {
-      id: "gal-10",
-      category: "grants",
-      title: "St. Joseph School Franco-American History Materials",
-      year: "2023",
-      who: "St. Joseph Social Studies Division",
-      chapter: "Woonsocket, RI",
-      description: "Catholic School Grant for cultural school supplies and historical booklets detailing Franco-American history in New England.",
-      imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop",
-      date: "2023-11-05"
-    }
-  ];
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [galleryLoadError, setGalleryLoadError] = useState(false);
 
-  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(defaultGalleryItems);
-
-  // Attempt to load locally scraped page assets manifest at runtime
   useEffect(() => {
-    async function loadLocalManifest() {
+    async function loadGalleryManifest() {
       try {
         const response = await fetch('/page-assets/page_assets_manifest.json');
-        if (!response.ok) return;
-        const manifestData = await response.json();
-        
-        if (Array.isArray(manifestData) && manifestData.length > 0) {
-          const cleanNameFromFilename = (filename: string): string => {
-            let name = filename.replace(/^page-\d+-\d+-/, ''); // remove prefix
-            name = name.replace(/-\d+x\d+.*$/, ''); // remove size suffix e.g. -150x150
-            name = name.replace(/\.[a-zA-Z0-9]+$/, ''); // remove extension
-            name = name.replace(/[-_]+/g, ' '); // replace dashes/underscores with space
-            return name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-          };
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-          const extractYear = (filename: string, caption?: string): string => {
-            const yearRegex = /\b(20\d{2})\b/;
-            let match = yearRegex.exec(caption || '');
-            if (match) return match[1];
-            match = yearRegex.exec(filename);
-            if (match) return match[1];
-            return '2023'; // Default fallback year
-          };
-
-          const extractChapter = (caption?: string, filename?: string): string => {
-            const chapterRegex = /\b(chapter\s+[n-]?\d+)\b/i;
-            let match = chapterRegex.exec(caption || '');
-            if (match) return match[1].toUpperCase();
-            match = chapterRegex.exec(filename || '');
-            if (match) return match[1].replace(/-/g, ' ').toUpperCase();
-            return 'New England Regional';
-          };
-
-          const importedItems: GalleryItem[] = manifestData.map((item: any, index: number) => {
-            const displayName = cleanNameFromFilename(item.filename);
-            const isGrant = item.pageId === '966';
-            
-            return {
-              id: `manifest-${item.pageId}-${index}`,
-              category: isGrant ? 'grants' : 'scholarships',
-              title: item.caption || item.altText || `${displayName} ${isGrant ? 'Grant' : 'Scholarship'}`,
-              year: item.year || extractYear(item.filename, item.caption),
-              who: item.altText || displayName,
-              chapter: extractChapter(item.caption, item.filename),
-              description: item.caption || item.altText || `${displayName} was awarded support from the foundation.`,
-              imageUrl: item.localUrl,
-              date: item.uploadDate ? item.uploadDate.split('T')[0] : undefined
-            };
-          });
-
-          setGalleryItems(importedItems);
+        const manifest: unknown = await response.json();
+        if (!Array.isArray(manifest)) {
+          throw new Error('The gallery manifest is not a list.');
         }
-      } catch (err) {
-        console.log('Local page_assets_manifest.json not found. Using defaults.');
+
+        const importedItems = manifest.map((entry, index): GalleryItem => {
+          if (!isGalleryManifestEntry(entry)) {
+            throw new Error(`Gallery manifest entry ${index + 1} is invalid.`);
+          }
+
+          const displayName = entry.filename
+            .replace(/\.[a-zA-Z0-9]+$/, '')
+            .replace(/[-_]+/g, ' ')
+            .replace(/\b\w/g, (letter) => letter.toUpperCase());
+          const caption = entry.caption?.trim() || '';
+          const altText = entry.altText?.trim() || '';
+          const title = caption || altText || `${displayName} ${entry.category === 'grants' ? 'Grant' : 'Scholarship'}`;
+          const chapter = /\bchapter\s+[n-]?\d+\b/i.exec(caption)?.[0].toUpperCase() || 'New England Regional';
+
+          return {
+            id: `manifest-${entry.category}-${index}`,
+            category: entry.category,
+            title,
+            year: entry.year,
+            who: altText || displayName,
+            chapter,
+            description: caption || altText || `${displayName} was awarded support from the foundation.`,
+            imageUrl: entry.localUrl
+          };
+        });
+
+        setGalleryItems(importedItems);
+      } catch (error) {
+        console.error('Failed to load the photo gallery manifest.', error);
+        setGalleryLoadError(true);
       }
     }
-    loadLocalManifest();
+    loadGalleryManifest();
   }, []);
 
   // Derived filtered gallery items
@@ -235,8 +128,8 @@ export default function GalleryPage({ lang, isActive }: GalleryPageProps) {
                   </h2>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                     {lang === 'en' 
-                      ? 'Browse through our historical and contemporary photographs of scholarship recipients and Catholic school grant achievements. Organize by year or contribute your own memories below.'
-                      : 'Parcourez nos photographies historiques et contemporaines des lauréats de bourses et des subventions scolaires catholiques. Triez par année ou partagez vos propres souvenirs.'}
+                      ? 'Browse historical and recent photographs of scholarship recipients and Catholic school grant presentations. Filter by year or search the gallery.'
+                      : 'Parcourez des photos historiques et récentes de lauréats de bourses et de remises de subventions aux écoles catholiques. Filtrez par année ou recherchez dans la galerie.'}
                   </p>
                 </div>
 
@@ -310,7 +203,18 @@ export default function GalleryPage({ lang, isActive }: GalleryPageProps) {
                 </div>
 
                 {/* Grid layout containing cards */}
-                {filteredGalleryItems.length > 0 ? (
+                {galleryLoadError ? (
+                  <div className="bg-white border border-gray-150 rounded-2xl py-16 px-4 text-center max-w-xl mx-auto shadow-xs">
+                    <h3 className="text-base font-bold text-brand-blue mb-1">
+                      {lang === 'en' ? 'Gallery Unavailable' : 'Galerie indisponible'}
+                    </h3>
+                    <p className="text-xs text-gray-500 max-w-sm mx-auto leading-relaxed">
+                      {lang === 'en'
+                        ? 'The photo gallery could not be loaded. Please try again later.'
+                        : 'La galerie de photos n’a pas pu être chargée. Veuillez réessayer plus tard.'}
+                    </p>
+                  </div>
+                ) : filteredGalleryItems.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {filteredGalleryItems.map((item, idx) => {
                       // Find the real index in current filtered list for Lightbox usage
@@ -360,7 +264,7 @@ export default function GalleryPage({ lang, isActive }: GalleryPageProps) {
                               <span className="font-semibold text-gray-500 truncate max-w-[180px]">
                                 {item.who}
                               </span>
-                              <span>{item.date || item.year}</span>
+                              <span>{item.year}</span>
                             </div>
                           </div>
                         </div>
