@@ -112,7 +112,7 @@ this repository.
 
 - [x] GitHub user `sjbefadmin` created; org `sjbef` created, business-owned.
 - [x] `acferen` added as a second org owner.
-- [x] Repo transferred `acferen/sjbef` → `sjbef/sjbef` (`scripts/transfer-repo-to-org.sh`) and made public.
+- [x] Repo transferred `acferen/sjbef` → `sjbef/sjbef` (`archive/repository-migration/transfer-repo-to-org.sh`) and made public.
 - [x] Netlify account `sjbefadmin@gmail.com`; project `sjbef` deploying from `sjbef/sjbef` `main`.
 - [x] `sjbef.org` + `www` pointed at Netlify, HTTPS issued, redirect loop gone.
 - [x] Old cPanel DNS records removed; email records untouched and forwarding tested.
