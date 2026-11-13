@@ -122,20 +122,7 @@
       "section_title": "Support Us",
       "title": "Your Generosity Powers Scholarships",
       "description": "SJBEF is a volunteer-administered organization. Donations support scholarships and grants to Catholic schools, including support for bilingual education. Schools, not SJBEF, provide instruction.",
-      "tier_title": "Choose Your Giving Level",
-      "tiers": {
-        "t1_title": "Heritage Circle",
-        "t1_desc": "Supports Catholic school grants, which may fund French-language books and other learning resources.",
-        "t2_title": "Legacy Supporter",
-        "t2_desc": "Supports scholarships and grants to Catholic schools, including bilingual education grants.",
-        "t3_title": "Scholarship Partner",
-        "t3_desc": "Supports scholarships for eligible students, including those pursuing French studies.",
-        "t4_title": "Foundation Trustee",
-        "t4_desc": "Supports scholarships and Catholic school grants, including grants that support bilingual education."
-      },
-      "donate_btn": "Donate Securely via PayPal",
-      "tax_deductible": "The Saint-Jean-Baptiste Educational Foundation is a registered 501(c)(3) nonprofit. All contributions are 100% tax-deductible.",
-      "mail_check": "Prefer to mail a check? Send it to: SJBEF, P.O. Box 275, Woonsocket, RI 02895"
+      "mail_check": "Mail your check to: SJBEF, P.O. Box 275, Woonsocket, RI 02895"
     },
     "contact": {
       "section_title": "Get in Touch",
@@ -285,20 +272,7 @@
       "section_title": "Faire un Don",
       "title": "Votre Générosité Soutient Notre Jeunesse",
       "description": "La SJBEF est gérée par des bénévoles. Les dons soutiennent les bourses et les subventions aux écoles catholiques, y compris l'enseignement bilingue. Ce sont les écoles, et non la SJBEF, qui dispensent l'enseignement.",
-      "tier_title": "Choisissez Votre Niveau de Don",
-      "tiers": {
-        "t1_title": "Cercle Héritage",
-        "t1_desc": "Soutient les subventions aux écoles catholiques, qui peuvent financer des livres en français et d'autres ressources pédagogiques.",
-        "t2_title": "Donateur Patrimoine",
-        "t2_desc": "Soutient les bourses et les subventions aux écoles catholiques, y compris les subventions pour l'enseignement bilingue.",
-        "t3_title": "Partenaire de Bourse",
-        "t3_desc": "Soutient les bourses aux étudiants admissibles, notamment ceux qui poursuivent des études de français.",
-        "t4_title": "Mécène de la Fondation",
-        "t4_desc": "Soutient les bourses et les subventions aux écoles catholiques, y compris celles qui soutiennent l'enseignement bilingue."
-      },
-      "donate_btn": "Faire un Don Sécurisé",
-      "tax_deductible": "La Fondation Éducative Saint-Jean-Baptiste est un organisme à but non lucratif certifié 501(c)(3). Vos contributions sont déductibles d'impôt.",
-      "mail_check": "Vous préférez envoyer un chèque ? Adressez-le à : SJBEF, P.O. Box 275, Woonsocket, RI 02895"
+      "mail_check": "Envoyez votre chèque à : SJBEF, P.O. Box 275, Woonsocket, RI 02895"
     },
     "contact": {
       "section_title": "Nous Écrire",
