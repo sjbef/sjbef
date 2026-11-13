@@ -143,7 +143,6 @@ interface TranslationSet {
     submission_online_desc: string;
     downloads_title: string;
     download_app_btn: string;
-    download_volunteer_btn: string;
     download_seminarian_btn: string;
     help_title: string;
     help_desc: string;

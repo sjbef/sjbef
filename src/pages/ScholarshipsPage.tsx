@@ -12,6 +12,7 @@ import {
   Shield,
   Sparkles,
 } from 'lucide-react';
+import VolunteerServiceForm from '../components/VolunteerServiceForm';
 
 interface ScholarshipsPageProps {
   lang: 'en' | 'es';
@@ -182,23 +183,6 @@ export default function ScholarshipsPage({ lang, EditableText, heritageImage }: 
                           <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
                         </a>
 
-                        {/* Volunteer Form Link */}
-                        <a 
-                          href="/documents/SJBEF-Volunteer-Form.pdf" 
-                          download
-                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
-                        >
-                          <div className="space-y-1">
-                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
-                              <EditableText path="scholarships.download_volunteer_btn" />
-                            </p>
-                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
-                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 225 KB
-                            </span>
-                          </div>
-                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
-                        </a>
-
                         {/* Seminarian Form Link */}
                         <a 
                           href="/documents/Seminarian-Scholarship-Application.pdf" 
@@ -325,55 +309,33 @@ export default function ScholarshipsPage({ lang, EditableText, heritageImage }: 
 
                     </div>
 
-                    {/* Volunteer Service Form Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
-                      
-                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
-                        <div>
-                          <h3 className="font-serif font-bold text-base text-brand-blue">
-                            {lang === 'en' ? 'Scholarship Program – Summary of Volunteer Service' : 'Programme de Bourses – Résumé du Service Bénévole'}
-                          </h3>
-                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
-                            {lang === 'en' ? 'Return with Scholarship Application' : 'À Retourner avec la Demande de Bourse'}
-                          </p>
-                        </div>
-                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="text-xs text-gray-700 leading-relaxed">
-                          {lang === 'en' 
-                            ? 'Document your leadership positions and volunteer service. This form should be returned with your scholarship application. Open the form in a new tab.' 
-                            : 'Documentez vos postes de leadership et votre service bénévole. Ce formulaire doit être retourné avec votre demande de bourse. Ouvrez le formulaire dans un nouvel onglet.' }
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                          <a 
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Open Volunteer Form' : 'Ouvrir le Formulaire Bénévole'}</span>
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Embed Volunteer Service Google Form Iframe */}
-                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
-                        <iframe 
-                          src="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform?embedded=true" 
-                          className="absolute inset-0 w-full h-full border-0"
-                          title="SJBEF Volunteer Service Google Form"
-                        >
-                          Loading…
-                        </iframe>
-                      </div>
-
-                    </div>
-
                   </div>
 
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <VolunteerServiceForm lang={lang} />
+                  <details className="bg-white border border-gray-200 rounded-xl p-5">
+                    <summary className="cursor-pointer text-sm font-bold text-brand-blue">
+                      {lang === 'en' ? 'Existing Google Form option' : 'Opción del formulario existente de Google'}
+                    </summary>
+                    <div className="mt-4 space-y-3">
+                      <p className="text-xs text-gray-600">
+                        {lang === 'en'
+                          ? 'The Google Form is kept available while the new editable form is being evaluated.'
+                          : 'El formulario de Google seguirá disponible mientras se evalúa el nuevo formulario editable.'}
+                      </p>
+                      <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-bold text-brand-coral hover:underline"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        {lang === 'en' ? 'Open existing Google Form' : 'Abrir el formulario de Google existente'}
+                      </a>
+                    </div>
+                  </details>
                 </div>
 
                 {/* Additional Scholarship Details Section (Member, Seminarian, Special Awards & Image5) */}
