@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent, type FormEventHandler, type ReactNode } from 'react';
 import { CheckCircle, Printer, RefreshCw, Send } from 'lucide-react';
 
 const ENTRY_COUNT = 8;
@@ -9,6 +9,7 @@ const copy = {
     subtitle: 'Return with your scholarship application by February 28',
     instructions: 'List your leadership roles and volunteer service. Preference is given to students who volunteered for a Catholic Financial Life chapter, the Society of Saint Vincent de Paul, a local parish, or another nonprofit organization. Print another copy if you need more space.',
     studentName: 'Student name',
+    studentEmail: 'Email address',
     leadershipTitle: 'Student Leadership Positions',
     leadershipYears: 'Year(s) served',
     organization: 'Name of organization',
@@ -29,6 +30,7 @@ const copy = {
     subtitle: 'Envíe este formulario junto con su solicitud de beca antes del 28 de febrero',
     instructions: 'Indique sus cargos de liderazgo y servicio voluntario. Se dará preferencia a estudiantes que hayan realizado voluntariado para un capítulo de Catholic Financial Life, la Sociedad de San Vicente de Paúl, una parroquia local u otra organización sin fines de lucro. Imprima otra copia si necesita más espacio.',
     studentName: 'Nombre del estudiante',
+    studentEmail: 'Correo electrónico',
     leadershipTitle: 'Cargos de Liderazgo Estudiantil',
     leadershipYears: 'Año(s) de servicio',
     organization: 'Nombre de la organización',
@@ -48,17 +50,57 @@ const copy = {
 
 interface VolunteerServiceFormProps {
   lang: 'en' | 'es';
+  embedded?: boolean;
 }
 
-export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps) {
+function VolunteerFormWrapper({
+  embedded,
+  className,
+  onSubmit,
+  onInput,
+  children,
+}: {
+  embedded: boolean;
+  className: string;
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  onInput: FormEventHandler<HTMLFormElement>;
+  children: ReactNode;
+}) {
+  if (embedded) return <div className={className}>{children}</div>;
+  return (
+    <form
+      name="volunteer-service"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      onSubmit={onSubmit}
+      onInput={onInput}
+      className={className}
+    >
+      {children}
+    </form>
+  );
+}
+
+export default function VolunteerServiceForm({ lang, embedded = false }: VolunteerServiceFormProps) {
   const [isSending, setIsSending] = useState(false);
   const [wasSubmitted, setWasSubmitted] = useState(false);
   const [submissionError, setSubmissionError] = useState('');
   const text = copy[lang];
 
   const handlePrint = () => {
-    const cleanup = () => document.body.classList.remove('print-volunteer-form');
-    document.body.classList.add('print-volunteer-form');
+    const cleanup = () => {
+      document.body.classList.remove(
+        'print-scholarship-package',
+        'print-scholarship-application',
+        'print-volunteer-form',
+      );
+    };
+    document.body.classList.add(
+      'print-scholarship-package',
+      'print-scholarship-application',
+      'print-volunteer-form',
+    );
     window.addEventListener('afterprint', cleanup, { once: true });
     window.print();
   };
@@ -104,36 +146,49 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
 
       <p className="text-sm text-gray-600 leading-relaxed mb-6">{text.instructions}</p>
 
-      <form
-        name="volunteer-service"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
+      <VolunteerFormWrapper
+        embedded={embedded}
         onSubmit={handleSubmit}
         onInput={() => setWasSubmitted(false)}
         className="space-y-8"
       >
-        <input type="hidden" name="form-name" value="volunteer-service" />
-        <p className="hidden">
-          <label>
-            Don’t fill this out: <input name="bot-field" />
-          </label>
-        </p>
+        {!embedded && (
+          <>
+            <input type="hidden" name="form-name" value="volunteer-service" />
+            <p className="hidden">
+              <label>
+                Don’t fill this out: <input name="bot-field" />
+              </label>
+            </p>
+          </>
+        )}
 
-        <div className="max-w-xl">
-          <label htmlFor="student-name" className="block text-sm font-bold text-brand-blue mb-1.5">
+        {!embedded && <div className="volunteer-student-details grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <label htmlFor="student-name" className="block text-sm font-bold text-brand-blue">
             {text.studentName} *
+            <input
+              id="student-name"
+              name="student-name"
+              type="text"
+              autoComplete="name"
+              required
+              maxLength={120}
+              className="volunteer-field-input mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+            />
           </label>
-          <input
-            id="student-name"
-            name="student-name"
-            type="text"
-            autoComplete="name"
-            required
-            maxLength={120}
-            className="volunteer-field-input w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
-          />
-        </div>
+          <label htmlFor="student-email" className="block text-sm font-bold text-brand-blue">
+            {text.studentEmail} *
+            <input
+              id="student-email"
+              name="student-email"
+              type="email"
+              autoComplete="email"
+              required
+              maxLength={254}
+              className="volunteer-field-input mt-1.5 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900 focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/20"
+            />
+          </label>
+        </div>}
 
         <section className="volunteer-form-section space-y-3">
           <h4 className="font-serif font-bold text-lg text-brand-blue">{text.leadershipTitle}</h4>
@@ -236,7 +291,7 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
           <p className="mt-1">{text.questions}</p>
         </footer>
 
-        <div className="volunteer-screen-only space-y-3">
+        {!embedded && <div className="volunteer-screen-only space-y-3">
           <p className="text-xs text-gray-500">{text.printingNote}</p>
           {wasSubmitted && (
             <p className="flex items-center gap-2 text-sm font-semibold text-emerald-700" role="status">
@@ -267,8 +322,8 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
               {isSending ? text.submitting : text.submit}
             </button>
           </div>
-        </div>
-      </form>
+        </div>}
+      </VolunteerFormWrapper>
     </section>
   );
 }

@@ -43,20 +43,290 @@ body {
 
 @media (min-width: 640px) {
   .volunteer-form-entry {
-    grid-template-columns: 0.57fr 1.8fr 2.63fr;
+    grid-template-columns: 0.8fr 1.8fr 2.4fr;
   }
 }
 
 @media print {
+  body.print-seminarian-application {
+    background: white !important;
+  }
+
+  body.print-seminarian-application #root *:not(:has(.seminarian-print-area)):not(.seminarian-print-area):not(.seminarian-print-area *) {
+    display: none !important;
+  }
+
+  body.print-seminarian-application #root *:has(.seminarian-print-area) {
+    display: contents !important;
+  }
+
+  body.print-seminarian-application #root .seminarian-print-area {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    color: #111 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 8pt !important;
+  }
+
+  body.print-seminarian-application .seminarian-screen-only,
+  body.print-seminarian-application .seminarian-print-area .hidden {
+    display: none !important;
+  }
+
+  body.print-seminarian-application .seminarian-form-header {
+    padding-bottom: 0.06in !important;
+    margin-bottom: 0.08in !important;
+  }
+
+  body.print-seminarian-application .seminarian-form-header h3 {
+    margin-top: 0.03in !important;
+    font-size: 15pt !important;
+    color: #111 !important;
+  }
+
+  body.print-seminarian-application .seminarian-form-header p {
+    color: #111 !important;
+    font-size: 7pt !important;
+  }
+
+  body.print-seminarian-application .seminarian-print-area form > * {
+    margin-block: 0 !important;
+  }
+
+  body.print-seminarian-application .seminarian-print-area form > * + * {
+    margin-block-start: 0.07in !important;
+  }
+
+  body.print-seminarian-application .seminarian-form-section {
+    margin-top: 0.08in !important;
+  }
+
+  body.print-seminarian-application .seminarian-form-section > * + * {
+    margin-top: 0.05in !important;
+  }
+
+  body.print-seminarian-application .seminarian-form-section h4 {
+    font-family: Arial, sans-serif !important;
+    font-size: 9pt !important;
+    color: #111 !important;
+  }
+
+  body.print-seminarian-application .seminarian-fields-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.06in 0.16in !important;
+  }
+
+  body.print-seminarian-application .seminarian-field-wide {
+    grid-column: span 2 !important;
+  }
+
+  body.print-seminarian-application .seminarian-field-label,
+  body.print-seminarian-application .seminarian-choice-group legend,
+  body.print-seminarian-application .seminarian-parent-group legend {
+    font-size: 7.5pt !important;
+    color: #111 !important;
+  }
+
+  body.print-seminarian-application .seminarian-field-input {
+    height: 0.23in !important;
+    min-height: 0.23in !important;
+    margin: 0 !important;
+    padding: 0 2px !important;
+    border: 0 !important;
+    border-bottom: 1px solid #555 !important;
+    border-radius: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    color: #111 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 8pt !important;
+  }
+
+  body.print-seminarian-application textarea.seminarian-field-input {
+    height: auto !important;
+    min-height: 0.45in !important;
+    padding-top: 2px !important;
+    resize: none !important;
+  }
+
+  body.print-seminarian-application .seminarian-choice-group > div {
+    gap: 0.08in 0.2in !important;
+  }
+
+  body.print-seminarian-application .seminarian-choice-group label {
+    font-size: 7.5pt !important;
+    color: #111 !important;
+  }
+
+  body.print-seminarian-application .seminarian-choice-group input {
+    width: 0.13in !important;
+    height: 0.13in !important;
+  }
+
+  body.print-seminarian-application .seminarian-continuation {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  body.print-seminarian-application .seminarian-parent-group {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body.print-seminarian-application .seminarian-form-footer {
+    padding-top: 0.06in !important;
+    font-size: 7pt !important;
+    color: #111 !important;
+  }
+
+  body.print-scholarship-application {
+    background: white !important;
+  }
+
+  body.print-scholarship-application:not(.print-scholarship-package) #root *:not(:has(.scholarship-print-area)):not(.scholarship-print-area):not(.scholarship-print-area *) {
+    display: none !important;
+  }
+
+  body.print-scholarship-application:not(.print-scholarship-package) #root *:has(.scholarship-print-area) {
+    display: contents !important;
+  }
+
+  body.print-scholarship-application #root .scholarship-print-area {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    color: #111 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 7.5pt !important;
+  }
+
+  body.print-scholarship-application .scholarship-screen-only,
+  body.print-scholarship-application .scholarship-print-area .hidden {
+    display: none !important;
+  }
+
+  body.print-scholarship-application .scholarship-print-area header {
+    padding-bottom: 0.06in !important;
+    margin-bottom: 0.08in !important;
+  }
+
+  body.print-scholarship-application .scholarship-print-area header p:first-child {
+    font-size: 7pt !important;
+  }
+
+  body.print-scholarship-application .scholarship-print-area h3 {
+    margin-top: 0.03in !important;
+    font-size: 14pt !important;
+    color: #111 !important;
+  }
+
+  body.print-scholarship-application .scholarship-print-area h4 {
+    margin: 0 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 9pt !important;
+    color: #111 !important;
+  }
+
+  body.print-scholarship-application .scholarship-application-section {
+    margin-top: 0.08in !important;
+  }
+
+  body.print-scholarship-application .scholarship-application-section > * + * {
+    margin-top: 0.05in !important;
+  }
+
+  body.print-scholarship-application .scholarship-fields-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.06in 0.16in !important;
+  }
+
+  body.print-scholarship-application .scholarship-field-wide {
+    grid-column: span 2 !important;
+  }
+
+  body.print-scholarship-application .scholarship-field-label,
+  body.print-scholarship-application .scholarship-grade-group legend {
+    font-size: 7.5pt !important;
+    color: #111 !important;
+  }
+
+  body.print-scholarship-application .scholarship-field-input {
+    height: 0.23in !important;
+    min-height: 0.23in !important;
+    padding: 0 2px !important;
+    border: 0 !important;
+    border-bottom: 1px solid #555 !important;
+    border-radius: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    color: #111 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 8pt !important;
+  }
+
+  body.print-scholarship-application .scholarship-grade-group,
+  body.print-scholarship-application .scholarship-grade-options {
+    margin: 0 !important;
+  }
+
+  body.print-scholarship-application .scholarship-grade-options {
+    gap: 0.1in 0.2in !important;
+  }
+
+  body.print-scholarship-application .scholarship-grade-options label,
+  body.print-scholarship-application .scholarship-acknowledgment {
+    font-size: 7.5pt !important;
+    line-height: 1.2 !important;
+    color: #111 !important;
+  }
+
+  body.print-scholarship-application .scholarship-grade-checkbox,
+  body.print-scholarship-application .scholarship-acknowledgment input {
+    width: 0.13in !important;
+    height: 0.13in !important;
+    flex-shrink: 0 !important;
+  }
+
+  body.print-scholarship-application .scholarship-optional-note,
+  body.print-scholarship-application .scholarship-form-footer {
+    font-size: 7pt !important;
+    color: #111 !important;
+  }
+
+  body.print-scholarship-application .scholarship-form-footer {
+    padding-top: 0.06in !important;
+  }
+
+  body.print-scholarship-application .scholarship-print-area form > * {
+    margin-block: 0 !important;
+  }
+
+  body.print-scholarship-application .scholarship-print-area form > * + * {
+    margin-block-start: 0.07in !important;
+  }
+
   body.print-volunteer-form {
     background: white !important;
   }
 
-  body.print-volunteer-form #root *:not(:has(.volunteer-print-area)):not(.volunteer-print-area):not(.volunteer-print-area *) {
+  body.print-volunteer-form:not(.print-scholarship-package) #root *:not(:has(.volunteer-print-area)):not(.volunteer-print-area):not(.volunteer-print-area *) {
     display: none !important;
   }
 
-  body.print-volunteer-form #root *:has(.volunteer-print-area) {
+  body.print-volunteer-form:not(.print-scholarship-package) #root *:has(.volunteer-print-area) {
     display: contents !important;
   }
 
@@ -113,7 +383,7 @@ body {
 
   body.print-volunteer-form .volunteer-column-headings {
     display: grid !important;
-    grid-template-columns: 0.57fr 1.8fr 2.63fr;
+    grid-template-columns: 0.8fr 1.8fr 2.4fr;
     gap: 0.1in;
     padding-bottom: 0.03in;
     border-bottom: 1px solid #555;
@@ -127,6 +397,17 @@ body {
     margin-block-start: 0.02in !important;
   }
 
+  body.print-volunteer-form .volunteer-student-details {
+    display: grid !important;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0.15in !important;
+  }
+
+  body.print-volunteer-form .volunteer-student-details label {
+    min-width: 0 !important;
+    font-size: 8.5pt !important;
+  }
+
   body.print-volunteer-form .volunteer-form-section .space-y-3 > * {
     margin-block: 0 !important;
   }
@@ -137,7 +418,7 @@ body {
 
   body.print-volunteer-form .volunteer-form-entry {
     display: grid !important;
-    grid-template-columns: 0.57fr 1.8fr 2.63fr;
+    grid-template-columns: 0.8fr 1.8fr 2.4fr;
     gap: 0.1in !important;
     padding: 0.015in 0 !important;
     border: 0 !important;
@@ -183,6 +464,33 @@ body {
   body.print-volunteer-form .volunteer-form-footer {
     margin-top: 0.12in !important;
     padding-top: 0.08in !important;
+  }
+
+  body.print-scholarship-package #root *:not(:has(.scholarship-print-area)):not(:has(.volunteer-print-area)):not(.scholarship-print-area):not(.volunteer-print-area):not(.scholarship-print-area *):not(.volunteer-print-area *) {
+    display: none !important;
+  }
+
+  body.print-scholarship-package #root *:has(.scholarship-print-area),
+  body.print-scholarship-package #root *:has(.volunteer-print-area) {
+    display: contents !important;
+  }
+
+  body.print-scholarship-package .scholarship-form-accordion {
+    display: contents !important;
+  }
+
+  body.print-scholarship-package .scholarship-form-accordion > summary,
+  body.print-scholarship-package .scholarship-form-accordion > p {
+    display: none !important;
+  }
+
+  body.print-scholarship-package .scholarship-form-accordion:not([open]) > :not(summary) {
+    display: contents !important;
+  }
+
+  body.print-scholarship-package .volunteer-print-area {
+    break-before: page !important;
+    page-break-before: always !important;
   }
 }
 
