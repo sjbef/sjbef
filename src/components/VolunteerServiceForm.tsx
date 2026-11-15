@@ -7,15 +7,14 @@ const copy = {
   en: {
     title: 'Scholarship Program - Summary of Volunteer Service',
     subtitle: 'Return with your scholarship application by February 28',
-    instructions: 'List your leadership roles and volunteer service. Preference is given to students who volunteered for a Catholic Financial Life chapter, the Society of Saint Vincent de Paul, a local parish, or another nonprofit organization. Add a separate sheet if you need more space.',
+    instructions: 'List your leadership roles and volunteer service. Preference is given to students who volunteered for a Catholic Financial Life chapter, the Society of Saint Vincent de Paul, a local parish, or another nonprofit organization. Print another copy if you need more space.',
     studentName: 'Student name',
     leadershipTitle: 'Student Leadership Positions',
     leadershipYears: 'Year(s) served',
     organization: 'Name of organization',
-    leadershipRole: 'Leadership role within organization',
+    leadershipRole: 'Leadership role',
     volunteerTitle: 'Student Volunteer Services',
-    volunteerService: 'Volunteer service',
-    contribution: "Describe your contribution to the organization's mission",
+    volunteerService: 'Volunteer service and contribution',
     print: 'Print / Save as PDF',
     submit: 'Submit volunteer form',
     submitting: 'Submitting…',
@@ -28,15 +27,14 @@ const copy = {
   es: {
     title: 'Programa de Becas - Resumen del Servicio Voluntario',
     subtitle: 'Envíe este formulario junto con su solicitud de beca antes del 28 de febrero',
-    instructions: 'Indique sus cargos de liderazgo y servicio voluntario. Se dará preferencia a estudiantes que hayan realizado voluntariado para un capítulo de Catholic Financial Life, la Sociedad de San Vicente de Paúl, una parroquia local u otra organización sin fines de lucro. Adjunte otra hoja si necesita más espacio.',
+    instructions: 'Indique sus cargos de liderazgo y servicio voluntario. Se dará preferencia a estudiantes que hayan realizado voluntariado para un capítulo de Catholic Financial Life, la Sociedad de San Vicente de Paúl, una parroquia local u otra organización sin fines de lucro. Imprima otra copia si necesita más espacio.',
     studentName: 'Nombre del estudiante',
     leadershipTitle: 'Cargos de Liderazgo Estudiantil',
     leadershipYears: 'Año(s) de servicio',
     organization: 'Nombre de la organización',
-    leadershipRole: 'Cargo de liderazgo en la organización',
+    leadershipRole: 'Cargo de liderazgo',
     volunteerTitle: 'Servicio Voluntario Estudiantil',
-    volunteerService: 'Servicio voluntario',
-    contribution: 'Describa su contribución a la misión de la organización',
+    volunteerService: 'Servicio voluntario y contribución',
     print: 'Imprimir / Guardar como PDF',
     submit: 'Enviar formulario de voluntariado',
     submitting: 'Enviando…',
@@ -55,7 +53,7 @@ interface VolunteerServiceFormProps {
 export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps) {
   const [isSending, setIsSending] = useState(false);
   const [wasSubmitted, setWasSubmitted] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
   const text = copy[lang];
 
   const handlePrint = () => {
@@ -72,18 +70,18 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
     new FormData(form).forEach((value, key) => body.append(key, value.toString()));
 
     setIsSending(true);
-    setHasError(false);
+    setSubmissionError('');
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString(),
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      if (!response.ok) throw new Error(`The server returned HTTP ${response.status}.`);
       setWasSubmitted(true);
     } catch (error) {
       console.error('Volunteer form submission failed', error);
-      setHasError(true);
+      setSubmissionError(error instanceof Error ? error.message : text.error);
     } finally {
       setIsSending(false);
     }
@@ -158,7 +156,6 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
                       name={`leadership-${entry}-years`}
                       type="text"
                       maxLength={40}
-                      placeholder="e.g. 2022–2023"
                       className="volunteer-field-input mt-1 w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm font-normal text-gray-900"
                     />
                   </label>
@@ -192,7 +189,6 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
             <span>{text.leadershipYears}</span>
             <span>{text.organization}</span>
             <span>{text.volunteerService}</span>
-            <span>{text.contribution}</span>
           </div>
           <div className="space-y-3">
             {Array.from({ length: ENTRY_COUNT }, (_, index) => {
@@ -200,7 +196,7 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
               return (
                 <div
                   key={entry}
-                  className="volunteer-form-entry volunteer-service-entry grid grid-cols-1 gap-2 rounded-lg border border-gray-200 bg-gray-50 p-3 sm:grid-cols-2 lg:grid-cols-4"
+                  className="volunteer-form-entry volunteer-service-entry grid grid-cols-1 gap-2 rounded-lg border border-gray-200 bg-gray-50 p-3 sm:grid-cols-3"
                 >
                   <label className="text-xs font-semibold text-gray-600">
                     <span className="volunteer-field-label">{text.leadershipYears}</span>
@@ -208,7 +204,6 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
                       name={`service-${entry}-years`}
                       type="text"
                       maxLength={40}
-                      placeholder="e.g. 2022–2023"
                       className="volunteer-field-input mt-1 w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm font-normal text-gray-900"
                     />
                   </label>
@@ -223,17 +218,8 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
                   </label>
                   <label className="text-xs font-semibold text-gray-600">
                     <span className="volunteer-field-label">{text.volunteerService}</span>
-                    <input
-                      name={`service-${entry}-type`}
-                      type="text"
-                      maxLength={120}
-                      className="volunteer-field-input mt-1 w-full rounded border border-gray-300 bg-white px-2 py-1.5 text-sm font-normal text-gray-900"
-                    />
-                  </label>
-                  <label className="text-xs font-semibold text-gray-600">
-                    <span className="volunteer-field-label">{text.contribution}</span>
                     <textarea
-                      name={`service-${entry}-contribution`}
+                      name={`service-${entry}-description`}
                       rows={2}
                       maxLength={500}
                       className="volunteer-field-input mt-1 w-full resize-y rounded border border-gray-300 bg-white px-2 py-1.5 text-sm font-normal text-gray-900"
@@ -258,8 +244,10 @@ export default function VolunteerServiceForm({ lang }: VolunteerServiceFormProps
               {text.success}
             </p>
           )}
-          {hasError && (
-            <p className="text-sm text-red-700" role="alert">{text.error}</p>
+          {submissionError && (
+            <p className="text-sm text-red-700" role="alert">
+              {text.error} {submissionError}
+            </p>
           )}
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
