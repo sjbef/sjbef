@@ -1,13 +1,11 @@
 import type { ComponentType } from 'react';
+import ScholarshipApplicationPacket from '../components/ScholarshipApplicationPacket';
+import SeminarianApplicationForm from '../components/SeminarianApplicationForm';
 import {
   Award,
   Calendar,
   CheckCircle,
-  Download,
-  ExternalLink,
   FileText,
-  GraduationCap,
-  HelpCircle,
   MapPin,
   Shield,
   Sparkles,
@@ -63,7 +61,7 @@ export default function ScholarshipsPage({ lang, EditableText, heritageImage }: 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 items-start">
                   
                   {/* Left Column: Requirements and Details */}
-                  <div className="lg:col-span-7 space-y-6">
+                  <div className="lg:col-span-12 space-y-6">
                     
                     {/* Eligibility Requirements Card */}
                     <div className="content-card">
@@ -146,234 +144,30 @@ export default function ScholarshipsPage({ lang, EditableText, heritageImage }: 
 
                   </div>
 
-                  {/* Right Column: Downloads, Links & Forms */}
-                  <div className="lg:col-span-5 space-y-6">
-                    
-                    {/* Printable PDF Downloads Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-5">
-                      <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-                        <div>
-                          <h3 className="font-serif font-bold text-lg text-brand-blue">
-                            <EditableText path="scholarships.downloads_title" />
-                          </h3>
-                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
-                            {lang === 'en' ? 'Official Printable PDF Forms' : 'Formulaires PDF Officiels'}
-                          </p>
-                        </div>
-                        <Download className="w-6 h-6 text-brand-blue shrink-0" />
-                      </div>
+                </div>
 
-                      <div className="flex flex-col gap-3">
-                        
-                        {/* General Scholarship Application Link */}
-                        <a 
-                          href="/documents/SJBEF-Scholarship-Application.pdf" 
-                          download
-                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
-                        >
-                          <div className="space-y-1">
-                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
-                              <EditableText path="scholarships.download_app_btn" />
-                            </p>
-                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
-                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 227 KB
-                            </span>
-                          </div>
-                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
-                        </a>
-
-                        {/* Volunteer Form Link */}
-                        <a 
-                          href="/documents/SJBEF-Volunteer-Form.pdf" 
-                          download
-                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
-                        >
-                          <div className="space-y-1">
-                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
-                              <EditableText path="scholarships.download_volunteer_btn" />
-                            </p>
-                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
-                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 225 KB
-                            </span>
-                          </div>
-                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
-                        </a>
-
-                        {/* Seminarian Form Link */}
-                        <a 
-                          href="/documents/Seminarian-Scholarship-Application.pdf" 
-                          download
-                          className="group flex items-center justify-between p-4 bg-brand-warm hover:bg-brand-blue/5 border border-gray-150 rounded-xl transition-all shadow-xs"
-                        >
-                          <div className="space-y-1">
-                            <p className="text-xs font-bold text-brand-blue group-hover:text-brand-coral transition-colors">
-                              <EditableText path="scholarships.download_seminarian_btn" />
-                            </p>
-                            <span className="text-[10px] text-gray-500 font-mono flex items-center gap-1">
-                              <FileText className="w-3 h-3 text-brand-teal" /> PDF Document • 377 KB
-                            </span>
-                          </div>
-                          <Download className="w-4 h-4 text-brand-blue/70 group-hover:text-brand-coral group-hover:translate-y-0.5 transition-all shrink-0 ml-2" />
-                        </a>
-
-                      </div>
-
-                      {/* Callout Support Section */}
-                      <div className="bg-blue-50/50 border border-blue-100 rounded-xl p-4 space-y-2">
-                        <h4 className="text-xs font-bold text-brand-blue flex items-center gap-1">
-                          <HelpCircle className="w-4 h-4 text-brand-coral shrink-0" />
-                          <EditableText path="scholarships.help_title" />
-                        </h4>
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          <EditableText path="scholarships.help_desc" />
-                        </p>
-                      </div>
-
+                <div className="mt-12 space-y-6">
+                  <details className="scholarship-form-accordion rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                    <summary className="cursor-pointer font-serif text-lg font-bold text-brand-blue">
+                      {lang === 'en'
+                        ? 'College Scholarship Application + Volunteer Service Summary'
+                        : 'Solicitud de beca universitaria + resumen de servicio voluntario'}
+                    </summary>
+                    <p className="mt-2 mb-5 text-sm text-gray-600">
+                      {lang === 'en'
+                        ? 'Complete and submit both parts together. The volunteer summary prints as page 2.'
+                        : 'Complete y envíe ambas partes juntas. El resumen de servicio voluntario se imprime en la página 2.'}
+                    </p>
+                    <ScholarshipApplicationPacket lang={lang} />
+                  </details>
+                  <details className="scholarship-form-accordion rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                    <summary className="cursor-pointer font-serif text-lg font-bold text-brand-blue">
+                      {lang === 'en' ? 'Seminarian Scholarship Application' : 'Solicitud de beca para seminaristas'}
+                    </summary>
+                    <div className="mt-5">
+                      <SeminarianApplicationForm lang={lang} />
                     </div>
-
-                    {/* Interactive Online Application Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
-                      
-                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
-                        <div>
-                          <h3 className="font-serif font-bold text-base text-brand-blue">
-                            <EditableText path="scholarships.apply_title" />
-                          </h3>
-                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
-                            {lang === 'en' ? 'Submit Securely via Google Forms' : 'Soumettre via Google Forms'}
-                          </p>
-                        </div>
-                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="text-xs text-gray-700 leading-relaxed">
-                          {lang === 'en' 
-                            ? 'The official SJBEF scholarship application can also be completed online via Google Forms. You can complete your application directly below, or launch the form in a new tab.' 
-                            : 'La demande officielle de bourse de la SJBEF peut également être remplie en ligne via Google Forms. Remplissez le formulaire ci-dessous ou ouvrez-le dans un nouvel onglet.'}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                          <a 
-                            href="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Open Form in New Tab' : 'Ouvrir dans un Nouvel Onglet'}</span>
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Embed Google Form Iframe */}
-                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
-                        <iframe 
-                          src="https://docs.google.com/forms/d/e/1FAIpQLScxY_QLvsYIrxndxMYUwIqR_pLE237PzBW7BW7HCPlAFv8DWQ/viewform?embedded=true" 
-                          className="absolute inset-0 w-full h-full border-0"
-                          title="SJBEF Scholarship Google Form"
-                        >
-                          Loading…
-                        </iframe>
-                      </div>
-
-                    </div>
-
-                    {/* Seminarian Application Online Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
-                      
-                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
-                        <div>
-                          <h3 className="font-serif font-bold text-base text-brand-blue">
-                            {lang === 'en' ? 'Apply for the Seminarian Scholarship' : 'Postuler pour la Bourse de Séminaire'}
-                          </h3>
-                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
-                            {lang === 'en' ? 'Submit Securely via Google Forms' : 'Soumettre via Google Forms'}
-                          </p>
-                        </div>
-                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="text-xs text-gray-700 leading-relaxed">
-                          {lang === 'en' 
-                            ? 'The Seminarian scholarship application is available online via Google Forms. Open the form in a new tab.' 
-                            : 'La demande de bourse pour séminaristes est disponible en ligne via Google Forms. Ouvrez le formulaire dans un nouvel onglet.' }
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                          <a 
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSdilHjT_j9YAYyqT5--zYXI0_BeUDUjjhsbGBWUY9ZjfYHkhA/viewform" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Open Seminarian Form' : 'Ouvrir le Formulaire de Séminaire'}</span>
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Embed Seminarian Google Form Iframe */}
-                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
-                        <iframe 
-                          src="https://docs.google.com/forms/d/e/1FAIpQLSdilHjT_j9YAYyqT5--zYXI0_BeUDUjjhsbGBWUY9ZjfYHkhA/viewform?embedded=true" 
-                          className="absolute inset-0 w-full h-full border-0"
-                          title="SJBEF Seminarian Google Form"
-                        >
-                          Loading…
-                        </iframe>
-                      </div>
-
-                    </div>
-
-                    {/* Volunteer Service Form Card */}
-                    <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-md space-y-4">
-                      
-                      <div className="flex items-center justify-between border-b border-gray-100 pb-3 mb-2">
-                        <div>
-                          <h3 className="font-serif font-bold text-base text-brand-blue">
-                            {lang === 'en' ? 'Scholarship Program – Summary of Volunteer Service' : 'Programme de Bourses – Résumé du Service Bénévole'}
-                          </h3>
-                          <p className="text-[10px] text-brand-coral font-bold mt-0.5 uppercase tracking-wider">
-                            {lang === 'en' ? 'Return with Scholarship Application' : 'À Retourner avec la Demande de Bourse'}
-                          </p>
-                        </div>
-                        <GraduationCap className="w-6 h-6 text-brand-blue shrink-0" />
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="text-xs text-gray-700 leading-relaxed">
-                          {lang === 'en' 
-                            ? 'Document your leadership positions and volunteer service. This form should be returned with your scholarship application. Open the form in a new tab.' 
-                            : 'Documentez vos postes de leadership et votre service bénévole. Ce formulaire doit être retourné avec votre demande de bourse. Ouvrez le formulaire dans un nouvel onglet.' }
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                          <a 
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex-1 py-2.5 px-4 bg-brand-coral hover:bg-brand-coral/95 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>{lang === 'en' ? 'Open Volunteer Form' : 'Ouvrir le Formulaire Bénévole'}</span>
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Embed Volunteer Service Google Form Iframe */}
-                      <div className="border border-gray-200 rounded-xl overflow-hidden bg-white h-[350px] relative shadow-inner mt-4">
-                        <iframe 
-                          src="https://docs.google.com/forms/d/e/1FAIpQLSfEoSv0-V2J6aPn1hOLMP19jJ7PLHFjsAQW-VsQ7rb0XsuOdA/viewform?embedded=true" 
-                          className="absolute inset-0 w-full h-full border-0"
-                          title="SJBEF Volunteer Service Google Form"
-                        >
-                          Loading…
-                        </iframe>
-                      </div>
-
-                    </div>
-
-                  </div>
-
+                  </details>
                 </div>
 
                 {/* Additional Scholarship Details Section (Member, Seminarian, Special Awards & Image5) */}
