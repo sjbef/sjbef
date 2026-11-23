@@ -40,7 +40,7 @@ import NewslettersPage from './pages/NewslettersPage';
 import DonatePage from './pages/DonatePage';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
-const scholarshipHeritageImg = "/src/assets/images/scholarship_heritage_1784081435433.jpg";
+const scholarshipHeritageImg = new URL('./assets/images/scholarship_heritage_1784081435433.jpg', import.meta.url).href;
 
 // Define the interface for the bilingual content
 interface TranslationSet {
@@ -143,7 +143,6 @@ interface TranslationSet {
     submission_online_desc: string;
     downloads_title: string;
     download_app_btn: string;
-    download_volunteer_btn: string;
     download_seminarian_btn: string;
     help_title: string;
     help_desc: string;
@@ -152,19 +151,6 @@ interface TranslationSet {
     section_title: string;
     title: string;
     description: string;
-    tier_title: string;
-    tiers: {
-      t1_title: string;
-      t1_desc: string;
-      t2_title: string;
-      t2_desc: string;
-      t3_title: string;
-      t3_desc: string;
-      t4_title: string;
-      t4_desc: string;
-    };
-    donate_btn: string;
-    tax_deductible: string;
     mail_check: string;
   };
   contact: {
@@ -567,7 +553,7 @@ export default function App() {
 
             <NewslettersPage lang={lang} isActive={currentSection === 'newsletters'} />
 
-            <DonatePage lang={lang} isActive={currentSection === 'donate'} EditableText={EditableText} getText={getText} />
+            <DonatePage isActive={currentSection === 'donate'} EditableText={EditableText} />
 
             <ContactPage lang={lang} isActive={currentSection === 'contact'} EditableText={EditableText} getText={getText} />
 
