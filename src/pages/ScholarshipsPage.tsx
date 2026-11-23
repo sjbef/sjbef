@@ -18,6 +18,11 @@ interface ScholarshipsPageProps {
 }
 
 export default function ScholarshipsPage({ lang, EditableText, heritageImage }: ScholarshipsPageProps) {
+  const openApplication = (id: string) => {
+    const application = document.getElementById(id);
+    if (application instanceof HTMLDetailsElement) application.open = true;
+  };
+
   return (
               <section id="scholarships" className="py-20 bg-brand-warm border-b border-gray-150">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,102 +62,127 @@ export default function ScholarshipsPage({ lang, EditableText, heritageImage }: 
                   </div>
                 </div>
 
-                {/* Two-Column Streamlined Requirements & Application Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 items-start">
-                  
-                  {/* Left Column: Requirements and Details */}
-                  <div className="lg:col-span-12 space-y-6">
-                    
-                    {/* Eligibility Requirements Card */}
-                    <div className="content-card">
-                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
-                        <CheckCircle className="w-5 h-5 text-brand-coral" />
-                        <EditableText path="scholarships.eligibility_title" />
-                      </h3>
-                      <p className="text-xs text-gray-500 italic">
-                        <EditableText path="scholarships.eligibility_desc" />
-                      </p>
-                      <ul className="space-y-4 pt-2">
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.eligibility_item1" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.eligibility_item2" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.eligibility_item3" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.eligibility_item4" />
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Required Documents Card */}
-                    <div className="content-card">
-                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-brand-coral" />
-                        <EditableText path="scholarships.documents_title" />
-                      </h3>
-                      <p className="text-xs text-gray-500 italic">
-                        <EditableText path="scholarships.documents_desc" />
-                      </p>
-                      <ul className="space-y-4 pt-2">
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.documents_item1" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.documents_item2" />
-                        </li>
-                        <li className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
-                          <EditableText path="scholarships.documents_item3" />
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Submission and Process Card */}
-                    <div className="content-card">
-                      <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
-                        <Shield className="w-5 h-5 text-brand-coral" />
-                        <EditableText path="scholarships.submission_title" />
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        <EditableText path="scholarships.submission_desc" />
-                      </p>
-                      
-                      <div className="bg-brand-warm border border-gray-200/60 p-4 rounded-xl space-y-2 mt-2">
-                        <h4 className="text-xs font-bold text-brand-blue uppercase tracking-wider flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-brand-coral" />
-                          {lang === 'en' ? 'Mailing Address for Hard Copies & Transcripts' : 'Adresse Postale pour Copies Papier & Relevés'}
-                        </h4>
-                        <p className="text-xs text-gray-600 font-medium leading-relaxed bg-white/75 border border-gray-100 p-2.5 rounded-lg select-all">
-                          <EditableText path="scholarships.submission_mail_address" />
+                <section className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2" aria-label={lang === 'en' ? 'Choose a scholarship application' : 'Elija una solicitud de beca'}>
+                  <a
+                    href="#college-scholarship-application"
+                    onClick={() => openApplication('college-scholarship-application')}
+                    className="group rounded-2xl border-2 border-brand-blue bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="rounded-xl bg-brand-blue/10 p-3 text-brand-blue">
+                        <Award className="h-6 w-6" />
+                      </span>
+                      <div className="space-y-2">
+                        <h3 className="font-serif text-lg font-bold text-brand-blue">
+                          {lang === 'en' ? 'College Scholarship Application' : 'Solicitud de beca universitaria'}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-gray-600">
+                          {lang === 'en'
+                            ? 'For high school seniors and college students. Review eligibility and required documents, then complete the application and volunteer service summary.'
+                            : 'Para estudiantes de último año de secundaria y universitarios. Revise los requisitos y documentos necesarios y complete la solicitud y el resumen de servicio voluntario.'}
                         </p>
+                        <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-coral">
+                          {lang === 'en' ? 'View requirements and apply' : 'Ver requisitos y solicitar'}
+                          <span aria-hidden="true">→</span>
+                        </span>
                       </div>
+                    </div>
+                  </a>
+                  <a
+                    href="#seminarian-scholarship-application"
+                    onClick={() => openApplication('seminarian-scholarship-application')}
+                    className="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-teal hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="rounded-xl bg-brand-teal/10 p-3 text-brand-teal">
+                        <FileText className="h-6 w-6" />
+                      </span>
+                      <div className="space-y-2">
+                        <h3 className="font-serif text-lg font-bold text-brand-blue">
+                          {lang === 'en' ? 'Seminarian Scholarship Application' : 'Solicitud de beca para seminaristas'}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-gray-600">
+                          {lang === 'en'
+                            ? 'A separate application for eligible seminarians in their final four years of theological studies.'
+                            : 'Una solicitud aparte para seminaristas elegibles en sus últimos cuatro años de estudios teológicos.'}
+                        </p>
+                        <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-teal">
+                          {lang === 'en' ? 'Open seminarian application' : 'Abrir solicitud para seminaristas'}
+                          <span aria-hidden="true">→</span>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </section>
 
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        <EditableText path="scholarships.submission_online_desc" />
+                <div className="mt-8">
+                  {/* Submission and Process Card */}
+                  <div className="content-card">
+                    <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-brand-coral" />
+                      <EditableText path="scholarships.submission_title" />
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      <EditableText path="scholarships.submission_desc" />
+                    </p>
+                    <div className="bg-brand-warm border border-gray-200/60 p-4 rounded-xl space-y-2 mt-2">
+                      <h4 className="text-xs font-bold text-brand-blue uppercase tracking-wider flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-brand-coral" />
+                        {lang === 'en' ? 'Mailing Address for Hard Copies & Transcripts' : 'Adresse Postale pour Copies Papier & Relevés'}
+                      </h4>
+                      <p className="text-xs text-gray-600 font-medium leading-relaxed bg-white/75 border border-gray-100 p-2.5 rounded-lg select-all">
+                        <EditableText path="scholarships.submission_mail_address" />
                       </p>
                     </div>
-
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      <EditableText path="scholarships.submission_online_desc" />
+                    </p>
                   </div>
-
                 </div>
 
                 <div className="mt-12 space-y-6">
-                  <details className="scholarship-form-accordion rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                  <details id="college-scholarship-application" className="scholarship-form-accordion scroll-mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
                     <summary className="cursor-pointer font-serif text-lg font-bold text-brand-blue">
                       {lang === 'en'
                         ? 'College Scholarship Application + Volunteer Service Summary'
                         : 'Solicitud de beca universitaria + resumen de servicio voluntario'}
                     </summary>
+                    <div className="mt-5 space-y-6">
+                      <div className="content-card">
+                        <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
+                          <CheckCircle className="w-5 h-5 text-brand-coral" />
+                          <EditableText path="scholarships.eligibility_title" />
+                        </h3>
+                        <p className="text-xs text-gray-500 italic">
+                          <EditableText path="scholarships.eligibility_desc" />
+                        </p>
+                        <ul className="space-y-4 pt-2">
+                          {[1, 2, 3, 4].map((item) => (
+                            <li key={item} className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                              <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                              <EditableText path={`scholarships.eligibility_item${item}`} />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="content-card">
+                        <h3 className="font-serif font-bold text-lg text-brand-blue border-b border-gray-100 pb-2 flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-brand-coral" />
+                          <EditableText path="scholarships.documents_title" />
+                        </h3>
+                        <p className="text-xs text-gray-500 italic">
+                          <EditableText path="scholarships.documents_desc" />
+                        </p>
+                        <ul className="space-y-4 pt-2">
+                          {[1, 2, 3].map((item) => (
+                            <li key={item} className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                              <span className="w-1.5 h-1.5 bg-brand-coral rounded-full mt-2 shrink-0"></span>
+                              <EditableText path={`scholarships.documents_item${item}`} />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                     <p className="mt-2 mb-5 text-sm text-gray-600">
                       {lang === 'en'
                         ? 'Complete and submit both parts together. The volunteer summary prints as page 2.'
@@ -160,7 +190,7 @@ export default function ScholarshipsPage({ lang, EditableText, heritageImage }: 
                     </p>
                     <ScholarshipApplicationPacket lang={lang} />
                   </details>
-                  <details className="scholarship-form-accordion rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+                  <details id="seminarian-scholarship-application" className="scholarship-form-accordion scroll-mt-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
                     <summary className="cursor-pointer font-serif text-lg font-bold text-brand-blue">
                       {lang === 'en' ? 'Seminarian Scholarship Application' : 'Solicitud de beca para seminaristas'}
                     </summary>

@@ -269,8 +269,8 @@ export default function ScholarshipApplicationForm({ lang, embedded = false }: S
             <ApplicationField id="applicant-name" name="applicant-name" label={text.studentName} required autoComplete="name" />
             <ApplicationField id="student-email" name="student-email" label={text.email} type="email" required autoComplete="email" />
             <ApplicationField id="member-name" name="member-name" label={text.memberName} required />
-            <ApplicationField id="policy-number" name="policy-number" label={text.policyNumber} />
-            <ApplicationField id="date-of-birth" name="date-of-birth" label={text.dateOfBirth} />
+            <ApplicationField id="policy-number" name="policy-number" label={text.policyNumber} required />
+            <ApplicationField id="date-of-birth" name="date-of-birth" label={text.dateOfBirth} required />
             <ApplicationField id="chapter-number" name="chapter-number" label={text.chapterNumber} required />
             <ApplicationField id="mailing-address" name="mailing-address" label={text.mailingAddress} required wide autoComplete="street-address" />
             <ApplicationField id="applicant-city" name="applicant-city" label={text.city} required autoComplete="address-level2" />
