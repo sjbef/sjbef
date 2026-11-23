@@ -40,7 +40,7 @@ import NewslettersPage from './pages/NewslettersPage';
 import DonatePage from './pages/DonatePage';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
-const scholarshipHeritageImg = "/src/assets/images/scholarship_heritage_1784081435433.jpg";
+const scholarshipHeritageImg = new URL('./assets/images/scholarship_heritage_1784081435433.jpg', import.meta.url).href;
 
 // Define the interface for the bilingual content
 interface TranslationSet {
