@@ -18,6 +18,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
 @layer components {
   .section-title {
     @apply text-3xl sm:text-4xl font-serif font-bold text-brand-blue tracking-tight;
